@@ -6,14 +6,18 @@ public class EnemyRespawnTemp : MonoBehaviour
 {
 
     public GameObject enemyToRespawn;
-
-    float timer = 0;
+    private Vector3 pos;
+    // public float timer = 0;
      public void CreateNewEnemy(Vector3 Position){
-
-        while (timer < 5.0f){
-            timer += Time.fixedDeltaTime;
-        }
-        Instantiate(enemyToRespawn, Position, Quaternion.identity);
+        Invoke("createGuy", 2);
+        pos = Position;
+    
     }
+
+    void createGuy(){
+        Debug.Log("CreateGuy called");
+        Instantiate(enemyToRespawn, pos, Quaternion.identity);
+    }
+
     
 }
