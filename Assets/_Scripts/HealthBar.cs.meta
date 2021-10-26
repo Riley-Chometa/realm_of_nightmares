@@ -3,7 +3,12 @@ guid: 1091e8f9e14984263b47fd7419e2ebfe
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - slider: {instanceID: 0}
+  - fill: {instanceID: 0}
+  - hitSoundEffect: {fileID: 8300000, guid: 31e17ddb94d8f49ca9f4249bac77aef8, type: 3}
+  - notch: {fileID: 8323964238659818335, guid: 64c8dfa23a99a48bfbd77607c64d8030, type: 3}
+  - healthFrame: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
