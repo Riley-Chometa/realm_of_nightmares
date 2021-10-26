@@ -8,6 +8,9 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
     protected TileMapVisualizer tileMapVisualizer = null;
     [SerializeField]
     protected Vector2Int startPosition = Vector2Int.zero;
+   
+    public GameObject player;
+
 
     public void GenerateDungeon()
     {
@@ -17,7 +20,8 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
 
     public void SpawnPlayer(Vector2 newLocation)
     {
-        GameObject.Find("Player").transform.position = new Vector3(newLocation.x, newLocation.y, -1);
+       // Instantiate(player, new Vector3(newLocation.x, newLocation.y, -1), player.transform.rotation);
+        player.transform.position = new Vector3(newLocation.x, newLocation.y, -1);
     }
 
     protected abstract void RunProceduralGeneration();
