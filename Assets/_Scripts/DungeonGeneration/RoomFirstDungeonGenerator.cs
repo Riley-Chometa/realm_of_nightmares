@@ -29,6 +29,13 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     //the spawn point for the player, this will be set to be the first rooms center point
     private Vector2 spawnPoint = Vector2.zero;
 
+    public void GenerateDungeon()
+    {
+        
+        tileMapVisualizer.Clear();
+        CreateRooms();
+    }
+
     protected override void RunProceduralGeneration()
     {
         CreateRooms();
@@ -50,7 +57,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         else{
             floor = CreateSimpleRooms(roomsList);
         }
-        Debug.Log(floor.Count);
 
         List<Vector2Int> roomCenters = new List<Vector2Int>();
         foreach (var room in roomsList)
@@ -65,6 +71,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         tileMapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tileMapVisualizer);
         SpawnPlayer(spawnPoint);
+        
     }
 
     private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
@@ -123,6 +130,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 position += Vector2Int.down;
             }
             corridor.Add(position);
+
         }
         while (position.x != destination.x)
         {

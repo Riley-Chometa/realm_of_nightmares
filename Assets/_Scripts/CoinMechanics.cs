@@ -18,6 +18,7 @@ public class CoinMechanics : MonoBehaviour
             Destroy(gameObject);
             smoke = Instantiate(smokeAnimation, tm.position, tm.rotation);
             Destroy(smoke, .75f);
+            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyCoins(1);
         }
     }
 }
