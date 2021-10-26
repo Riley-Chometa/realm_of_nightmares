@@ -5,7 +5,7 @@ using UnityEngine;
 public class Node
 {
     public bool walkable;
-    public Vector3 WorldPosition;
+    public Vector2 WorldPosition;
     public int gridX;
     public int gridY;
 
@@ -13,7 +13,7 @@ public class Node
     public int hCost;
     public Node parent;
 
-    public Node(bool isWalkable, Vector3 coordinates, int _gridX, int _gridY){
+    public Node(bool isWalkable, Vector2 coordinates, int _gridX, int _gridY){
         walkable = isWalkable;
         WorldPosition = coordinates;
         gridX = _gridX;

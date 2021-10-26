@@ -11,10 +11,9 @@ public class Grid_script : MonoBehaviour
     Node[,] grid;
     float nodeDiameter;
     int gridSizeX, gridSizeY;
-    Vector3 bottomLeft;
 
     void Awake(){
-        displayGridGizmos = false;
+        displayGridGizmos = true;
         nodeDiameter = 2*nodeRadius;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
@@ -22,20 +21,21 @@ public class Grid_script : MonoBehaviour
         
     }
     void createGrid(){
+
         grid = new Node[gridSizeX,gridSizeY];
-        Vector3 bottomLeft = transform.position - Vector3.right * gridWorldSize.x/2 - Vector3.forward * gridWorldSize.y/2;
+        Vector2 bottomLeft = new Vector2(transform.position.x - (1 * gridWorldSize.x/2),transform.position.y - 1 * gridWorldSize.y/2);
         
         for (int x = 0; x < gridSizeX; x++){
             for (int y = 0; y < gridSizeY; y++){
-                Vector3 worldPoint = bottomLeft + Vector3.right * (x*nodeDiameter + nodeRadius) + Vector3.forward* (y*nodeDiameter + nodeRadius);
-                bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
+                Vector2 worldPoint = bottomLeft + Vector2.right * (x*nodeDiameter + nodeRadius) + Vector2.up* (y*nodeDiameter + nodeRadius);
+                bool walkable = !(Physics2D.OverlapCircle(worldPoint, nodeRadius, unwalkableMask));
                 grid[x,y] = new Node(walkable, worldPoint,x,y);
             }    
         }
     }
-    public Node nodeFromWorldPosition(Vector3 WorldPosition){
+    public Node nodeFromWorldPosition(Vector2 WorldPosition){
         float percentX = (WorldPosition.x + gridWorldSize.x/2) / gridWorldSize.x;
-        float percentY = (WorldPosition.z + gridWorldSize.y/2) / gridWorldSize.y;
+        float percentY = (WorldPosition.y + gridWorldSize.y/2) / gridWorldSize.y;
         percentX = Mathf.Clamp01(percentX);
         percentY = Mathf.Clamp01(percentY);
 
@@ -65,11 +65,11 @@ public class Grid_script : MonoBehaviour
     }
 
     void OnDrawGizmos(){
-        Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
+        Gizmos.DrawWireCube(transform.position, new Vector2(gridWorldSize.x, gridWorldSize.y));
         if(grid != null && displayGridGizmos){
             foreach (Node n in grid){
                 Gizmos.color = (n.walkable)?Color.white:Color.red;
-                Gizmos.DrawCube(n.WorldPosition, Vector3.one * (nodeDiameter-.1f));
+                Gizmos.DrawCube(n.WorldPosition, Vector2.one * (nodeDiameter-.1f));
             }
         }
     
