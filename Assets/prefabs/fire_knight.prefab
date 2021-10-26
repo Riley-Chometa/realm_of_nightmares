@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 333699356981363655}
   - component: {fileID: 333699356981363654}
   - component: {fileID: 333699356981363704}
+  - component: {fileID: 1467863094108535282}
   m_Layer: 8
   m_Name: fire_knight
   m_TagString: Enemy
@@ -158,3 +159,17 @@ MonoBehaviour:
   currentHealth: 0
   mainCollider: {fileID: 0}
   anim: {fileID: 333699356981363651}
+  tempRespawner: {fileID: 5354929005229764596, guid: 8b266f8bc72d62d4aaed5ad8d6f00e22, type: 3}
+--- !u!114 &1467863094108535282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333699356981363650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b354b1d8807094b4d8e9ce4b05b5c78d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyToRespawn: {fileID: 333699356981363650}
