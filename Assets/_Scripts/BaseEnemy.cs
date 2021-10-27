@@ -42,6 +42,7 @@ public class BaseEnemy : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 7;
         Destroy(gameObject.GetComponent<CapsuleCollider2D>());
         anim.SetTrigger("death");
+        GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyScore(100);
     }
 
     // After the Death Animation finishes the event calls the deathDestroy function to remove the enemy object from the game world.
