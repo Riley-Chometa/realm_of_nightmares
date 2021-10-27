@@ -21,10 +21,20 @@ public class PlayerStats : MonoBehaviour
     private int startKeys = 0;
     public Text keyText;
 
-    // private void Start() {
-    //     coinPurseText = GetComponent<Text>();
-    //     coinPurseText.text = "Coins: " + coinPurse;
-    // }
+    /*
+    private void Start() {
+           coinPurseText = GetComponent<Text>();
+           coinPurseText.text = "Coins: " + coinPurse;
+    }
+    */
+
+    private void Start()
+    {
+        modifyCoins(startCoins);
+        modifyKeys(startKeys);
+        modifyScore(startScore);
+        
+    }
     public void modifyCoins(int amount)
     {
         coinPurse += amount;
