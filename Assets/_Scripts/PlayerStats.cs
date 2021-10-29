@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour
     // variables related to player score
 
     public int playerScore = 0;
-    private int startScore = 0;
+    public int startScore = 0;
     public Text playerScoreText; 
 
     // variables related to player keys
