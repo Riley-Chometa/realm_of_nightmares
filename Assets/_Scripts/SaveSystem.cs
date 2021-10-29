@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem 
 {
-    public static void SavePlayer(Snake player){
+    public static void SavePlayer(PlayerStats player){
       BinaryFormatter formatter = new BinaryFormatter();
       string path = Application.persistentDataPath + "/player.alex";
       FileStream stream = new FileStream(path,FileMode.Create);
