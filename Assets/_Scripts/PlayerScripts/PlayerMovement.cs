@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     Vector2 movement;
     Vector2 storePreviousMovement;
+
     public Animator anim;
     public StaminaBar staminaBar;
 
@@ -61,14 +62,16 @@ public class PlayerMovement : MonoBehaviour
         staminaBar.setStamina(maxStamina);
         staminaBar.SetMaxValue(maxStamina);
         canMove = true;
+      
     }
 
     // Update is called once per frame, Contains primary input from player.
     void Update()
-    {
+    {   
+        if (canMove){
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        
+        }
         anim.SetFloat("Horizontal", movement.x);
         anim.SetFloat("Vertical", movement.y);
         anim.SetFloat("Speed", movement.sqrMagnitude);
@@ -99,6 +102,13 @@ public class PlayerMovement : MonoBehaviour
     Main FixedUpdate Method for movement, includes sprinting mechanic and stamina bar.
     */
     void FixedUpdate(){
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("attacks")){
+            moveSpeed = 0;
+            canMove = false;
+        }
+        else {
+            canMove = true;
+        }
         if (canMove){
         if (Mathf.Abs(movement.x) > 0.02 || Mathf.Abs(movement.y) > 0.02){
             // if running and change direction quickly reset movespeed. (have to stop instantaniously to turn around.) may have to implement a minor timer to adjust for non instantanious transitions. 
@@ -131,13 +141,18 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             // move the sprite character with position and movement speed based on previous inputs. normalized speed for diagonal movement.
+            if (canMove){
             rb.MovePosition(rb.position + movement * (moveSpeed / Mathf.Sqrt(movement.x * movement.x + movement.y * movement.y)) * Time.fixedDeltaTime);
+            }
         }
+
         else if (Mathf.Abs(movement.x) <=.02 && Mathf.Abs(movement.y) <= .02){
         //if player stops inputting. or input is too low (deadZone)
             if (moveSpeed - deceleration * Time.fixedDeltaTime >= 0){
                 moveSpeed -= deceleration * Time.fixedDeltaTime;
+                if (canMove){
                 rb.MovePosition(rb.position + storePreviousMovement * (moveSpeed / Mathf.Sqrt(storePreviousMovement[0] * storePreviousMovement[0] + storePreviousMovement[1] * storePreviousMovement[1])) * Time.fixedDeltaTime);
+                }
             }
         }
         // update Stamina bar
@@ -204,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
     // reset variables for stopping to attack
     void stopAttacking(){
         canMove = true;
+        // purposely trying to break attacking
         moveSpeed = 0;
     }
 
