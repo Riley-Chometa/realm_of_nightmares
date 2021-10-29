@@ -54,6 +54,10 @@ public class PlayerMovement : MonoBehaviour
     public float attackRange = .5f;
     public LayerMask enemyLayers;
 
+    public AudioClip attackSwingSound;
+    public AudioClip hitSound;
+    private AudioSource audioSource;
+
     // Initialize variables for the player.
     void Start(){
         storePreviousMovement = new Vector2(0,0);
@@ -62,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         staminaBar.setStamina(maxStamina);
         staminaBar.SetMaxValue(maxStamina);
         canMove = true;
-      
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame, Contains primary input from player.
@@ -95,6 +99,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)){
             canMove = false;
             Attack();
+        }
+
+        if (Input.GetKeyDown("e")){
+            getHit();
         }
     }
 
@@ -203,6 +211,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void attackSwingAudio(){
+        audioSource.PlayOneShot(attackSwingSound);
+    }
+
     // call the actual part of the animation where damage occurs.
     void attackAnimation(){
         Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(currentAttackPoint.position, attackRange, enemyLayers);
@@ -216,6 +228,20 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void getHit(){
+        // Debug.Log("Hey I Got Hit!");
+        audioSource.PlayOneShot(hitSound);
+        canMove = false;
+        moveSpeed = -moveSpeed;
+        anim.SetFloat("Xdirection", storePreviousMovement[0]);
+        anim.SetFloat("Ydirection", storePreviousMovement[1]);
+        anim.SetTrigger("isHit");
+    }
+
+    void stopGettingHit(){
+        canMove = true;
+        moveSpeed = 0;
+    }
     // reset variables for stopping to attack
     void stopAttacking(){
         canMove = true;
