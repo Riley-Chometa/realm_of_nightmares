@@ -944,7 +944,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1142135733
 GameObject:
@@ -1042,7 +1042,7 @@ RectTransform:
   - {fileID: 317300700}
   - {fileID: 2093419972}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -101838,7 +101838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5354929005229764603, guid: 8b266f8bc72d62d4aaed5ad8d6f00e22, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5354929005229764603, guid: 8b266f8bc72d62d4aaed5ad8d6f00e22, type: 3}
       propertyPath: m_LocalPosition.x
@@ -102028,9 +102028,9 @@ MonoBehaviour:
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
   player: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
-  tempEnemy: {fileID: 0}
-  tempEnd: {fileID: 0}
-  tempCoin: {fileID: 0}
+  tempEnemy: {fileID: 333699356981363650, guid: 25275666c21ace04da00ed2e4ac72840, type: 3}
+  tempEnd: {fileID: 661925287676613748, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+  tempCoin: {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
 --- !u!4 &1714925182
 Transform:
@@ -102044,65 +102044,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1719697011
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 661925287676613748, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_Name
-      value: SpawnDungeon
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 64.36715
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 33.838116
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 661925287676613754, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
 --- !u!1 &1741364664
 GameObject:
   m_ObjectHideFlags: 0
@@ -102167,7 +102110,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1826959207
 GameObject:
@@ -102201,9 +102144,9 @@ MonoBehaviour:
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
   player: {fileID: 692038334}
-  tempEnemy: {fileID: 0}
-  tempEnd: {fileID: 0}
-  tempCoin: {fileID: 0}
+  tempEnemy: {fileID: 333699356981363650, guid: 25275666c21ace04da00ed2e4ac72840, type: 3}
+  tempEnd: {fileID: 661925287676613748, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+  tempCoin: {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
   minRoomWidth: 25
   minRoomHeight: 25
@@ -102224,7 +102167,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1849530820
 PrefabInstance:
@@ -102339,7 +102282,7 @@ Transform:
   - {fileID: 1255442762}
   - {fileID: 1237939456}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1853410841
 Grid:
@@ -102638,9 +102581,9 @@ MonoBehaviour:
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
   player: {fileID: 692038334}
-  tempEnemy: {fileID: 0}
-  tempEnd: {fileID: 0}
-  tempCoin: {fileID: 0}
+  tempEnemy: {fileID: 333699356981363650, guid: 25275666c21ace04da00ed2e4ac72840, type: 3}
+  tempEnd: {fileID: 661925287676613748, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+  tempCoin: {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
   corridorLength: 30
   corridorCount: 10
@@ -102658,7 +102601,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8158143757233516672
 PrefabInstance:

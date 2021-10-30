@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     // private float jumpSpeed = 5.0f;
 
     private bool canMove;
+    private bool isAlive;
     // Setup attributes and components needed for movement of player.
     public Rigidbody2D rb;
     Vector2 movement;
@@ -66,43 +67,49 @@ public class PlayerMovement : MonoBehaviour
         staminaBar.setStamina(maxStamina);
         staminaBar.SetMaxValue(maxStamina);
         canMove = true;
+        isAlive = true;
         audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame, Contains primary input from player.
     void Update()
-    {   
-        if (canMove){
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        }
-        anim.SetFloat("Horizontal", movement.x);
-        anim.SetFloat("Vertical", movement.y);
-        anim.SetFloat("Speed", movement.sqrMagnitude);
+    {   if (isAlive){
+            if (canMove){
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+            }
+            anim.SetFloat("Horizontal", movement.x);
+            anim.SetFloat("Vertical", movement.y);
+            anim.SetFloat("Speed", movement.sqrMagnitude);
 
-        float xdirection = movement.x;
-        float ydirection = movement.y;
-        // simple movement information
-        if (canMove){
-            if (movement.magnitude > .02){
-                if (Mathf.Abs(xdirection) > Mathf.Abs(ydirection)){
-                    anim.SetFloat("Xdirection", xdirection);
-                    anim.SetFloat("Ydirection", 0);
-                }
-                else {
-                    anim.SetFloat("Xdirection", 0);
-                    anim.SetFloat("Ydirection", ydirection);
+            float xdirection = movement.x;
+            float ydirection = movement.y;
+            // simple movement information
+            if (canMove){
+                if (movement.magnitude > .02){
+                    if (Mathf.Abs(xdirection) > Mathf.Abs(ydirection)){
+                        anim.SetFloat("Xdirection", xdirection);
+                        anim.SetFloat("Ydirection", 0);
+                    }
+                    else {
+                        anim.SetFloat("Xdirection", 0);
+                        anim.SetFloat("Ydirection", ydirection);
+                    }
                 }
             }
-        }
-        // simple spaceBar attack.
-        if (Input.GetKeyDown(KeyCode.Space)){
-            canMove = false;
-            Attack();
-        }
+            // simple spaceBar attack.
+            if (Input.GetKeyDown(KeyCode.Space)){
+                canMove = false;
+                Attack();
+            }
 
-        if (Input.GetKeyDown("e")){
-            getHit();
+            if (Input.GetKeyDown("e")){
+                getHit();
+            }
+            if (Input.GetKeyDown("t")){
+                canMove = false;
+                playerDie();
+            }
         }
     }
 
@@ -114,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = 0;
             canMove = false;
         }
-        else {
+        else if (isAlive){
             canMove = true;
         }
         if (canMove){
@@ -226,6 +233,15 @@ public class PlayerMovement : MonoBehaviour
     // potential mechanic to think about adding.
     void makeCharJump(){
 
+    }
+
+    private void playerDie(){
+        isAlive = false;
+        canMove = false;
+        moveSpeed = 0;
+        anim.SetFloat("Xdirection", storePreviousMovement[0]);
+        anim.SetFloat("Ydirection", storePreviousMovement[1]);
+        anim.SetTrigger("isDead");
     }
 
     void getHit(){
