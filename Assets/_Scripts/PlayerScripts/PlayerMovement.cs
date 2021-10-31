@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveSpeedMax = 7.0f;
     private float moveSpeed = 0.0f;
     [SerializeField]
-    private float sprintMaxSpeed = 14.0f;
+    private float sprintMaxSpeed = 20.0f;
     [SerializeField]
     private int maxStamina = 80;
     [SerializeField]
@@ -156,9 +156,12 @@ public class PlayerMovement : MonoBehaviour
 
     // for if you hit an object and are still running need to reduce movement speed so that it isnt max if never let go controls.
     void OnCollisionExit2D(Collision2D col){
-        if (col.gameObject.tag != "Coins"){
-            moveSpeed = 0;
+        if (col.gameObject.tag != "Wall"){
+            if (col.gameObject.tag != "Coins"){
+                moveSpeed = 0;
+            }
         }
+        // Debug.Log("Collided with: " + col.gameObject.name);
     }
 
     // Make the player attack.
