@@ -31,19 +31,17 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
     public void GenerateDungeon()
     {
-        
-        tileMapVisualizer.Clear();
         CreateRooms();
     }
 
     protected override void RunProceduralGeneration()
     {
         CreateRooms();
-
     }
 
     private void CreateRooms()
     {
+        tileMapVisualizer.Clear();
         var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
                     new BoundsInt((Vector3Int) startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), 
                     minRoomWidth, minRoomHeight, maxRooms);
