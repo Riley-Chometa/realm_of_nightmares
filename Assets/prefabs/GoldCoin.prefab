@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5939904145024181504}
   - component: {fileID: 8137317730672840533}
   - component: {fileID: 2771359965828852520}
-  m_Layer: 10
+  m_Layer: 3
   m_Name: GoldCoin
   m_TagString: Coins
   m_Icon: {fileID: 0}

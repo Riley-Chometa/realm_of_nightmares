@@ -178,11 +178,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
-  m_RootOrder: 13
-=======
   m_RootOrder: 5
->>>>>>> master
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &235608967
 GameObject:
@@ -228,7 +224,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &235608970
 SpriteRenderer:
@@ -564,6 +560,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3217765302775430032, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217765302948861012, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217765303381228409, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3217765303606303376, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -636,9 +644,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3217765303606303390, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
       propertyPath: m_Simulated
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3217765304233640381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
@@ -101779,11 +101795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5354929005229764603, guid: 8b266f8bc72d62d4aaed5ad8d6f00e22, type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 12
-=======
       value: 6
->>>>>>> master
       objectReference: {fileID: 0}
     - target: {fileID: 5354929005229764603, guid: 8b266f8bc72d62d4aaed5ad8d6f00e22, type: 3}
       propertyPath: m_LocalPosition.x
@@ -101859,17 +101871,11 @@ MonoBehaviour:
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
   player: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
-<<<<<<< HEAD
-  tempEnemy: {fileID: 333699356981363650, guid: 25275666c21ace04da00ed2e4ac72840, type: 3}
-  tempEnd: {fileID: 661925287676613748, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-  tempCoin: {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
-=======
   tempEnemy: {fileID: 0}
   tempEnd: {fileID: 0}
   tempCoin: {fileID: 0}
   tempKey: {fileID: 0}
   tempLock: {fileID: 0}
->>>>>>> master
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
 --- !u!4 &1714925182
 Transform:
@@ -101883,7 +101889,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1741364664
 GameObject:
@@ -101984,15 +101990,10 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0}
   player: {fileID: 692038334}
   tempEnemy: {fileID: 333699356981363650, guid: 25275666c21ace04da00ed2e4ac72840, type: 3}
-<<<<<<< HEAD
-  tempEnd: {fileID: 661925287676613748, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-  tempCoin: {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
-=======
   tempEnd: {fileID: 235608967}
   tempCoin: {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
   tempKey: {fileID: 8158143757800888505, guid: ce60cc1edab2a914b89ee1bd35a055f3, type: 3}
   tempLock: {fileID: 5463644908676634882, guid: 0f4284003f2685c4ca0b964420b58e0c, type: 3}
->>>>>>> master
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
   minRoomWidth: 25
   minRoomHeight: 25
@@ -102013,7 +102014,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1849530820
 PrefabInstance:
@@ -102313,17 +102314,11 @@ MonoBehaviour:
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
   player: {fileID: 692038334}
-<<<<<<< HEAD
-  tempEnemy: {fileID: 333699356981363650, guid: 25275666c21ace04da00ed2e4ac72840, type: 3}
-  tempEnd: {fileID: 661925287676613748, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-  tempCoin: {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
-=======
   tempEnemy: {fileID: 0}
   tempEnd: {fileID: 0}
   tempCoin: {fileID: 0}
   tempKey: {fileID: 0}
   tempLock: {fileID: 0}
->>>>>>> master
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
   corridorLength: 30
   corridorCount: 10
@@ -102341,9 +102336,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!1001 &8158143757233516672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102405,5 +102399,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce60cc1edab2a914b89ee1bd35a055f3, type: 3}
-=======
->>>>>>> master
