@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - Wall
+  - Tree
+  - Enemy
   - Coins
   - CoinUpdater
   - PickUps
@@ -18,6 +19,7 @@ TagManager:
   - UI
   - Pickups
   - 
+  - Unwalkable
   - 
   - 
   - 
