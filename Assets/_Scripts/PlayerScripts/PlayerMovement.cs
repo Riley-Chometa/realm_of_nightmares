@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         isAlive = true;
         audioSource = GetComponent<AudioSource>();
-    }
+    } 
 
     // Update is called once per frame, Contains primary input from player.
     void Update()
