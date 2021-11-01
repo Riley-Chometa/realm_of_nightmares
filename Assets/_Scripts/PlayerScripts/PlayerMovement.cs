@@ -194,6 +194,12 @@ public class PlayerMovement : MonoBehaviour
         // Debug.Log("Collided with: " + col.gameObject.name);
     }
 
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.tag != "Coins" || other.gameObject.tag != "PickUps"){
+            moveSpeed = 0;
+        }    
+    }
+
     // Make the player attack.
     void Attack(){
         anim.SetFloat("Xdirection", storePreviousMovement[0]);

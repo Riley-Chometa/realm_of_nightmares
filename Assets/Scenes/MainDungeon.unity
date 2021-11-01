@@ -576,6 +576,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 3217765303606303390, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
 --- !u!4 &692038333 stripped
@@ -102613,6 +102617,10 @@ PrefabInstance:
     - target: {fileID: 8158143757800888505, guid: ce60cc1edab2a914b89ee1bd35a055f3, type: 3}
       propertyPath: m_Name
       value: Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158143757800888505, guid: ce60cc1edab2a914b89ee1bd35a055f3, type: 3}
+      propertyPath: m_TagString
+      value: PickUps
       objectReference: {fileID: 0}
     - target: {fileID: 8158143757800888507, guid: ce60cc1edab2a914b89ee1bd35a055f3, type: 3}
       propertyPath: m_RootOrder

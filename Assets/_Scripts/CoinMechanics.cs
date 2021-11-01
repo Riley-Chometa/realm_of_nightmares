@@ -22,4 +22,15 @@ public class CoinMechanics : MonoBehaviour
             GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyScore(10);
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        Debug.Log("Collided with player");
+        if (other.gameObject.name == "player"){
+            Destroy(gameObject);
+            smoke = Instantiate(smokeAnimation, tm.position, tm.rotation);
+            Destroy(smoke, .75f);
+            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyCoins(1);
+            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyScore(10);
+        }
+    }
 }
