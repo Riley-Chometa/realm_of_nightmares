@@ -26,7 +26,7 @@ public class CoinMechanics : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         Debug.Log("Collided with player");
         if (other.gameObject.name == "player"){
-            Destroy(gameObject);
+            Destroy(this.gameObject);
             smoke = Instantiate(smokeAnimation, tm.position, tm.rotation);
             Destroy(smoke, .75f);
             GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyCoins(1);
