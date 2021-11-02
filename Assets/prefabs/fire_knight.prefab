@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333699356981363650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27, y: 74, z: -1}
+  m_LocalPosition: {x: 69, y: 17, z: -1}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  mainCollider: {fileID: 0}
+  mainCollider: {fileID: 333699356981363654}
   anim: {fileID: 333699356981363651}
   tempRespawner: {fileID: 5354929005229764596, guid: 8b266f8bc72d62d4aaed5ad8d6f00e22, type: 3}
 --- !u!114 &1467863094108535282

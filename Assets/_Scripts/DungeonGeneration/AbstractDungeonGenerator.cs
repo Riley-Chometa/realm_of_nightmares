@@ -35,7 +35,7 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
         {
             Destroy(coin);
         }
-       // Instantiate(player, new Vector3(newLocation.x, newLocation.y, -1), player.transform.rotation);
+        // Instantiate(player, new Vector3(newLocation.x, newLocation.y, -1), player.transform.rotation);
         player.transform.position = new Vector3(newLocation.x, newLocation.y, -1);
         Instantiate(tempEnemy,new Vector3(newLocation.x+5, newLocation.y, -1),Quaternion.identity);
         tempEnemy.transform.position = new Vector3(newLocation.x+5, newLocation.y, -1);
