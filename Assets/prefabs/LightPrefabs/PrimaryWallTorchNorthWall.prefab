@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1486799381073351848}
   - component: {fileID: 8790008817116196168}
+  - component: {fileID: 3401679308584195018}
   m_Layer: 0
   m_Name: Point Light 2D
   m_TagString: unbreakableObjects
@@ -72,6 +73,19 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &3401679308584195018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2311206912845284076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fb448a6a7060a4f85e54f3fef9e082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightingComponent: {fileID: 8790008817116196168}
 --- !u!1 &3682783322072229545
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +158,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: d741a833d8633ad4f8131034b9c3c50b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
