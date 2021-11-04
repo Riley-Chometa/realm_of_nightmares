@@ -267,7 +267,6 @@ public class PlayerMovement : MonoBehaviour
     // reset variables for stopping to attack
     void stopAttacking(){
         canMove = true;
-        // purposely trying to break attacking
         moveSpeed = 0;
     }
 
