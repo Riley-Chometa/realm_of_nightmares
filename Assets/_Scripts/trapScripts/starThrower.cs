@@ -6,16 +6,27 @@ public class starThrower : MonoBehaviour
 {
     [SerializeField]
     private Transform tm;
-
+    private float spawnTime;
     public GameObject star;
+    Vector2 throwDirection;
     // Start is called before the first frame update
     void Start()
     {
         tm = GetComponent<Transform>();
-        InvokeRepeating("createStar", 2.0f, 2.0f);
+        spawnTime = Random.Range(.85f, 1.05f);
+        InvokeRepeating("createStar", spawnTime, spawnTime);
+        // if facing right
+        if (this.gameObject.transform.rotation.eulerAngles.y == 180){
+            throwDirection = Vector2.right;
+            // Debug.Log("Facing Right");
+        }
+        else{
+            throwDirection = Vector2.left;
+        }
     }
 
     private void createStar(){
-        Instantiate(star, tm.position, Quaternion.identity);
+        GameObject newStar = Instantiate(star, tm.position, Quaternion.identity);
+        newStar.GetComponent<starMovement>().setDirection(throwDirection);
     }
 }

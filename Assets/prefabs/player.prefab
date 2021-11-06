@@ -358,6 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d6a5407a043c734d8c4c6c43f02a102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerOperator: {fileID: 3217765303606303377}
   coinPickUp: {fileID: 8300000, guid: 9f1da8c20d145744998fa07d57a5d8d9, type: 3}
   audioSource: {fileID: 1950437210485835160}
   playerLightRadius: {fileID: 5706276532459048137}

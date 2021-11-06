@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6162417932098663580}
   - component: {fileID: 6162417932098663577}
   - component: {fileID: 6162417932098663576}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ThrowingStar
   m_TagString: trap
   m_Icon: {fileID: 0}
@@ -134,6 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6162417932098663576}
+  thrownDirection: {x: 0, y: 0}
+  smokeAnimation: {fileID: 4808873524153105200, guid: a62d4088d04ea854cbc12a10fe0c4bb0, type: 3}
 --- !u!50 &6162417932098663576
 Rigidbody2D:
   serializedVersion: 4
