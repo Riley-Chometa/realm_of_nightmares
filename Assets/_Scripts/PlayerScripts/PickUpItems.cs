@@ -12,6 +12,8 @@ public class PickUpItems : MonoBehaviour
     private AudioClip coinPickUp;
 
     [SerializeField]
+    private AudioClip torchPickup;
+    [SerializeField]
     private AudioSource audioSource;
     // Light Variables
     [SerializeField]
@@ -72,6 +74,7 @@ public class PickUpItems : MonoBehaviour
         }
         else if (other.gameObject.tag == "torch"){
             Destroy(other.gameObject);
+            audioSource.PlayOneShot(torchPickup);
             currentIntensity+= lightIntensityIncrement;
             currInnerRadius+= lightIntensityIncrement;
             currOuterRadius += lightIntensityIncrement;
@@ -89,6 +92,12 @@ public class PickUpItems : MonoBehaviour
         // use this for inventory type storing itmes.
         else if (other.gameObject.tag == "PickUps"){
             Debug.Log("Found a pickup!");
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.tag == "trap"){
+            playerOperator.getHit();
         }
     }
 }

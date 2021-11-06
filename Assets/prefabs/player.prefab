@@ -360,6 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOperator: {fileID: 3217765303606303377}
   coinPickUp: {fileID: 8300000, guid: 9f1da8c20d145744998fa07d57a5d8d9, type: 3}
+  torchPickup: {fileID: 8300000, guid: 2f880b3b444e9ae4ca1c2dbb5189f6ac, type: 3}
   audioSource: {fileID: 1950437210485835160}
   playerLightRadius: {fileID: 5706276532459048137}
   lightIntensityIncrement: 0.25
