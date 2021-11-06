@@ -12,6 +12,7 @@ TagManager:
   - PickUps
   - unbreakableObjects
   - torch
+  - trap
   layers:
   - Default
   - TransparentFX

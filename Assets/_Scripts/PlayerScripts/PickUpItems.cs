@@ -5,6 +5,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class PickUpItems : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerMovement playerOperator;
     // Audio Variables.
     [SerializeField]
     private AudioClip coinPickUp;
@@ -80,6 +82,9 @@ public class PickUpItems : MonoBehaviour
             playerLightRadius.intensity = currentIntensity;
             playerLightRadius.pointLightInnerRadius = currInnerRadius;
             playerLightRadius.pointLightOuterRadius = currOuterRadius;
+        }
+        else if (other.gameObject.tag == "trap"){
+            playerOperator.getHit();
         }
         // use this for inventory type storing itmes.
         else if (other.gameObject.tag == "PickUps"){
