@@ -14,16 +14,19 @@ public class BaseEnemy : MonoBehaviour
     public Collider2D mainCollider;
     public Animator anim;
     public EnemyRespawnTemp tempRespawner;
+    //public HealthBar healthBar;
 
     // Set starting Variables.
     void Start()
     {
         currentHealth = maxHealth;
+        //healthBar.setMaxHealth(maxHealth);
     }
 
     // Take the damage from the player. run hit animation and run death if true.
     public void TakeDamage(int damage){
         currentHealth -= damage;
+        //healthBar.setHealth(currentHealth);
         anim.SetBool("hit", true);
         if (currentHealth <= 0){
             death();
