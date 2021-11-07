@@ -11,6 +11,7 @@ TagManager:
   - CoinUpdater
   - PickUps
   - unbreakableObjects
+  - Heart
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Pickups
   - 
   - Unwalkable
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 

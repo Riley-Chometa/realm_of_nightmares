@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 333699356981363654}
   - component: {fileID: 333699356981363704}
   - component: {fileID: 1467863094108535282}
-  m_Layer: 8
+  - component: {fileID: 6332975032023314693}
+  m_Layer: 10
   m_Name: fire_knight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333699356981363650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 72, z: -1}
+  m_LocalPosition: {x: 90, y: 134, z: -1}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -173,3 +174,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyToRespawn: {fileID: 333699356981363650}
+--- !u!114 &6332975032023314693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333699356981363650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94610ce043df8544f93dc5df1061a0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
+  searchRange: 10
+  attackRadius: 1.5

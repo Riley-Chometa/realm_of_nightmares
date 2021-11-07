@@ -27,20 +27,14 @@ public class Pathfinding : MonoBehaviour
         
         if (startNode.walkable && targetNode.walkable){
 
-            List<Node> openSet = new List<Node>();
+            Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
             HashSet<Node> closedSet = new HashSet<Node>();
 
-            openSet.Add(startNode);
+            openSet.addItem(startNode);
 
             while (openSet.Count >0){
-                Node currentNode = openSet[0];
-                for (int i = 1; i <openSet.Count; i++){
-                    if(openSet[i].fCost < currentNode.fCost  || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost){
-                        currentNode = openSet[i];
-                    }
-                }
+                Node currentNode = openSet.removeFirstItem();
                 
-                openSet.Remove(currentNode);
                 
                 closedSet.Add(currentNode);
             
@@ -61,7 +55,7 @@ public class Pathfinding : MonoBehaviour
                         neighbour.parent = currentNode;
 
                         if(!openSet.Contains(neighbour)){
-                            openSet.Add(neighbour);
+                            openSet.addItem(neighbour);
                         }
                     }
                 }

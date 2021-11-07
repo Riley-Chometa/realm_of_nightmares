@@ -36,8 +36,8 @@ public class EnemyScript : MonoBehaviour
         maxHealth = Random.Range(100, 300);                     // Generates random maximum health value
         currentHealth = maxHealth;
         healthBar.setMaxHealth(currentHealth);                  // Sets up the healthbar using the maximum health value
-        xvelocity = Random.Range(-2f, 2f);
-        yvelocity = Random.Range(-2f, 2f);                      // Calculates random directions and speeds for the enemies to move 
+        // xvelocity = Random.Range(-2f, 2f);
+       //  yvelocity = Random.Range(-2f, 2f);                      // Calculates random directions and speeds for the enemies to move 
         healthText.text = "Current Health: " + maxHealth;
     }
 
