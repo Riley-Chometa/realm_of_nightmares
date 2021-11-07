@@ -26,7 +26,7 @@ public class starThrower : MonoBehaviour
     }
 
     private void createStar(){
-        GameObject newStar = Instantiate(star, tm.position, Quaternion.identity);
+        GameObject newStar = Instantiate(star, tm.position, Quaternion.identity, tm);
         newStar.GetComponent<starMovement>().setDirection(throwDirection);
     }
 }
