@@ -250,7 +250,7 @@ public class PlayerMovement : MonoBehaviour
         anim.SetTrigger("isDead");
     }
 
-    void getHit(){
+    public void getHit(){
         // Debug.Log("Hey I Got Hit!");
         audioSource.PlayOneShot(hitSound);
         canMove = false;
