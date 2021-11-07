@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 using System.Linq;
 using Vector2 = UnityEngine.Vector2;
 
-
 public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 {
     //the minimum room width and height that will be allowed
@@ -176,9 +175,21 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 {
                     Vector2Int position = (Vector2Int) room.min + new Vector2Int(column, row);
                     floor.Add(position);
+                    this.dungeon.lastRoom.addTile(position);
                 }
             }
+            this.dungeon.AddRoomBounds(room);
+            
+            // GameObject tempText = new GameObject("Text");
+            // UnityEngine.UI.Text temp = tempText.AddComponent<UnityEngine.UI.Text>();
+            // temp.text = this.dungeon.rooms.Count.ToString();
+            // Instantiate(temp, new UnityEngine.Vector3(this.dungeon.lastRoom.GetCenterTile().x, this.dungeon.lastRoom.GetCenterTile().y, -1),UnityEngine.Quaternion.identity);
+            
+            
+            Debug.Log(this.dungeon.lastRoom.GetCenterTile());
         }
+        this.dungeon.SpawnRooms();
+        Debug.Log(this.dungeon.rooms.Count);
         return floor;
     }
 }
@@ -189,14 +200,13 @@ The Class will be used to track tile specific items
 */
 public class RoomTile
 {
-    private Vector2Int Position
+    private Vector2Int Position;
+    private bool HasObject;
+    private GameObject TileObject;
+
+    public Vector2Int position 
     {
-        get;
-    }
-    private bool HasObject
-    {
-        get;
-        set;
+        get { return this.Position; }
     }
 
     public RoomTile(Vector2Int position)
@@ -215,30 +225,36 @@ public class Room
 {
     private HashSet<RoomTile> floor;
     private int MaxSpawners;
-    private int Difficulty = 1;
     private RoomType RoomType;
     private bool PlayerHasEntered = false;
+    private BoundsInt RoomBounds;
+    public BoundsInt roomBounds {get; set;}
 
-    public Room(HashSet<RoomTile> floor, RoomType roomType, int difficulty)
+
+    public Room(HashSet<RoomTile> floor, RoomType roomType)
     {
         this.floor = floor;
         this.RoomType = roomType;
-        this.Difficulty = difficulty;
-        SpawnRoom();
+        //SpawnRoom();
     }
 
-    public Room(RoomType roomType, int maxSpawners): 
-        this(new HashSet<RoomTile>(), roomType, maxSpawners) {}
+    public Room(RoomType roomType): 
+        this(new HashSet<RoomTile>(), roomType) {}
 
     public Room():
-        this(new HashSet<RoomTile>(), RoomType.Normal, 0) {}
+        this(new HashSet<RoomTile>(), RoomType.Normal) {}
 
     public void addTile(Vector2Int position)
     {
         this.floor.Add(new RoomTile(position));
     }
 
-    private void SpawnRoom()
+    public Vector2Int GetCenterTile()
+    {
+        return (Vector2Int) Vector3Int.RoundToInt(this.roomBounds.center);
+    }
+
+    public void SpawnRoom()
     {
         //will change later
         this.MaxSpawners = 1;
@@ -269,23 +285,42 @@ public class Room
 /**
 This class will be used to control Dungeon specific things, such as which types of rooms have/will be created etc.
 */
-public class Dungeon 
+public class Dungeon
 {
-    private HashSet<Room> rooms;
+    private HashSet<Room> Rooms;
     private Room LastRoom;
+    public Room lastRoom 
+    { 
+        get { return this.LastRoom; }
+    }
     private bool HasSpawnRoom = false;
     private bool HasEndRoom = false;
     private bool HasStronkRoom = false;
+    private int Difficulty;
+    public int difficulty {get; set;}
+    public HashSet<Room> rooms {get { return this.Rooms;}}
 
     public Dungeon()
     {
-        this.rooms = new HashSet<Room>();
+        this.Rooms = new HashSet<Room>();
     }
 
     public void AddRoom()
     {
         this.LastRoom = new Room();
         this.rooms.Add(this.LastRoom);
+    }
+
+    public void AddRoomBounds(BoundsInt roomBounds)
+    {
+        this.LastRoom.roomBounds = roomBounds;
+    }
+    public void SpawnRooms()
+    {
+        foreach (var room in this.rooms)
+        {
+            room.SpawnRoom();
+        }
     }
 }
 
