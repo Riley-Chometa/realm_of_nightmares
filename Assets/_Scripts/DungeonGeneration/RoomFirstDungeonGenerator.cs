@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Numerics;
 using System;
 using System.Collections;
@@ -6,6 +7,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using System.Linq;
 using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 {
@@ -28,7 +30,13 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private bool randomWalkRooms = false;
     //the spawn point for the player, this will be set to be the first rooms center point
     private Vector2 spawnPoint = Vector2.zero;
-    private Dungeon dungeon;
+    private Dungeon dungeon; 
+    [SerializeField]
+    private GameObject Player;
+    [SerializeField]
+    private GameObject DungeonEndPoint;
+    [SerializeField]
+    private GameObject EnemySpawner;
 
     public void GenerateDungeon()
     {
@@ -62,17 +70,27 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         {
             roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
         }
-        spawnPoint = (Vector2)roomCenters[0];
         HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
         floor.UnionWith(corridors);
         
 
         tileMapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tileMapVisualizer);
-        SpawnPlayer(spawnPoint);
-        
+        SpawnPlayer();       
     }
 
+    private void SpawnPlayer()
+    {
+        foreach (var room in this.dungeon.rooms)
+        {
+            if (room.roomType == RoomType.Spawn)
+                this.Player.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
+            else if (room.roomType == RoomType.End)
+                this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
+            else if (room.roomType == RoomType.Normal)
+                Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1),UnityEngine.Quaternion.identity);
+        } 
+    }
     private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
     {
         Debug.Log("Hello");
@@ -194,27 +212,49 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     }
 }
 
+
 /**
-Author: Riley Chometa
-The Class will be used to track tile specific items
+This class will be used to control Dungeon specific things, such as which types of rooms have/will be created etc.
 */
-public class RoomTile
+public class Dungeon
 {
-    private Vector2Int Position;
-    private bool HasObject;
-    private GameObject TileObject;
-
-    public Vector2Int position 
+    private HashSet<Room> Rooms;
+    private Room LastRoom;
+    public Room lastRoom 
+    { 
+        get { return this.LastRoom; }
+    }
+    private bool HasSpawnRoom = false;
+    private bool HasEndRoom = false;
+    private bool HasStronkRoom = false;
+    private int Difficulty;
+    public int difficulty {get; set;}
+    public HashSet<Room> rooms {get { return this.Rooms;}}
+    
+    public Dungeon()
     {
-        get { return this.Position; }
+        this.Rooms = new HashSet<Room>();
     }
 
-    public RoomTile(Vector2Int position)
+    public void AddRoom()
     {
-        this.Position = position;
-        this.HasObject = false;
+        this.LastRoom = new Room(this);
+        this.rooms.Add(this.LastRoom);
     }
 
+    public void AddRoomBounds(BoundsInt roomBounds)
+    {
+        this.LastRoom.roomBounds = roomBounds;
+    }
+    public void SpawnRooms()
+    {
+        this.rooms.First().roomType = RoomType.Spawn;
+        this.rooms.Last().roomType = RoomType.End;
+        foreach (var room in this.rooms)
+        {
+            room.SpawnRoom();
+        }
+    }
 }
 
 /**
@@ -229,20 +269,23 @@ public class Room
     private bool PlayerHasEntered = false;
     private BoundsInt RoomBounds;
     public BoundsInt roomBounds {get; set;}
+    public RoomType roomType {get; set;}
+    public Dungeon Dungeon;
 
 
-    public Room(HashSet<RoomTile> floor, RoomType roomType)
+    public Room(HashSet<RoomTile> floor, RoomType roomType, Dungeon dungeon)
     {
         this.floor = floor;
         this.RoomType = roomType;
+        this.Dungeon = dungeon;
         //SpawnRoom();
     }
 
-    public Room(RoomType roomType): 
-        this(new HashSet<RoomTile>(), roomType) {}
+    public Room(RoomType roomType, Dungeon dungeon): 
+        this(new HashSet<RoomTile>(), roomType, dungeon) {}
 
-    public Room():
-        this(new HashSet<RoomTile>(), RoomType.Normal) {}
+    public Room(Dungeon dungeon):
+        this(new HashSet<RoomTile>(), RoomType.Normal, dungeon) {}
 
     public void addTile(Vector2Int position)
     {
@@ -266,6 +309,9 @@ public class Room
             case RoomType.Spawn:
                 MakeSpawnRoom();
                 break;
+            case RoomType.End:
+                MakeEndRoom();
+                break;
             default:
                 break;
         }
@@ -273,57 +319,44 @@ public class Room
 
     private void MakeNormalRoom()
     {
-
+        // var position = this.roomBounds.center;
+        // this.Dungeon.Player.transform.position = new Vector3(position.x, position.y, -1);
     }
 
     private void MakeSpawnRoom()
     {
 
     }
+
+    private void MakeEndRoom()
+    {
+
+    }
 }
 
 /**
-This class will be used to control Dungeon specific things, such as which types of rooms have/will be created etc.
+Author: Riley Chometa
+The Class will be used to track tile specific items
 */
-public class Dungeon
+public class RoomTile
 {
-    private HashSet<Room> Rooms;
-    private Room LastRoom;
-    public Room lastRoom 
-    { 
-        get { return this.LastRoom; }
-    }
-    private bool HasSpawnRoom = false;
-    private bool HasEndRoom = false;
-    private bool HasStronkRoom = false;
-    private int Difficulty;
-    public int difficulty {get; set;}
-    public HashSet<Room> rooms {get { return this.Rooms;}}
+    private Vector2Int Position;
+    private bool HasObject;
+    private GameObject TileObject;
 
-    public Dungeon()
+    public Vector2Int position 
     {
-        this.Rooms = new HashSet<Room>();
+        get { return this.Position; }
     }
 
-    public void AddRoom()
+    public RoomTile(Vector2Int position)
     {
-        this.LastRoom = new Room();
-        this.rooms.Add(this.LastRoom);
+        this.Position = position;
+        this.HasObject = false;
     }
 
-    public void AddRoomBounds(BoundsInt roomBounds)
-    {
-        this.LastRoom.roomBounds = roomBounds;
-    }
-    public void SpawnRooms()
-    {
-        foreach (var room in this.rooms)
-        {
-            room.SpawnRoom();
-        }
-    }
 }
 
 public enum RoomType {
-    Normal, Spawn, Boss, Market, Chest
+    Normal, Spawn, End
 }
