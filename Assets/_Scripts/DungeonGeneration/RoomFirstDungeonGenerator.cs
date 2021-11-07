@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 using System.Linq;
 using Vector2 = UnityEngine.Vector2;
 
+
 public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 {
     //the minimum room width and height that will be allowed
@@ -28,6 +29,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private bool randomWalkRooms = false;
     //the spawn point for the player, this will be set to be the first rooms center point
     private Vector2 spawnPoint = Vector2.zero;
+    private Dungeon dungeon;
 
     public void GenerateDungeon()
     {
@@ -164,8 +166,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private HashSet<Vector2Int> CreateSimpleRooms(List<BoundsInt> roomsList)
     {
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+        this.dungeon = new Dungeon();
         foreach (var room in roomsList)
         {
+            this.dungeon.AddRoom();
             for (int column = offset; column < room.size.x-offset; column++)
             {
                 for (int row = offset; row < room.size.y-offset; row++)
@@ -177,4 +181,114 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         }
         return floor;
     }
+}
+
+/**
+Author: Riley Chometa
+The Class will be used to track tile specific items
+*/
+public class RoomTile
+{
+    private Vector2Int Position
+    {
+        get;
+    }
+    private bool HasObject
+    {
+        get;
+        set;
+    }
+
+    public RoomTile(Vector2Int position)
+    {
+        this.Position = position;
+        this.HasObject = false;
+    }
+
+}
+
+/**
+Author: Riley Chometa
+This method will be used to track room specific items such as FloorTiles and item drops
+*/
+public class Room
+{
+    private HashSet<RoomTile> floor;
+    private int MaxSpawners;
+    private int Difficulty = 1;
+    private RoomType RoomType;
+    private bool PlayerHasEntered = false;
+
+    public Room(HashSet<RoomTile> floor, RoomType roomType, int difficulty)
+    {
+        this.floor = floor;
+        this.RoomType = roomType;
+        this.Difficulty = difficulty;
+        SpawnRoom();
+    }
+
+    public Room(RoomType roomType, int maxSpawners): 
+        this(new HashSet<RoomTile>(), roomType, maxSpawners) {}
+
+    public Room():
+        this(new HashSet<RoomTile>(), RoomType.Normal, 0) {}
+
+    public void addTile(Vector2Int position)
+    {
+        this.floor.Add(new RoomTile(position));
+    }
+
+    private void SpawnRoom()
+    {
+        //will change later
+        this.MaxSpawners = 1;
+        switch (this.RoomType)
+        {
+            case RoomType.Normal:
+                MakeNormalRoom();
+                break;
+            case RoomType.Spawn:
+                MakeSpawnRoom();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void MakeNormalRoom()
+    {
+
+    }
+
+    private void MakeSpawnRoom()
+    {
+
+    }
+}
+
+/**
+This class will be used to control Dungeon specific things, such as which types of rooms have/will be created etc.
+*/
+public class Dungeon 
+{
+    private HashSet<Room> rooms;
+    private Room LastRoom;
+    private bool HasSpawnRoom = false;
+    private bool HasEndRoom = false;
+    private bool HasStronkRoom = false;
+
+    public Dungeon()
+    {
+        this.rooms = new HashSet<Room>();
+    }
+
+    public void AddRoom()
+    {
+        this.LastRoom = new Room();
+        this.rooms.Add(this.LastRoom);
+    }
+}
+
+public enum RoomType {
+    Normal, Spawn, Boss, Market, Chest
 }
