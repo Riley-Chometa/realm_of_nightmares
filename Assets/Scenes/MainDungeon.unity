@@ -101870,12 +101870,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
-  player: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
-  tempEnemy: {fileID: 0}
-  tempEnd: {fileID: 0}
-  tempCoin: {fileID: 0}
-  tempKey: {fileID: 0}
-  tempLock: {fileID: 0}
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
 --- !u!4 &1714925182
 Transform:
@@ -101988,12 +101982,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
-  player: {fileID: 692038334}
-  tempEnemy: {fileID: 333699356981363650, guid: 25275666c21ace04da00ed2e4ac72840, type: 3}
-  tempEnd: {fileID: 235608967}
-  tempCoin: {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
-  tempKey: {fileID: 8158143757800888505, guid: ce60cc1edab2a914b89ee1bd35a055f3, type: 3}
-  tempLock: {fileID: 5463644908676634882, guid: 0f4284003f2685c4ca0b964420b58e0c, type: 3}
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
   minRoomWidth: 25
   minRoomHeight: 25
@@ -102002,6 +101990,9 @@ MonoBehaviour:
   maxRooms: 9
   offset: 3
   randomWalkRooms: 0
+  Player: {fileID: 692038334}
+  DungeonEndPoint: {fileID: 235608967}
+  EnemySpawner: {fileID: 2844306246732948163, guid: 8287c8a58e88b504e94a1997d4fbf3f8, type: 3}
 --- !u!4 &1826959209
 Transform:
   m_ObjectHideFlags: 0
@@ -102313,12 +102304,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
-  player: {fileID: 692038334}
-  tempEnemy: {fileID: 0}
-  tempEnd: {fileID: 0}
-  tempCoin: {fileID: 0}
-  tempKey: {fileID: 0}
-  tempLock: {fileID: 0}
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
   corridorLength: 30
   corridorCount: 10

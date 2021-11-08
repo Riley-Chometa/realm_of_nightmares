@@ -37,6 +37,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private GameObject DungeonEndPoint;
     [SerializeField]
     private GameObject EnemySpawner;
+    private Corridor corridor;
 
     public void GenerateDungeon()
     {
@@ -134,6 +135,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private HashSet<Vector2Int> CreateCorridor(Vector2Int currentRoomCenter, Vector2Int destination)
     {
         HashSet<Vector2Int> corridor = new HashSet<Vector2Int>();
+        
         var position = currentRoomCenter;
         corridor.Add(position);
         while (position.y != destination.y)
@@ -331,6 +333,21 @@ public class Room
     private void MakeEndRoom()
     {
 
+    }
+}
+
+public class Corridor
+{
+    HashSet<RoomTile> floor;
+
+    public Corridor()
+    {
+        floor = new HashSet<RoomTile>();
+    }
+
+    public void AddTile(Vector2Int position)
+    {
+        this.floor.Add(new RoomTile(position));
     }
 }
 
