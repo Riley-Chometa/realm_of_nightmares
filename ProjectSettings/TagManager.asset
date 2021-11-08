@@ -11,6 +11,8 @@ TagManager:
   - CoinUpdater
   - PickUps
   - unbreakableObjects
+  - torch
+  - trap
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Water
   - UI
   - Pickups
-  - 
+  - traps
   - Unwalkable
   - 
   - 
