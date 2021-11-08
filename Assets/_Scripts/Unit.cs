@@ -41,7 +41,7 @@ public class Unit : MonoBehaviour
             }
         }
 
-        if (Vector2.Distance(targetPosition, transform.position) < attackRadius && canAttack && gameObject.layer == 10){
+        if (Vector2.Distance(targetPosition, transform.position) < attackRadius && canAttack){
             StopCoroutine("FollowPath");
             canAttack = false;
             Attack();

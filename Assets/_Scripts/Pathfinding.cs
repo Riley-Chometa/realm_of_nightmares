@@ -70,8 +70,10 @@ public class Pathfinding : MonoBehaviour
         }
 
     Vector2[] RetracePath(Node startNode, Node endNode){
+        
         List<Node> path = new List<Node>();
         Node currentNode = endNode;
+
 
         while(currentNode != startNode){
             path.Add(currentNode);
@@ -86,9 +88,14 @@ public class Pathfinding : MonoBehaviour
 
     Vector2[] SimplifyPath(List<Node> path){
         List<Vector2> waypoints = new List<Vector2>();
+        if(path.Count > 0){
+            waypoints.Add(path[0].WorldPosition);
+        }
         Vector2 directionOld = Vector2.zero;
 
+        print(path.Count);
         for(int i = 1; i < path.Count; i++){
+            print("Help: " + path.Count);
             Vector2 directionNew = new Vector2(path[i-1].gridX - path[i].gridX, path[i-1].gridY - path[i].gridY);
             if (directionNew != directionOld){
                 waypoints.Add(path[i].WorldPosition);
