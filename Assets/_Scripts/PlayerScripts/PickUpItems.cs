@@ -108,7 +108,6 @@ public class PickUpItems : MonoBehaviour
         {
             playerOperator.canPickUp = true;
             playerOperator.itemToPickUp = other.gameObject;
-
         }
     }
 

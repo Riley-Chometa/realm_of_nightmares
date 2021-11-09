@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     public Animator anim;
     public StaminaBar staminaBar;
 
+    public StaminaBar PickUpBar;
+
     // ground check boolean
     // private bool isGrounded;
 
@@ -70,6 +72,9 @@ public class PlayerMovement : MonoBehaviour
     private GameObject rangedObject;
     private Vector2 rangedAttackDirection;
 
+    private float pickupMaxTime = 30.0f;
+    private float currentPickupTime;
+
     // Initialize variables for the player.
     void Start(){
         storePreviousMovement = new Vector2(0,0);
@@ -77,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
         currentStamina = maxStamina;
         staminaBar.setStamina(maxStamina);
         staminaBar.SetMaxValue(maxStamina);
+        PickUpBar.SetMaxValue((int) pickupMaxTime);
+        PickUpBar.setStamina(0);
         canMove = true;
         isAlive = true;
         audioSource = GetComponent<AudioSource>();
@@ -116,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKeyDown("e") && canPickUp){
                 // pick up items.
+                setPickUpTimer();
                 pickUpItem();
             }
             if (Input.GetKeyDown("t")){
@@ -131,6 +139,13 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate(){
         if (getHitTimer > 0){
             getHitTimer -= Time.fixedDeltaTime;
+        }
+        if (currentPickupTime > 0){
+            currentPickupTime -= Time.fixedDeltaTime;
+            if (currentPickupTime <= 0){
+                rangedAttackOn = false;
+            }
+            PickUpBar.setStamina((int) currentPickupTime);
         }
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("attacks")){
             moveSpeed = 0;
@@ -309,6 +324,11 @@ public class PlayerMovement : MonoBehaviour
             rangedAttackOn = true;
         }
         Destroy(itemToPickUp);
+    }
+
+    
+    public void setPickUpTimer(){
+        currentPickupTime = pickupMaxTime;
     }
     // draw wire frames for attack point colliders.
     private void OnDrawGizmos() {
