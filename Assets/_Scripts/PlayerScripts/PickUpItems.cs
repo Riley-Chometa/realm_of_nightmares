@@ -90,14 +90,31 @@ public class PickUpItems : MonoBehaviour
             playerOperator.getHit();
         }
         // use this for inventory type storing itmes.
+
         else if (other.gameObject.tag == "PickUps"){
-            Debug.Log("Found a pickup!");
+            
         }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "trap"){
             playerOperator.getHit();
+        }
+        else if (other.gameObject.tag == "BasicBow"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+        }
+        else if (other.gameObject.tag == "FireBow")
+        {
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.tag == "BasicBow"){
+            playerOperator.canPickUp = false;
         }
     }
 }

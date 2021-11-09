@@ -21,6 +21,7 @@ public class BaseEnemy : MonoBehaviour
     {
         currentHealth = maxHealth;
         //healthBar.setMaxHealth(maxHealth);
+        
     }
 
     // Take the damage from the player. run hit animation and run death if true.

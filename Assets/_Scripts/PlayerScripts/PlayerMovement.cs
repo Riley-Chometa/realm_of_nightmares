@@ -61,6 +61,15 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip hitSound;
     private AudioSource audioSource;
 
+    // Pick up Item Variables
+    public bool canPickUp = false;
+    public GameObject itemToPickUp;
+
+    private bool rangedAttackOn = false;
+    public GameObject[] rangedObjects;
+    private GameObject rangedObject;
+    private Vector2 rangedAttackDirection;
+
     // Initialize variables for the player.
     void Start(){
         storePreviousMovement = new Vector2(0,0);
@@ -78,10 +87,8 @@ public class PlayerMovement : MonoBehaviour
     {   
 
         if (isAlive){
-            if (canMove){
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-            }
             anim.SetFloat("Horizontal", movement.x);
             anim.SetFloat("Vertical", movement.y);
             anim.SetFloat("Speed", movement.sqrMagnitude);
@@ -89,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             float xdirection = movement.x;
             float ydirection = movement.y;
             // simple movement information
-            if (canMove){
+            // if (canMove){
                 if (movement.magnitude > .02){
                     if (Mathf.Abs(xdirection) > Mathf.Abs(ydirection)){
                         anim.SetFloat("Xdirection", xdirection);
@@ -100,19 +107,20 @@ public class PlayerMovement : MonoBehaviour
                         anim.SetFloat("Ydirection", ydirection);
                     }
                 }
-            }
+            // }
             // simple spaceBar attack.
             if (Input.GetKeyDown(KeyCode.Space)){
                 canMove = false;
                 Attack();
             }
 
-            if (Input.GetKeyDown("e")){
-                getHit();
+            if (Input.GetKeyDown("e") && canPickUp){
+                // pick up items.
+                pickUpItem();
             }
             if (Input.GetKeyDown("t")){
-                canMove = false;
-                playerDie();
+                //canMove = false;
+                //playerDie();
             }
         }
     }
@@ -202,7 +210,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag != "Coins" || other.gameObject.tag != "PickUps"){
+        if (other.gameObject.tag != "Coins"){
             moveSpeed = 0;
         }    
     }
@@ -211,24 +219,36 @@ public class PlayerMovement : MonoBehaviour
     void Attack(){
         anim.SetFloat("Xdirection", storePreviousMovement[0]);
         anim.SetFloat("Ydirection", storePreviousMovement[1]);
+        // anim.SetFloat("Xdirection", movement.x);
+        // anim.SetFloat("Ydirection", movement.y);
         anim.SetTrigger("attack");
         // set which attack point to use during attack animation.
         // this is right quadrant.
         if (storePreviousMovement[0] > 0 && storePreviousMovement[1] < .5 && storePreviousMovement[1] >-.5){
             currentAttackPoint = attackPointRight;
+            rangedAttackDirection = Vector2.right;
         }
         // this is left quadrant
         else if (storePreviousMovement[0] <= 0 && storePreviousMovement[1] < .5 && storePreviousMovement[1] > -.5){
             currentAttackPoint = attackPointLeft;
+            rangedAttackDirection = Vector2.left;
         }
         // bottom Quadrant
         else if (storePreviousMovement[1] < 0 && storePreviousMovement[0] < .5 && storePreviousMovement[0] > -.5){
             currentAttackPoint = attackPointDown;
+            rangedAttackDirection = Vector2.down;
         }
         // top Quadrant
         else {
             currentAttackPoint = attackPointUp;
+            rangedAttackDirection = Vector2.up;
         }
+
+    }
+
+    void rangedAttack(){
+        GameObject newArrow = Instantiate(rangedObject, currentAttackPoint.position, Quaternion.identity);
+        newArrow.GetComponent<Arrow>().setDirection(rangedAttackDirection);
     }
 
     void attackSwingAudio(){
@@ -237,12 +257,14 @@ public class PlayerMovement : MonoBehaviour
 
     // call the actual part of the animation where damage occurs.
     void attackAnimation(){
+        if (rangedAttackOn){
+            rangedAttack();
+        }
         Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(currentAttackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in enemiesHit){
             enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
         }
     }
-
 
     private void playerDie(){
         isAlive = false;
@@ -276,6 +298,18 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = 0;
     }
 
+    private void pickUpItem(){
+        if (itemToPickUp.gameObject.tag == "BasicBow"){
+            Debug.Log("Set to first element in array");
+            rangedObject = rangedObjects[0];
+            rangedAttackOn = true;
+        }
+        else if (itemToPickUp.gameObject.tag == "FireBow"){
+            rangedObject = rangedObjects[1];
+            rangedAttackOn = true;
+        }
+        Destroy(itemToPickUp);
+    }
     // draw wire frames for attack point colliders.
     private void OnDrawGizmos() {
         if (attackPointRight == null){

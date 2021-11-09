@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 285231154656460702}
   - component: {fileID: 5706276532459048137}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3217765302775430033}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: AttackPointDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3217765302948861013}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: AttackPointLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3217765303381228390}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: AttackPointRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,8 @@ GameObject:
   - component: {fileID: 3217765303606303391}
   - component: {fileID: 6625877753174260670}
   - component: {fileID: 1950437210485835160}
-  m_Layer: 9
+  - component: {fileID: 979610944025179799}
+  m_Layer: 3
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -330,6 +331,11 @@ MonoBehaviour:
     m_Bits: 256
   attackSwingSound: {fileID: 8300000, guid: 3d9169df5523cf84da54cf8d7cae2972, type: 3}
   hitSound: {fileID: 8300000, guid: 31e17ddb94d8f49ca9f4249bac77aef8, type: 3}
+  canPickUp: 0
+  itemToPickUp: {fileID: 0}
+  rangedObjects:
+  - {fileID: 9058938428321844512, guid: 207c766c2bb8f3c4b91c54c797e82ff6, type: 3}
+  - {fileID: 8048761701203785476, guid: 627846c7db69b844395f55013d59a140, type: 3}
 --- !u!70 &3217765303606303391
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -463,6 +469,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &979610944025179799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3217765303606303381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2023e2a28919f45a21ab01a0039b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3217765304233640381
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3217765304233640378}
-  m_Layer: 9
+  m_Layer: 3
   m_Name: AttackPointUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
