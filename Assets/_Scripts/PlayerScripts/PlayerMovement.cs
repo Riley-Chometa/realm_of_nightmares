@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float pickupMaxTime = 30.0f;
     private float currentPickupTime;
+    private bool isMagic;
 
     // Initialize variables for the player.
     void Start(){
@@ -263,7 +264,12 @@ public class PlayerMovement : MonoBehaviour
 
     void rangedAttack(){
         GameObject newArrow = Instantiate(rangedObject, currentAttackPoint.position, Quaternion.identity);
+        if (isMagic){
+            newArrow.GetComponent<FireBall>().setDirection(rangedAttackDirection);
+        }
+        else {
         newArrow.GetComponent<Arrow>().setDirection(rangedAttackDirection);
+        }
     }
 
     void attackSwingAudio(){
@@ -318,10 +324,17 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Set to first element in array");
             rangedObject = rangedObjects[0];
             rangedAttackOn = true;
+            isMagic = false;
         }
         else if (itemToPickUp.gameObject.tag == "FireBow"){
             rangedObject = rangedObjects[1];
             rangedAttackOn = true;
+            isMagic = false;
+        }
+        else if (itemToPickUp.gameObject.tag == "FirePotion"){
+            rangedObject = rangedObjects[2];
+            rangedAttackOn = true;
+            isMagic = true;
         }
         Destroy(itemToPickUp);
     }

@@ -100,12 +100,7 @@ public class PickUpItems : MonoBehaviour
         if (other.gameObject.tag == "trap"){
             playerOperator.getHit();
         }
-        else if (other.gameObject.tag == "BasicBow"){
-            playerOperator.canPickUp = true;
-            playerOperator.itemToPickUp = other.gameObject;
-        }
-        else if (other.gameObject.tag == "FireBow")
-        {
+        else if (other.gameObject.tag == "BasicBow" || other.gameObject.tag == "FireBow" || other.gameObject.tag == "FirePotion"){
             playerOperator.canPickUp = true;
             playerOperator.itemToPickUp = other.gameObject;
         }
