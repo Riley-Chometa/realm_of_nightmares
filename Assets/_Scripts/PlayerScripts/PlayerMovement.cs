@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioClip attackSwingSound;
     public AudioClip hitSound;
+    public AudioClip fireBallSound;
     private AudioSource audioSource;
 
     // Pick up Item Variables
@@ -266,6 +267,7 @@ public class PlayerMovement : MonoBehaviour
         GameObject newArrow = Instantiate(rangedObject, currentAttackPoint.position, Quaternion.identity);
         if (isMagic){
             newArrow.GetComponent<FireBall>().setDirection(rangedAttackDirection);
+            audioSource.PlayOneShot(fireBallSound);
         }
         else {
         newArrow.GetComponent<Arrow>().setDirection(rangedAttackDirection);
@@ -337,6 +339,7 @@ public class PlayerMovement : MonoBehaviour
             isMagic = true;
         }
         Destroy(itemToPickUp);
+        canPickUp = false;
     }
 
     
