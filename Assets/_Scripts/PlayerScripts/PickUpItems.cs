@@ -7,6 +7,8 @@ public class PickUpItems : MonoBehaviour
 {
     [SerializeField]
     private PlayerMovement playerOperator;
+    [SerializeField]
+    private Transform playerTransform;
     // Audio Variables.
     [SerializeField]
     private AudioClip coinPickUp;
@@ -35,6 +37,8 @@ public class PickUpItems : MonoBehaviour
     [SerializeField]
     private float currOuterRadius;    
 
+    public GameObject floatingText;
+    private GameObject tempText;
 
     private void Start() {
         currentIntensity = minLightIntensity;
@@ -104,11 +108,84 @@ public class PickUpItems : MonoBehaviour
             playerOperator.canPickUp = true;
             playerOperator.itemToPickUp = other.gameObject;
         }
+        else if (other.gameObject.tag == "sword1"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+            if (!tempText){
+                tempText =  Instantiate(floatingText, playerTransform.position + new Vector3(0, 2, 0) , Quaternion.identity, playerTransform);
+                floatingText.GetComponent<TextMesh>().text = "40 Damage";
+                floatingText.GetComponent<MeshRenderer>().sortingOrder = 12;
+            }else {
+                floatingText.GetComponent<TextMesh>().text = "40 Damage";
+            }
+        }
+        else if (other.gameObject.tag == "sword2"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+            if (!tempText){
+                tempText =  Instantiate(floatingText, playerTransform.position + new Vector3(0, 2, 0) , Quaternion.identity, playerTransform);
+                floatingText.GetComponent<TextMesh>().text = "60 Damage";
+                floatingText.GetComponent<MeshRenderer>().sortingOrder = 12;
+            }
+            else {
+                floatingText.GetComponent<TextMesh>().text = "60 Damage";
+            }
+        }
+        else if (other.gameObject.tag == "sword3"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+            if (!tempText){
+                tempText =  Instantiate(floatingText, playerTransform.position + new Vector3(0, 2, 0) , Quaternion.identity, playerTransform);
+                floatingText.GetComponent<TextMesh>().text = "80 Damage";
+                floatingText.GetComponent<MeshRenderer>().sortingOrder = 12;
+            }
+            else {
+                floatingText.GetComponent<TextMesh>().text = "80 Damage";
+            }
+        }
+        else if (other.gameObject.tag == "sword4"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+            if (!tempText){
+                tempText =  Instantiate(floatingText, playerTransform.position + new Vector3(0, 2, 0) , Quaternion.identity, playerTransform);
+                floatingText.GetComponent<TextMesh>().text = "100 Damage";
+                floatingText.GetComponent<MeshRenderer>().sortingOrder = 12;
+            }
+            else {
+                floatingText.GetComponent<TextMesh>().text = "100 Damage";
+            }
+        }
+        else if (other.gameObject.tag == "sword5"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+            if (!tempText){
+                tempText =  Instantiate(floatingText, playerTransform.position + new Vector3(0, 2, 0) , Quaternion.identity, playerTransform);
+                floatingText.GetComponent<TextMesh>().text = "120 Damage";
+                floatingText.GetComponent<MeshRenderer>().sortingOrder = 12;
+            }
+            else {
+                floatingText.GetComponent<TextMesh>().text = "120 Damage";
+            }
+        }
+        else if (other.gameObject.tag == "sword6"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+            if (!tempText){
+                tempText =  Instantiate(floatingText, playerTransform.position + new Vector3(0, 2, 0) , Quaternion.identity, playerTransform);
+                floatingText.GetComponent<TextMesh>().text = "150 Damage!";
+                floatingText.GetComponent<MeshRenderer>().sortingOrder = 12;
+            }else{
+                floatingText.GetComponent<TextMesh>().text = "150 Damage!";
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.tag == "BasicBow" || other.gameObject.tag == "FireBow" || other.gameObject.tag == "FirePotion"){
             playerOperator.canPickUp = false;
         }
+        // if (tempText){
+            Destroy(tempText);
+        // }
     }
 }

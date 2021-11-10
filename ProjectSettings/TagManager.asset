@@ -17,6 +17,12 @@ TagManager:
   - BasicBow
   - FireBow
   - FirePotion
+  - sword1
+  - sword2
+  - sword3
+  - sword4
+  - sword5
+  - sword6
   layers:
   - Default
   - TransparentFX
@@ -30,7 +36,6 @@ TagManager:
   - Arrows&MagicShots
   - Player
   - Enemy
-  - 
   - 
   - 
   - 

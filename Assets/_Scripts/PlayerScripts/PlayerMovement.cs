@@ -50,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
     // public Transform groundCheck;
 
     //Attack Variables
-    public int attackDamage = 20;
+    public int attackDamage;
+    public int baseAttackDamage = 20;
     public Transform attackPointRight;
     public Transform attackPointLeft;
     public Transform attackPointUp;
@@ -70,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
     // Pick up Item Variables
     public bool canPickUp = false;
     public GameObject itemToPickUp;
-
+    private int[] swordPickUpDamages = {40, 60, 80, 100, 120, 150};
     private bool rangedAttackOn = false;
     public GameObject[] rangedObjects;
     private GameObject rangedObject;
@@ -93,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         isAlive = true;
         canInput = true;
         audioSource = GetComponent<AudioSource>();
+        setAttackDamage(baseAttackDamage);
     } 
 
     // Update is called once per frame, Contains primary input from player.
@@ -131,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (Input.GetKeyDown("e") && canPickUp){
                 // pick up items.
-                 setPickUpTimer();
+                 
                  pickUpItem();
                 }
                 if (Input.GetKeyDown("t")){
@@ -353,29 +355,64 @@ public class PlayerMovement : MonoBehaviour
 
     private void pickUpItem(){
         if (itemToPickUp.gameObject.tag == "BasicBow"){
-            Debug.Log("Set to first element in array");
             rangedObject = rangedObjects[0];
             rangedAttackOn = true;
             isMagic = false;
             audioSource.PlayOneShot(weaponPickUpSound);
+            setPickUpTimer();
         }
         else if (itemToPickUp.gameObject.tag == "FireBow"){
             rangedObject = rangedObjects[1];
             rangedAttackOn = true;
             isMagic = false;
             audioSource.PlayOneShot(weaponPickUpSound);
+            setPickUpTimer();
         }
         else if (itemToPickUp.gameObject.tag == "FirePotion"){
             rangedObject = rangedObjects[2];
             rangedAttackOn = true;
             isMagic = true;
             audioSource.PlayOneShot(potionPickUpSound);
+            setPickUpTimer();
         }
+        else if (itemToPickUp.gameObject.tag == "sword1"){
+            audioSource.PlayOneShot(weaponPickUpSound);
+            // set attack damage to 40
+            setAttackDamage(swordPickUpDamages[0]);
+        }
+        else if (itemToPickUp.gameObject.tag == "sword2"){
+            audioSource.PlayOneShot(weaponPickUpSound);
+            // set attack damage to 40
+            setAttackDamage(swordPickUpDamages[1]);
+        }
+        else if (itemToPickUp.gameObject.tag == "sword3"){
+            audioSource.PlayOneShot(weaponPickUpSound);
+            // set attack damage to 40
+            setAttackDamage(swordPickUpDamages[2]);
+        }
+        else if (itemToPickUp.gameObject.tag == "sword4"){
+            audioSource.PlayOneShot(weaponPickUpSound);
+            // set attack damage to 40
+            setAttackDamage(swordPickUpDamages[3]);
+        }
+        else if (itemToPickUp.gameObject.tag == "sword5"){
+            audioSource.PlayOneShot(weaponPickUpSound);
+            // set attack damage to 40
+            setAttackDamage(swordPickUpDamages[4]);
+        }
+        else if (itemToPickUp.gameObject.tag == "sword6"){
+            audioSource.PlayOneShot(weaponPickUpSound);
+            // set attack damage to 40
+            setAttackDamage(swordPickUpDamages[5]);
+        }
+
         Destroy(itemToPickUp);
         canPickUp = false;
     }
 
-    
+    public void setAttackDamage(int damage){
+        attackDamage = damage;
+    }
     public void setPickUpTimer(){
         currentPickupTime = pickupMaxTime;
     }
