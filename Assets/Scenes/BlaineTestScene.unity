@@ -48148,7 +48148,7 @@ Transform:
   - {fileID: 316846782}
   - {fileID: 733015576}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1222093009
 PrefabInstance:
@@ -49603,7 +49603,7 @@ Transform:
   - {fileID: 366245295}
   - {fileID: 1452711166}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1811409719
 PrefabInstance:
@@ -50274,6 +50274,10 @@ PrefabInstance:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 1683382833}
+    - target: {fileID: 4389603736547947980, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
+      propertyPath: rangedObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 6331598603782407021, guid: e65903ac5ba8a1c49abe0f0a84ad4c67, type: 3}
     - target: {fileID: 4389603736547947981, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -50333,7 +50337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2183760223898519063, guid: 87d938b8549989c45bcc615241b8b76a, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 2183760223898519063, guid: 87d938b8549989c45bcc615241b8b76a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -50598,7 +50602,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5062375310953296836, guid: 44510cfad1f7b1146a228343e58a0054, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5062375310953296836, guid: 44510cfad1f7b1146a228343e58a0054, type: 3}
       propertyPath: m_LocalPosition.x
