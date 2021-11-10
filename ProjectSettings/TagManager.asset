@@ -28,7 +28,8 @@ TagManager:
   - traps
   - Unwalkable
   - Arrows&MagicShots
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 

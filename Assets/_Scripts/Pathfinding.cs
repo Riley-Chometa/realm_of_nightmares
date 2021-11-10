@@ -27,20 +27,14 @@ public class Pathfinding : MonoBehaviour
         
         if (startNode.walkable && targetNode.walkable){
 
-            List<Node> openSet = new List<Node>();
+            Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
             HashSet<Node> closedSet = new HashSet<Node>();
 
-            openSet.Add(startNode);
+            openSet.addItem(startNode);
 
             while (openSet.Count >0){
-                Node currentNode = openSet[0];
-                for (int i = 1; i <openSet.Count; i++){
-                    if(openSet[i].fCost < currentNode.fCost  || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost){
-                        currentNode = openSet[i];
-                    }
-                }
+                Node currentNode = openSet.removeFirstItem();
                 
-                openSet.Remove(currentNode);
                 
                 closedSet.Add(currentNode);
             
@@ -61,7 +55,7 @@ public class Pathfinding : MonoBehaviour
                         neighbour.parent = currentNode;
 
                         if(!openSet.Contains(neighbour)){
-                            openSet.Add(neighbour);
+                            openSet.addItem(neighbour);
                         }
                     }
                 }
@@ -76,8 +70,10 @@ public class Pathfinding : MonoBehaviour
         }
 
     Vector2[] RetracePath(Node startNode, Node endNode){
+        
         List<Node> path = new List<Node>();
         Node currentNode = endNode;
+
 
         while(currentNode != startNode){
             path.Add(currentNode);
@@ -92,9 +88,14 @@ public class Pathfinding : MonoBehaviour
 
     Vector2[] SimplifyPath(List<Node> path){
         List<Vector2> waypoints = new List<Vector2>();
+        if(path.Count > 0){
+            waypoints.Add(path[0].WorldPosition);
+        }
         Vector2 directionOld = Vector2.zero;
 
+        print(path.Count);
         for(int i = 1; i < path.Count; i++){
+            print("Help: " + path.Count);
             Vector2 directionNew = new Vector2(path[i-1].gridX - path[i].gridX, path[i-1].gridY - path[i].gridY);
             if (directionNew != directionOld){
                 waypoints.Add(path[i].WorldPosition);
