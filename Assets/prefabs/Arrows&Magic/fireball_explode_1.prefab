@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 158823910477670037}
   - component: {fileID: 158823910477670036}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 158823910902997572}
   - component: {fileID: 1407543905539478301}
   - component: {fileID: -6715285221207124292}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: fireball_explode_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

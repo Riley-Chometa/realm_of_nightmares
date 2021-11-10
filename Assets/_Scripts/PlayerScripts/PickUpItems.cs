@@ -107,7 +107,7 @@ public class PickUpItems : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.gameObject.tag == "BasicBow"){
+        if (other.gameObject.tag == "BasicBow" || other.gameObject.tag == "FireBow" || other.gameObject.tag == "FirePotion"){
             playerOperator.canPickUp = false;
         }
     }

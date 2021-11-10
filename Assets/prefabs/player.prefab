@@ -333,6 +333,8 @@ MonoBehaviour:
   attackSwingSound: {fileID: 8300000, guid: 3d9169df5523cf84da54cf8d7cae2972, type: 3}
   hitSound: {fileID: 8300000, guid: 31e17ddb94d8f49ca9f4249bac77aef8, type: 3}
   fireBallSound: {fileID: 8300000, guid: ab5d0c156bdde5246a98fd5c5051962d, type: 3}
+  potionPickUpSound: {fileID: 8300000, guid: 3ca4b65e381c9a94790800ef6aeb5022, type: 3}
+  weaponPickUpSound: {fileID: 8300000, guid: e33253d18b639184f966c0b68493a70c, type: 3}
   canPickUp: 0
   itemToPickUp: {fileID: 0}
   rangedObjects:

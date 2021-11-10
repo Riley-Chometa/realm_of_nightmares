@@ -8,7 +8,7 @@ public class FireBall : MonoBehaviour
     private Rigidbody2D rb;    
 
     public Vector2 thrownDirection;
-    private float movementSpeed = 8.0f;
+    private float movementSpeed = 12.0f;
     public GameObject smokeAnimation;
 
     public Transform tm;

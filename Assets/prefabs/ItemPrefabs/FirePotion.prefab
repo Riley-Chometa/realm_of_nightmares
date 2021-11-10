@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8961749490380266464}
   - component: {fileID: 2062574169166221454}
   - component: {fileID: 8734417687408967829}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 5130892671153374890}
   - component: {fileID: 3448287421225795608}
   - component: {fileID: 3059667732571302309}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirePotion
   m_TagString: FirePotion
   m_Icon: {fileID: 0}

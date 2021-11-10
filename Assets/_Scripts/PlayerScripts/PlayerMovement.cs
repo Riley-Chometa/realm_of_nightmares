@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canMove;
     private bool isAlive;
+    private bool canInput;
     // Setup attributes and components needed for movement of player.
     public Rigidbody2D rb;
     Vector2 movement;
@@ -62,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip attackSwingSound;
     public AudioClip hitSound;
     public AudioClip fireBallSound;
+    public AudioClip potionPickUpSound;
+    public AudioClip weaponPickUpSound;
     private AudioSource audioSource;
 
     // Pick up Item Variables
@@ -88,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         PickUpBar.setStamina(0);
         canMove = true;
         isAlive = true;
+        canInput = true;
         audioSource = GetComponent<AudioSource>();
     } 
 
@@ -117,20 +121,23 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             // }
-            // simple spaceBar attack.
-            if (Input.GetKeyDown(KeyCode.Space)){
-                canMove = false;
-                Attack();
-            }
+            if (canInput){
+                if (Input.GetKeyDown(KeyCode.Space)){
+                    storePreviousMovement = new Vector2(movement.x, movement.y);
+                    canMove = false;
+                    canInput = false;
+                    Attack();
+                }
 
-            if (Input.GetKeyDown("e") && canPickUp){
+                if (Input.GetKeyDown("e") && canPickUp){
                 // pick up items.
-                setPickUpTimer();
-                pickUpItem();
-            }
-            if (Input.GetKeyDown("t")){
+                 setPickUpTimer();
+                 pickUpItem();
+                }
+                if (Input.GetKeyDown("t")){
                 //canMove = false;
                 //playerDie();
+                }
             }
         }
     }
@@ -234,33 +241,50 @@ public class PlayerMovement : MonoBehaviour
 
     // Make the player attack.
     void Attack(){
-        anim.SetFloat("Xdirection", storePreviousMovement[0]);
-        anim.SetFloat("Ydirection", storePreviousMovement[1]);
-        // anim.SetFloat("Xdirection", movement.x);
-        // anim.SetFloat("Ydirection", movement.y);
+        float x = storePreviousMovement[0];
+        float y = storePreviousMovement[1];
+        // anim.SetFloat("Xdirection", storePreviousMovement[0]);
+        // anim.SetFloat("Ydirection", storePreviousMovement[1]);
+        anim.SetFloat("Xdirection", x);
+        anim.SetFloat("Ydirection", y);
         anim.SetTrigger("attack");
         // set which attack point to use during attack animation.
         // this is right quadrant.
-        if (storePreviousMovement[0] > 0 && storePreviousMovement[1] < .5 && storePreviousMovement[1] >-.5){
+        if (x > 0 && y < .5 && y >-.5){
             currentAttackPoint = attackPointRight;
             rangedAttackDirection = Vector2.right;
         }
+        else if (x == 1 && y == 1){
+            currentAttackPoint = attackPointUp;
+            rangedAttackDirection = Vector2.up;
+        }
+        else if ( x == -1 && y == 1){
+            currentAttackPoint = attackPointUp;
+            rangedAttackDirection = Vector2.up;
+        }
+        else if (x == -1 && y == -1){
+            currentAttackPoint = attackPointDown;
+            rangedAttackDirection = Vector2.down;
+        }
+        else if (x == 1 && y == -1){
+            currentAttackPoint = attackPointDown;
+            rangedAttackDirection = Vector2.down;
+        }
         // this is left quadrant
-        else if (storePreviousMovement[0] <= 0 && storePreviousMovement[1] < .5 && storePreviousMovement[1] > -.5){
+        else if (x <= 0 && y <= .5 && y >= -.5){
             currentAttackPoint = attackPointLeft;
             rangedAttackDirection = Vector2.left;
         }
         // bottom Quadrant
-        else if (storePreviousMovement[1] < 0 && storePreviousMovement[0] < .5 && storePreviousMovement[0] > -.5){
+        else if (y < 0 && x <= .5 && x >= -.5){
             currentAttackPoint = attackPointDown;
             rangedAttackDirection = Vector2.down;
         }
         // top Quadrant
-        else {
+        else if (y >= 0 && x <.5 && x > -.5) {
             currentAttackPoint = attackPointUp;
             rangedAttackDirection = Vector2.up;
         }
-
     }
 
     void rangedAttack(){
@@ -285,7 +309,9 @@ public class PlayerMovement : MonoBehaviour
         }
         Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(currentAttackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in enemiesHit){
+            if (enemy.gameObject.tag == "Enemy"){
             enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
+            }
         }
     }
 
@@ -319,6 +345,10 @@ public class PlayerMovement : MonoBehaviour
     void stopAttacking(){
         canMove = true;
         moveSpeed = 0;
+        canInput = true;
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+        storePreviousMovement = new Vector2(movement.x, movement.y);
     }
 
     private void pickUpItem(){
@@ -327,16 +357,19 @@ public class PlayerMovement : MonoBehaviour
             rangedObject = rangedObjects[0];
             rangedAttackOn = true;
             isMagic = false;
+            audioSource.PlayOneShot(weaponPickUpSound);
         }
         else if (itemToPickUp.gameObject.tag == "FireBow"){
             rangedObject = rangedObjects[1];
             rangedAttackOn = true;
             isMagic = false;
+            audioSource.PlayOneShot(weaponPickUpSound);
         }
         else if (itemToPickUp.gameObject.tag == "FirePotion"){
             rangedObject = rangedObjects[2];
             rangedAttackOn = true;
             isMagic = true;
+            audioSource.PlayOneShot(potionPickUpSound);
         }
         Destroy(itemToPickUp);
         canPickUp = false;
