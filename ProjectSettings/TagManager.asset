@@ -23,8 +23,8 @@ TagManager:
   - Pickups
   - traps
   - Unwalkable
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 

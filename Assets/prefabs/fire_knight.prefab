@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 333699356981363654}
   - component: {fileID: 333699356981363704}
   - component: {fileID: 1467863094108535282}
-  m_Layer: 8
+  - component: {fileID: 6332975032023314693}
+  m_Layer: 10
   m_Name: fire_knight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333699356981363650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39, y: 128, z: -1}
+  m_LocalPosition: {x: 90, y: 134, z: -1}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 7658447488382575134}
@@ -396,3 +397,4 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6470634031878877797, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
   m_PrefabInstance: {fileID: 3384173619051169888}
   m_PrefabAsset: {fileID: 0}
+
