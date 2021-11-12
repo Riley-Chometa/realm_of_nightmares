@@ -194,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4389603736547947976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 14, z: -1}
+  m_LocalPosition: {x: 20.5, y: 134, z: -1}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children:
   - {fileID: 4389603735768159291}
@@ -321,6 +321,7 @@ MonoBehaviour:
   staminaBar: {fileID: 0}
   PickUpBar: {fileID: 0}
   attackDamage: 20
+  baseAttackDamage: 20
   attackPointRight: {fileID: 4389603735768159291}
   attackPointLeft: {fileID: 4389603735068031752}
   attackPointUp: {fileID: 4389603736868187879}
@@ -370,6 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOperator: {fileID: 4389603736547947980}
+  playerTransform: {fileID: 0}
   coinPickUp: {fileID: 8300000, guid: 9f1da8c20d145744998fa07d57a5d8d9, type: 3}
   torchPickup: {fileID: 8300000, guid: 2f880b3b444e9ae4ca1c2dbb5189f6ac, type: 3}
   audioSource: {fileID: 818974974820444869}
