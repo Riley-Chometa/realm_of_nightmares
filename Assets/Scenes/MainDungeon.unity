@@ -101992,7 +101992,7 @@ MonoBehaviour:
   randomWalkRooms: 0
   Player: {fileID: 692038334}
   DungeonEndPoint: {fileID: 235608967}
-  EnemySpawner: {fileID: 2844306246732948163, guid: 8287c8a58e88b504e94a1997d4fbf3f8, type: 3}
+  EnemySpawner: {fileID: 8039667038605812591, guid: af308c46d6c9cc641879ac3d363b7f22, type: 3}
 --- !u!4 &1826959209
 Transform:
   m_ObjectHideFlags: 0
