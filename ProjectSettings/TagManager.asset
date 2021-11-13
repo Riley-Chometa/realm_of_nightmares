@@ -13,6 +13,10 @@ TagManager:
   - unbreakableObjects
   - torch
   - trap
+  - Heart
+  - BasicBow
+  - FireBow
+  - FirePotion
   layers:
   - Default
   - TransparentFX
@@ -23,6 +27,7 @@ TagManager:
   - Pickups
   - traps
   - Unwalkable
+  - Arrows&MagicShots
   - Player
   - Enemy
   - 

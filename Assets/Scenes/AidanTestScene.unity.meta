@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scenes/AidanTestScene.unity.meta
 guid: 1745f5ed32ffd455a9d572256de2f5bb
+=======
+guid: 522bc347513642f40ad94282bde10892
+>>>>>>> origin/update_character_mechanics:Assets/Scenes/BlaineTestScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
