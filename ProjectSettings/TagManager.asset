@@ -7,7 +7,6 @@ TagManager:
   - Wall
   - Tree
   - Enemy
-  - Coins
   - CoinUpdater
   - PickUps
   - unbreakableObjects
@@ -23,6 +22,9 @@ TagManager:
   - sword4
   - sword5
   - sword6
+  - SilverCoin
+  - BronzeCoin
+  - GoldCoin
   layers:
   - Default
   - TransparentFX

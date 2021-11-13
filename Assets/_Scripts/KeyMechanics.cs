@@ -6,6 +6,8 @@ public class KeyMechanics : MonoBehaviour
 {
     public Transform transformer;
 
+    public GameObject playerstats;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -13,12 +15,14 @@ public class KeyMechanics : MonoBehaviour
     }
 
     // Update is called once per frame
-    void OnCollisionEnter2D(Collision2D coli)
+    void OnTriggerEnter2D(Collider2D other) 
     {
-        if(coli.gameObject.name == "player")
+        if(other.gameObject.tag == "Player")
         {
-            Destroy(gameObject);
-            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyKeys(1);
+            playerstats.GetComponent<PlayerStatsComponent>().modifyKeys(1);
+            Destroy(this.gameObject);
+            
         }
     }
 }
+

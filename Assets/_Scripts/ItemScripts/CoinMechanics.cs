@@ -13,24 +13,12 @@ public class CoinMechanics : MonoBehaviour
         tm = GetComponent<Transform>();
     }
     public GameObject smokeAnimation;
-    void OnCollisionEnter2D(Collision2D col){
-        if (col.gameObject.name == "player"){
-            Destroy(gameObject);
-            smoke = Instantiate(smokeAnimation, tm.position, tm.rotation);
-            Destroy(smoke, .75f);
-            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyCoins(1);
-            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyScore(10);
-        }
-    }
 
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log("Collided with player");
+    private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.name == "player"){
             Destroy(this.gameObject);
             smoke = Instantiate(smokeAnimation, tm.position, tm.rotation);
             Destroy(smoke, .75f);
-            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyCoins(1);
-            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyScore(10);
         }
     }
 }

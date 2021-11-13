@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {   
+    public GameObject playerStatsComponent;
     // Constants for movement speed and jump
     [SerializeField]
     private float moveSpeedMax = 7.0f;
@@ -42,12 +43,6 @@ public class PlayerMovement : MonoBehaviour
     public StaminaBar staminaBar;
 
     public StaminaBar PickUpBar;
-
-    // ground check boolean
-    // private bool isGrounded;
-
-    // [SerializeField]
-    // public Transform groundCheck;
 
     //Attack Variables
     public int attackDamage;
@@ -317,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void playerDie(){
+    public void playerDie(){
         isAlive = false;
         canMove = false;
         moveSpeed = 0;
@@ -328,6 +323,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void getHit(){
         if (getHitTimer <= 0){
+        playerStatsComponent.GetComponent<PlayerStatsComponent>().modifyHealth(-1);
         // Debug.Log("Hey I Got Hit!");
         audioSource.PlayOneShot(hitSound);
         canMove = false;

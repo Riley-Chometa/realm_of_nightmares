@@ -9,6 +9,11 @@ public class ShopKeeper : MonoBehaviour
 
     public GameObject triggerFloor;
 
+    // Add in audio triggers!
+    [SerializeField]
+    private AudioSource audioPlayer;
+    public AudioClip[] audioClips;
+
     private GameObject temptText;
     private GameObject tempBox;
     private Transform tm;
@@ -17,7 +22,8 @@ public class ShopKeeper : MonoBehaviour
         tm = this.gameObject.GetComponent<Transform>();
     }
 
-    public void startDialog(){
+    public void startDialog(int audioIndex){
+        audioPlayer.PlayOneShot(audioClips[audioIndex]);
         tempBox = Instantiate(dialogBox, tm.position + new Vector3(1.8f, 0.2f, 0), Quaternion.identity, tm);
         temptText = Instantiate(floatingText, tempBox.GetComponent<Transform>().position, Quaternion.identity, tempBox.transform);
         temptText.GetComponent<Transform>().localScale = new Vector3(1,1,1);

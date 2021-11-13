@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4316969669532946075}
   m_Layer: 10
   m_Name: BronzeCoin
-  m_TagString: Coins
+  m_TagString: BronzeCoin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,6 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f6b02fc890f1f46b47e9bc52b94abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPickUp: {fileID: 8300000, guid: 9f1da8c20d145744998fa07d57a5d8d9, type: 3}
+  audioSource: {fileID: 0}
   tm: {fileID: 0}
   smokeAnimation: {fileID: 4808873524153105200, guid: a62d4088d04ea854cbc12a10fe0c4bb0, type: 3}
 --- !u!114 &6934093131261758543
