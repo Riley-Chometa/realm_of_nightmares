@@ -32,7 +32,7 @@ public class ShopHeart : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "Player"){
-            if (playerInfo.getCoins() >= 10){
+            if (playerInfo.getCoins() >= 10 && playerInfo.getHealth() < playerInfo.getMaxHealth()){
                 canPurchase = true;
             }
         }

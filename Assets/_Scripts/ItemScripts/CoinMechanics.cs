@@ -15,7 +15,7 @@ public class CoinMechanics : MonoBehaviour
     public GameObject smokeAnimation;
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.name == "player"){
+        if (other.gameObject.tag == "Player"){
             Destroy(this.gameObject);
             smoke = Instantiate(smokeAnimation, tm.position, tm.rotation);
             Destroy(smoke, .75f);
