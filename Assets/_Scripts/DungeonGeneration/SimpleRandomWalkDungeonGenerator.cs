@@ -19,7 +19,7 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
         tileMapVisualizer.Clear();
         tileMapVisualizer.PaintFloorTiles(floorPositions);
         WallGenerator.CreateWalls(floorPositions, tileMapVisualizer);
-        SpawnPlayer((UnityEngine.Vector2)floorPositions.ElementAt(100));
+        //SpawnPlayer((UnityEngine.Vector2)floorPositions.ElementAt(100));
     }
     protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkSO paramters, Vector2Int position)
     {

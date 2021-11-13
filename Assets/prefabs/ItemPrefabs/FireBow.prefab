@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8505169628126964877}
   - component: {fileID: 8505169628126964876}
   - component: {fileID: 8505169628126964879}
+  - component: {fileID: 4048324743539419213}
   m_Layer: 6
   m_Name: FireBow
   m_TagString: FireBow
@@ -158,3 +159,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b7b752dac8a274ba469065f34e6e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4048324743539419213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8505169628126964878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b16759657f4c54c8f26ad0da94a56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingText: {fileID: 9154424094721211663, guid: 874277666a561b5499faa4744a710d80, type: 3}
+  pressE: {fileID: 1530238935531731307, guid: 8c7c8ad479c8ecc4db39bbc088a50e54, type: 3}
+  tm: {fileID: 8505169628126964872}
+  damages: 280000003c00000050000000640000007800000096000000
