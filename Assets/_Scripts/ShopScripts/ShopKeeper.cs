@@ -22,19 +22,24 @@ public class ShopKeeper : MonoBehaviour
         tm = this.gameObject.GetComponent<Transform>();
     }
 
-    public void startDialog(int audioIndex){
+    public void startDialog(int audioIndex, string displayText){
         audioPlayer.PlayOneShot(audioClips[audioIndex]);
+        if (!temptText){
         tempBox = Instantiate(dialogBox, tm.position + new Vector3(1.8f, 0.2f, 0), Quaternion.identity, tm);
         temptText = Instantiate(floatingText, tempBox.GetComponent<Transform>().position, Quaternion.identity, tempBox.transform);
         temptText.GetComponent<Transform>().localScale = new Vector3(1,1,1);
         var tempRenderer = temptText.GetComponent<MeshRenderer>();
         var tempMesh = temptText.GetComponent<TextMesh>();
-        tempMesh.text = "This is the store!";   
+        tempMesh.text = displayText;   
         tempMesh.color = Color.black; 
         tempRenderer.sortingLayerName = "aboveTable";
         tempRenderer.sortingOrder = 12;
+        }
     }
 
+    public void playDialog(int index){
+        audioPlayer.PlayOneShot(audioClips[index]);
+    }
     public void changeText(string newText){
             if (temptText){
                 temptText.GetComponent<TextMesh>().text = newText;

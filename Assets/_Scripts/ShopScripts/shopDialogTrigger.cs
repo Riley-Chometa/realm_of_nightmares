@@ -5,12 +5,15 @@ using UnityEngine;
 public class shopDialogTrigger : MonoBehaviour
 {
     public ShopKeeper shop;
-
+    private bool played = false;
     private void OnTriggerEnter2D(Collider2D other) {
-        shop.startDialog(0);
+        if (!played){
+        shop.startDialog(0, "This is the Store!");
+        played = true;
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        shop.stopDialog();
-    }
+    // private void OnTriggerExit2D(Collider2D other) {
+    //     shop.stopDialog();
+    // }
 }
