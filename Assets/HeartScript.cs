@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class HeartScript : MonoBehaviour
 {
-    void OnCollisionEnter(Collision other)
- {
-            if (other.gameObject.tag == "Player")
-           {
-                    Destroy(this.gameObject);
-                    print("Heart Collected");
-           }
- }
-
+    private PlayerStatsComponent player;
  void OnTriggerEnter2D(Collider2D other) {
      if (other.gameObject.tag == "Player") {
-         Destroy(this.gameObject);
-         print("Heart Collected");
+         player = GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>();
+         if (player.getHealth() < player.getMaxHealth()){
+             Destroy(this.gameObject);
+             player.modifyHealth(1);
+         }
+         
      }
  }
 

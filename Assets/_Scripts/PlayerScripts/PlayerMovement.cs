@@ -131,10 +131,6 @@ public class PlayerMovement : MonoBehaviour
                  
                  pickUpItem();
                 }
-                if (Input.GetKeyDown("t")){
-                //canMove = false;
-                //playerDie();
-                }
             }
         }
     }
@@ -227,7 +223,6 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed = 0;
             }
         }
-        // Debug.Log("Collided with: " + col.gameObject.name);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
