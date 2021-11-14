@@ -318,8 +318,8 @@ MonoBehaviour:
   deceleration: 40
   rb: {fileID: 4389603736547947971}
   anim: {fileID: 4389603736547947983}
-  staminaBar: {fileID: 0}
-  PickUpBar: {fileID: 0}
+  staminaBar: {fileID: 3220204907690943950, guid: cfcdf87f9c6484d4a963520ff0c65f31, type: 3}
+  PickUpBar: {fileID: 5308355454166157169, guid: 1cd88f280ed50874b9ef801bec64932c, type: 3}
   attackDamage: 20
   baseAttackDamage: 20
   attackPointRight: {fileID: 4389603735768159291}

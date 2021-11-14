@@ -85,6 +85,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         foreach (var room in this.dungeon.rooms)
         {
             if (room.roomType == RoomType.Spawn)
+                //Instantiate(this.Player, new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1))
                 this.Player.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
             else if (room.roomType == RoomType.End)
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
