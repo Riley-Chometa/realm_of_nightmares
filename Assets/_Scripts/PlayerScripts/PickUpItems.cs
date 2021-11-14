@@ -7,6 +7,8 @@ public class PickUpItems : MonoBehaviour
 {
     [SerializeField]
     private PlayerMovement playerOperator;
+    [SerializeField]
+    private Transform playerTransform;
     // Audio Variables.
     [SerializeField]
     private AudioClip coinPickUp;
@@ -90,14 +92,34 @@ public class PickUpItems : MonoBehaviour
             playerOperator.getHit();
         }
         // use this for inventory type storing itmes.
+
         else if (other.gameObject.tag == "PickUps"){
-            Debug.Log("Found a pickup!");
+            
         }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "trap"){
             playerOperator.getHit();
+        }
+        else if (other.gameObject.tag == "BasicBow" || other.gameObject.tag == "FireBow" || other.gameObject.tag == "FirePotion"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+        }
+        else if (other.gameObject.tag == "sword1" 
+        || other.gameObject.tag == "sword2" 
+        || other.gameObject.tag == "sword3" 
+        || other.gameObject.tag == "sword4"
+        || other.gameObject.tag == "sword5"
+        || other.gameObject.tag == "sword6"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.tag == "BasicBow" || other.gameObject.tag == "FireBow" || other.gameObject.tag == "FirePotion"){
+            playerOperator.canPickUp = false;
         }
     }
 }
