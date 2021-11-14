@@ -141,7 +141,8 @@ public class PlayerStatsComponent : MonoBehaviour
 
     public void activateShield() {
         if (shieldActive != true) {
-            GameObject shield = Instantiate(playerShield) as GameObject;
+            GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
+            GameObject shield = Instantiate(playerShield, player[0].transform.position, player[0].transform.rotation) as GameObject;
         }
         shieldActive = true;
     }

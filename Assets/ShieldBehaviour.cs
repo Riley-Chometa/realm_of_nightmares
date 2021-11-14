@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class ShieldBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    GameObject player;
 
     // Update is called once per frame
     void Update()
     {
-        //transform.position = Camera.main.WorldToScreenPoint(player.transform.position);
+        GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
+        transform.position = player[0].transform.position;
     }
 }

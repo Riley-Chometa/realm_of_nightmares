@@ -54,6 +54,9 @@ public class HealthBar : MonoBehaviour
             currentNotch.transform.localPosition = new Vector3(healthFrame.rect.xMin + healthFrame.rect.width * (float) (25 * i) / health, 0, 0);              // Sets each notch's position
             notchList.Add(currentNotch);                                                // Adds new notch to the container
         }
+
+        Text healthText = this.transform.GetChild(3).GetComponent<Text>();
+        healthText.text = "Current Health: " + health;
     }
     
     public void setHealth(int health) {
@@ -64,6 +67,9 @@ public class HealthBar : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);             // Changes colour of bar if certain thresholds are met
 
         AudioSource.PlayClipAtPoint(hitSoundEffect, transform.position);    // Play punch sound effect
+
+        Text healthText = this.transform.GetChild(3).GetComponent<Text>();
+        healthText.text = "Current Health: " + health;
 
         
     }
