@@ -104,6 +104,11 @@ public class PickUpItems : MonoBehaviour
         else if (other.gameObject.tag == "PickUps"){
             
         }
+
+        else if (other.gameObject.tag == "Shield") {
+            playerstatsmodifier.activateShield();
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other) {

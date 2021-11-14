@@ -9,25 +9,28 @@ public class BaseEnemy : MonoBehaviour
     private int maxHealth = 100;
     [SerializeField]
     private int currentHealth;
+    [SerializeField]
+    public HealthBar healthBar;
 
     // Collider and animation components.
     public Collider2D mainCollider;
     public Animator anim;
     public EnemyRespawnTemp tempRespawner;
-    //public HealthBar healthBar;
+    
 
     // Set starting Variables.
     void Start()
     {
         currentHealth = maxHealth;
-        //healthBar.setMaxHealth(maxHealth);
+        healthBar.transform.SetParent(this.transform.GetChild(0));
+        healthBar.setMaxHealth(maxHealth);
         
     }
 
     // Take the damage from the player. run hit animation and run death if true.
     public void TakeDamage(int damage){
         currentHealth -= damage;
-        //healthBar.setHealth(currentHealth);
+        healthBar.setHealth(currentHealth);
         anim.SetBool("hit", true);
         if (currentHealth <= 0){
             death();
