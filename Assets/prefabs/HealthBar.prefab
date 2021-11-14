@@ -317,9 +317,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 220
+  m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 220
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -370,7 +370,8 @@ MonoBehaviour:
   hitSoundEffect: {fileID: 8300000, guid: 31e17ddb94d8f49ca9f4249bac77aef8, type: 3}
   notch: {fileID: 8323964238659818335, guid: 64c8dfa23a99a48bfbd77607c64d8030, type: 3}
   healthFrame: {fileID: 6470634031878877797}
-  notchList: []
+  notchList:
+  - {fileID: 0}
 --- !u!222 &8140696497730025711
 CanvasRenderer:
   m_ObjectHideFlags: 0

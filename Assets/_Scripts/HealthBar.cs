@@ -63,7 +63,6 @@ public class HealthBar : MonoBehaviour
 
         slider.gameObject.SetActive(true);                                  // Sets the health of the enemy - could be either from a heal or damage
         
-        
         slider.value = health;
         fill.color = gradient.Evaluate(slider.normalizedValue);             // Changes colour of bar if certain thresholds are met
 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 184646286009103888}
   - component: {fileID: 184646286009103891}
   - component: {fileID: 144220436268624342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 184646286071687228}
   - component: {fileID: 184646286071687229}
   - component: {fileID: 7469741561949226133}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: chairLargeCandle
   m_TagString: unbreakableObjects
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 184646286310045160}
   - component: {fileID: 184646286310045163}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: candle 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

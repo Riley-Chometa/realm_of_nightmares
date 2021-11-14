@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5255410967749041528}
   - component: {fileID: 3185098911762612244}
   - component: {fileID: -7614231095851835072}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlaceHolderEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94610ce043df8544f93dc5df1061a0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
+  target: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
+  searchRange: 10
+  attackRadius: 1.5
 --- !u!1 &9171900935792712342
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +214,7 @@ GameObject:
   - component: {fileID: 4015445797246595634}
   - component: {fileID: 1076986421316275523}
   - component: {fileID: 3327305858660247949}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,9 +309,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2542871282712519740}
     m_Modifications:
+    - target: {fileID: 1376297414158811490, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498017185032043517, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498017186663526564, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6449038870627409453, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449038870627409453, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6470634031878877797, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
       propertyPath: m_Pivot.x
@@ -402,6 +420,10 @@ PrefabInstance:
     - target: {fileID: 7547469802725700872, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148112138329102156, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}

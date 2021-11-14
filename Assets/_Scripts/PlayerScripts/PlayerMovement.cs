@@ -25,8 +25,10 @@ public class PlayerMovement : MonoBehaviour
     private float acceleration = 15.0f;
     [SerializeField]
     private float deceleration = 15.0f;
-    // [SerializeField]
-    // private float jumpSpeed = 5.0f;
+
+    // get hit timer to give the player a little room to stay safe.
+    private float getHitTimerMax = 0.50f;
+    private float getHitTimer = 0;
 
     private bool canMove;
     private bool isAlive;
@@ -73,7 +75,9 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame, Contains primary input from player.
     void Update()
-    {   if (isAlive){
+    {   
+
+        if (isAlive){
             if (canMove){
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -117,6 +121,9 @@ public class PlayerMovement : MonoBehaviour
     Main FixedUpdate Method for movement, includes sprinting mechanic and stamina bar.
     */
     void FixedUpdate(){
+        if (getHitTimer > 0){
+            getHitTimer -= Time.fixedDeltaTime;
+        }
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("attacks")){
             moveSpeed = 0;
             canMove = false;
@@ -236,10 +243,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // potential mechanic to think about adding.
-    void makeCharJump(){
-
-    }
 
     private void playerDie(){
         isAlive = false;
@@ -250,7 +253,8 @@ public class PlayerMovement : MonoBehaviour
         anim.SetTrigger("isDead");
     }
 
-    void getHit(){
+    public void getHit(){
+        if (getHitTimer <= 0){
         // Debug.Log("Hey I Got Hit!");
         audioSource.PlayOneShot(hitSound);
         canMove = false;
@@ -258,6 +262,8 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Xdirection", storePreviousMovement[0]);
         anim.SetFloat("Ydirection", storePreviousMovement[1]);
         anim.SetTrigger("isHit");
+        getHitTimer = getHitTimerMax;
+        }
     }
 
     void stopGettingHit(){
@@ -267,7 +273,6 @@ public class PlayerMovement : MonoBehaviour
     // reset variables for stopping to attack
     void stopAttacking(){
         canMove = true;
-        // purposely trying to break attacking
         moveSpeed = 0;
     }
 
