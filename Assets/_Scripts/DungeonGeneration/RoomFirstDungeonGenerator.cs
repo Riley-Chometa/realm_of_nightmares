@@ -85,7 +85,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         foreach (var room in this.dungeon.rooms)
         {
             if (room.roomType == RoomType.Spawn)
-                //Instantiate(this.Player, new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1))
                 this.Player.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
             else if (room.roomType == RoomType.End)
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
@@ -274,6 +273,7 @@ public class Room
     public BoundsInt roomBounds {get; set;}
     public RoomType roomType {get; set;}
     public Dungeon Dungeon;
+    public HashSet<FloorTile> doors;
 
 
     public Room(HashSet<FloorTile> floor, RoomType roomType, Dungeon dungeon)
@@ -281,8 +281,6 @@ public class Room
         this.floor = floor;
         this.RoomType = roomType;
         this.Dungeon = dungeon;
-        this.GetBounds();
-        //SpawnRoom();
     }
 
     public Room(RoomType roomType, Dungeon dungeon): 
@@ -319,7 +317,8 @@ public class Room
             {
                 for(int walkingInt = currentPosition.x; walkingInt<nextPosition.x; walkingInt++)
                 {
-                    Debug.Log(new Vector2Int(walkingInt, currentPosition.y));
+                    // Vector2Int temp = new Vector2Int(walkingInt, currentPosition.y);
+                    // Debug.Log((new Vector2Int(walkingInt, currentPosition.y)).ToString());
                     roomBounds.Add(new Vector2Int(walkingInt, currentPosition.y));
                 }
             }
@@ -327,7 +326,7 @@ public class Room
             {
                 for(int walkingInt = currentPosition.y; walkingInt<nextPosition.y; walkingInt++)
                 {
-                    Debug.Log(new Vector2Int(currentPosition.x, walkingInt));
+                    //Debug.Log((new Vector2Int(currentPosition.x, walkingInt)).ToString());
                     roomBounds.Add(new Vector2Int(currentPosition.x, walkingInt));
                 }
             }
@@ -375,6 +374,11 @@ public class Room
     }
 }
 
+public class Door
+{
+
+}
+
 /**
 Author: Riley Chometa
 This method will be used to track corridor specific items such as FloorTiles and doorways
@@ -383,6 +387,9 @@ public class Corridor
 {
     private HashSet<FloorTile> floor;
     private HashSet<Room> ConnectingRooms;
+    private FloorTile Door1;
+    private FloorTile Door2;
+
 
     public Corridor()
     {
@@ -397,19 +404,32 @@ public class Corridor
 
     public void SpawnDoors()
     {
-
+        foreach (Room room in this.ConnectingRooms)
+        {
+            //FindClosestDoors(room, Door1);
+        } 
     }
-    private void FindClosestTile(Room room)
+    private void FindClosestTile(Room room, FloorTile doorTile)
     {
+        FloorTile closest = null;
         foreach (FloorTile tile in this.floor)
         {
-            Vector2Int currentTilePos = tile.position;
+            closest = closest == null ? tile : closest;
 
             foreach (Vector2Int roomTile in room.GetBounds())
             {
-                
+                if (CompareVector2Int(tile.position, roomTile) < CompareVector2Int(closest.position, roomTile))
+                {
+                    closest = tile;
+                }
             }
         }
+        doorTile = closest;
+    }
+
+    private int CompareVector2Int(Vector2Int left, Vector2Int right)
+    {
+        return (left.y + left.x) - (right.y + right.x);
     }
 }
 
