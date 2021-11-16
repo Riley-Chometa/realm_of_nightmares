@@ -15,7 +15,6 @@ public class BaseEnemy : MonoBehaviour
     // Collider and animation components.
     public Collider2D mainCollider;
     public Animator anim;
-    public EnemyRespawnTemp tempRespawner;
     
 
     // Set starting Variables.
@@ -31,7 +30,10 @@ public class BaseEnemy : MonoBehaviour
     public void TakeDamage(int damage){
         currentHealth -= damage;
         healthBar.setHealth(currentHealth);
-        anim.SetBool("hit", true);
+        if (anim != null) {
+            anim.SetBool("hit", true);
+        }
+        print("DAMAGE");
         if (currentHealth <= 0){
             death();
         }
@@ -48,13 +50,17 @@ public class BaseEnemy : MonoBehaviour
         gameObject.layer = 7;
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 7;
         Destroy(gameObject.GetComponent<CapsuleCollider2D>());
-        anim.SetTrigger("death");
-        GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyScore(100);
+        if (anim != null) {
+            anim.SetTrigger("death");
+        }
+        else {
+            deathDestroy();
+        }
+        GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
     }
 
     // After the Death Animation finishes the event calls the deathDestroy function to remove the enemy object from the game world.
     void deathDestroy(){
-        tempRespawner.CreateNewEnemy(gameObject.transform.position);
         Destroy(gameObject);
     }
 }
