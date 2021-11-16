@@ -77,10 +77,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         tileMapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tileMapVisualizer);
-        SpawnPlayer();       
+        SpawnRoomsAssets();       
     }
 
-    private void SpawnPlayer()
+    private void SpawnRoomsAssets()
     {
         foreach (var room in this.dungeon.rooms)
         {
@@ -206,10 +206,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             // Instantiate(temp, new UnityEngine.Vector3(this.dungeon.lastRoom.GetCenterTile().x, this.dungeon.lastRoom.GetCenterTile().y, -1),UnityEngine.Quaternion.identity);
             
             
-            Debug.Log(this.dungeon.lastRoom.GetCenterTile());
+            //Debug.Log(this.dungeon.lastRoom.GetCenterTile());
         }
         this.dungeon.SpawnRooms();
-        Debug.Log(this.dungeon.rooms.Count);
+        //Debug.Log(this.dungeon.rooms.Count);
         return floor;
     }
 }
@@ -265,7 +265,7 @@ This method will be used to track room specific items such as FloorTiles and ite
 */
 public class Room
 {
-    private HashSet<RoomTile> floor;
+    private HashSet<FloorTile> floor;
     private int MaxSpawners;
     private RoomType RoomType;
     private bool PlayerHasEntered = false;
@@ -273,31 +273,69 @@ public class Room
     public BoundsInt roomBounds {get; set;}
     public RoomType roomType {get; set;}
     public Dungeon Dungeon;
+    public HashSet<FloorTile> doors;
 
 
-    public Room(HashSet<RoomTile> floor, RoomType roomType, Dungeon dungeon)
+    public Room(HashSet<FloorTile> floor, RoomType roomType, Dungeon dungeon)
     {
         this.floor = floor;
         this.RoomType = roomType;
         this.Dungeon = dungeon;
-        //SpawnRoom();
     }
 
     public Room(RoomType roomType, Dungeon dungeon): 
-        this(new HashSet<RoomTile>(), roomType, dungeon) {}
+        this(new HashSet<FloorTile>(), roomType, dungeon) {}
 
     public Room(Dungeon dungeon):
-        this(new HashSet<RoomTile>(), RoomType.Normal, dungeon) {}
+        this(new HashSet<FloorTile>(), RoomType.Normal, dungeon) {}
 
     public void addTile(Vector2Int position)
     {
-        this.floor.Add(new RoomTile(position));
+        this.floor.Add(new FloorTile(position));
     }
 
     public Vector2Int GetCenterTile()
     {
         return (Vector2Int) Vector3Int.RoundToInt(this.roomBounds.center);
     }
+    public HashSet<Vector2Int> GetBounds()
+    {
+        List<Vector2Int> corners = new List<Vector2Int>();
+        HashSet<Vector2Int> roomBounds = new HashSet<Vector2Int>();
+        corners.Add(new Vector2Int(this.roomBounds.xMax, this.roomBounds.yMax));
+        corners.Add(new Vector2Int(this.roomBounds.xMax, this.roomBounds.yMin));
+        corners.Add(new Vector2Int(this.roomBounds.xMin, this.roomBounds.yMin));
+        corners.Add(new Vector2Int(this.roomBounds.xMin, this.roomBounds.yMax));
+        for (int i = 0;i<corners.Count;i++)
+        {
+            Vector2Int currentPosition = corners[i];
+            //roomBounds.Add(currentPosition);
+            Vector2Int nextPosition = corners.Count == i+1? corners[0]: corners[i+1];
+            bool isFromX = currentPosition.x - nextPosition.x != 0;
+
+            if (isFromX)
+            {
+                for(int walkingInt = currentPosition.x; walkingInt<nextPosition.x; walkingInt++)
+                {
+                    // Vector2Int temp = new Vector2Int(walkingInt, currentPosition.y);
+                    // Debug.Log((new Vector2Int(walkingInt, currentPosition.y)).ToString());
+                    roomBounds.Add(new Vector2Int(walkingInt, currentPosition.y));
+                }
+            }
+            else
+            {
+                for(int walkingInt = currentPosition.y; walkingInt<nextPosition.y; walkingInt++)
+                {
+                    //Debug.Log((new Vector2Int(currentPosition.x, walkingInt)).ToString());
+                    roomBounds.Add(new Vector2Int(currentPosition.x, walkingInt));
+                }
+            }
+
+        }
+
+        return roomBounds;
+    }
+
 
     public void SpawnRoom()
     {
@@ -336,18 +374,62 @@ public class Room
     }
 }
 
+public class Door
+{
+
+}
+
+/**
+Author: Riley Chometa
+This method will be used to track corridor specific items such as FloorTiles and doorways
+*/
 public class Corridor
 {
-    HashSet<RoomTile> floor;
+    private HashSet<FloorTile> floor;
+    private HashSet<Room> ConnectingRooms;
+    private FloorTile Door1;
+    private FloorTile Door2;
+
 
     public Corridor()
     {
-        floor = new HashSet<RoomTile>();
+        floor = new HashSet<FloorTile>();
+        ConnectingRooms = new HashSet<Room>();
     }
 
     public void AddTile(Vector2Int position)
     {
-        this.floor.Add(new RoomTile(position));
+        this.floor.Add(new FloorTile(position));
+    }
+
+    public void SpawnDoors()
+    {
+        foreach (Room room in this.ConnectingRooms)
+        {
+            //FindClosestDoors(room, Door1);
+        } 
+    }
+    private void FindClosestTile(Room room, FloorTile doorTile)
+    {
+        FloorTile closest = null;
+        foreach (FloorTile tile in this.floor)
+        {
+            closest = closest == null ? tile : closest;
+
+            foreach (Vector2Int roomTile in room.GetBounds())
+            {
+                if (CompareVector2Int(tile.position, roomTile) < CompareVector2Int(closest.position, roomTile))
+                {
+                    closest = tile;
+                }
+            }
+        }
+        doorTile = closest;
+    }
+
+    private int CompareVector2Int(Vector2Int left, Vector2Int right)
+    {
+        return (left.y + left.x) - (right.y + right.x);
     }
 }
 
@@ -355,7 +437,7 @@ public class Corridor
 Author: Riley Chometa
 The Class will be used to track tile specific items
 */
-public class RoomTile
+public class FloorTile
 {
     private Vector2Int Position;
     private bool HasObject;
@@ -366,7 +448,7 @@ public class RoomTile
         get { return this.Position; }
     }
 
-    public RoomTile(Vector2Int position)
+    public FloorTile(Vector2Int position)
     {
         this.Position = position;
         this.HasObject = false;
