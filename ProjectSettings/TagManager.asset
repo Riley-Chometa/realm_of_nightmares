@@ -7,16 +7,24 @@ TagManager:
   - Wall
   - Tree
   - Enemy
-  - Coins
   - CoinUpdater
   - PickUps
   - unbreakableObjects
   - torch
   - trap
   - Heart
-  - Bombs
-  - Explosive
-  - BreakableObjects
+  - BasicBow
+  - FireBow
+  - FirePotion
+  - sword1
+  - sword2
+  - sword3
+  - sword4
+  - sword5
+  - sword6
+  - SilverCoin
+  - BronzeCoin
+  - GoldCoin
   layers:
   - Default
   - TransparentFX
@@ -27,9 +35,9 @@ TagManager:
   - Pickups
   - traps
   - Unwalkable
+  - Arrows&MagicShots
   - Player
   - Enemy
-  - 
   - 
   - 
   - 

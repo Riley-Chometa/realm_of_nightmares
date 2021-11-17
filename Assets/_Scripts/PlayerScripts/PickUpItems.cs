@@ -7,6 +7,8 @@ public class PickUpItems : MonoBehaviour
 {
     [SerializeField]
     private PlayerMovement playerOperator;
+    [SerializeField]
+    private Transform playerTransform;
     // Audio Variables.
     [SerializeField]
     private AudioClip coinPickUp;
@@ -35,8 +37,10 @@ public class PickUpItems : MonoBehaviour
     [SerializeField]
     private float currOuterRadius;    
 
-
+    public GameObject playerStats;
+    private PlayerStatsComponent playerstatsmodifier;
     private void Start() {
+        playerstatsmodifier = playerStats.GetComponent<PlayerStatsComponent>();
         currentIntensity = minLightIntensity;
         currInnerRadius = minInnerRadius;
         currOuterRadius = minOuterRadius;
@@ -63,16 +67,22 @@ public class PickUpItems : MonoBehaviour
         radiusTimer -= Time.fixedDeltaTime;
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.tag == "Coins"){
-            Debug.Log("Found a Coins");
-            Destroy(other.gameObject);
-            // smoke = Instantiate(smokeAnimation, tm.position, tm.rotation);
-            // Destroy(smoke, .75f);
+        if (other.gameObject.tag == "BronzeCoin"){
             audioSource.PlayOneShot(coinPickUp);
-            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyCoins(1);
-            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyScore(10);
+            playerstatsmodifier.modifyCoins(5);
+            playerstatsmodifier.modifyScore(10);
         }
-        else if (other.gameObject.tag == "torch"){
+        else if (other.gameObject.tag == "SilverCoin"){
+            audioSource.PlayOneShot(coinPickUp);
+            playerstatsmodifier.modifyCoins(10);
+            playerstatsmodifier.modifyScore(25);
+        }
+        else if (other.gameObject.tag == "GoldCoin"){
+            audioSource.PlayOneShot(coinPickUp);
+            playerstatsmodifier.modifyCoins(25);
+            playerstatsmodifier.modifyScore(50);
+        }
+        if (other.gameObject.tag == "torch"){
             Destroy(other.gameObject);
             audioSource.PlayOneShot(torchPickup);
             currentIntensity+= lightIntensityIncrement;
@@ -97,14 +107,34 @@ public class PickUpItems : MonoBehaviour
             GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyBombs(1);
         }
         // use this for inventory type storing itmes.
+
         else if (other.gameObject.tag == "PickUps"){
-            Debug.Log("Found a pickup!");
+            
         }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "trap"){
             playerOperator.getHit();
+        }
+        else if (other.gameObject.tag == "BasicBow" || other.gameObject.tag == "FireBow" || other.gameObject.tag == "FirePotion"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+        }
+        else if (other.gameObject.tag == "sword1" 
+        || other.gameObject.tag == "sword2" 
+        || other.gameObject.tag == "sword3" 
+        || other.gameObject.tag == "sword4"
+        || other.gameObject.tag == "sword5"
+        || other.gameObject.tag == "sword6"){
+            playerOperator.canPickUp = true;
+            playerOperator.itemToPickUp = other.gameObject;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.tag == "BasicBow" || other.gameObject.tag == "FireBow" || other.gameObject.tag == "FirePotion"){
+            playerOperator.canPickUp = false;
         }
     }
 }
