@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Numerics;
 using System;
@@ -41,6 +42,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private HashSet<Vector2Int> floor;
     [SerializeField]
     private GameObject doorPrefab;
+    public HashSet<GameObject> doors;
 
     public void GenerateDungeon()
     {
@@ -60,7 +62,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                     minRoomWidth, minRoomHeight, maxRooms);
         
         floor = new HashSet<Vector2Int>();
-
+        doors = new HashSet<GameObject>();
         if (randomWalkRooms)
         {
             floor = CreateRoomsRandomly(roomsList);
@@ -80,7 +82,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
         tileMapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tileMapVisualizer);
-        SpawnRoomsAssets();       
+        SpawnRoomsAssets();
+               
     }
 
     private void SpawnRoomsAssets()
@@ -89,17 +92,41 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         {
             if (room.roomType == RoomType.Spawn){
                 this.Player.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
-                // foreach (Door door in room.doors)
-                // {
-                //     Instantiate(door.doorPrefab,new Vector3(door.position.x, door.position.y, -1),UnityEngine.Quaternion.identity);
-                // }
+                
             }
             else if (room.roomType == RoomType.End)
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
             else if (room.roomType == RoomType.Normal)
-                Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1),UnityEngine.Quaternion.identity);
+                Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
+            // foreach (Door door in room.doors)
+            // {
+            //     Instantiate(this.doorPrefab,new Vector3(door.position.x, door.position.y, -1),UnityEngine.Quaternion.identity);
+            // }
+            
         } 
+        ToggleDoorOn();
     }
+    private void ToggleDoorOn()
+    {
+        foreach (Room room in this.dungeon.rooms)
+        {
+            foreach (Corridor corridor in room.corridors)
+            {
+                foreach (Door door in corridor.doors)
+                {
+                    Instantiate(this.doorPrefab,new Vector3(door.position.x, door.position.y, -1),UnityEngine.Quaternion.identity);
+                }
+            }
+        }
+    }
+    private void ToggleDoorOff()
+    {
+        foreach (GameObject door in this.doors)
+        {
+            door.SendMessage("fireExtinguisher");
+        }
+    }
+
     private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
     {
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
@@ -143,7 +170,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private HashSet<Vector2Int> CreateCorridor(Vector2Int currentRoomCenter, Vector2Int destination)
     {
         HashSet<Vector2Int> corridor = new HashSet<Vector2Int>();
-        Corridor currentCorridor = new Corridor();
+        Corridor currentCorridor = new Corridor(this.doorPrefab);
         
         var position = currentRoomCenter;
         corridor.Add(position);
@@ -182,6 +209,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         }
         foreach (Room room in this.dungeon.rooms)
         {
+            // Debug.Log("room center: " + room.center);
+            // Debug.Log("position: "+ position);
+            // Debug.Log("destination:" + destination);
+            //Debug.Log(room.center == position || room.center == destination);
+            
             if (room.center == position || room.center == destination)
             {
                 room.corridors.Add(currentCorridor);
@@ -249,16 +281,17 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
 public class Door
 {
-    public Vector2Int position;
+    public Vector2 position;
     public FloorTile tile;
     public GameObject doorPrefab;
     public bool open;
 
     public Door(GameObject doorPrefab, FloorTile tile)
     {
-        this.position = tile.position;
+        this.position = new Vector2(tile.position.x+0.5f, tile.position.y+1.25f);
         this.tile = tile;
         this.doorPrefab = doorPrefab;
+        //Debug.Log(this.position);
     }
 }
 
@@ -332,6 +365,8 @@ public class Room
         this.floor = floor;
         this.RoomType = roomType;
         this.Dungeon = dungeon;
+        this.corridors = new HashSet<Corridor>();
+        this.doors = new HashSet<Door>();
     }
 
     public Room(RoomType roomType, Dungeon dungeon): 
@@ -349,43 +384,43 @@ public class Room
     {
         return (Vector2Int) Vector3Int.RoundToInt(this.roomBounds.center);
     }
-    public HashSet<Vector2Int> GetBounds()
-    {
-        List<Vector2Int> corners = new List<Vector2Int>();
-        HashSet<Vector2Int> roomBounds = new HashSet<Vector2Int>();
-        corners.Add(new Vector2Int(this.roomBounds.xMax, this.roomBounds.yMax));
-        corners.Add(new Vector2Int(this.roomBounds.xMax, this.roomBounds.yMin));
-        corners.Add(new Vector2Int(this.roomBounds.xMin, this.roomBounds.yMin));
-        corners.Add(new Vector2Int(this.roomBounds.xMin, this.roomBounds.yMax));
-        for (int i = 0;i<corners.Count;i++)
-        {
-            Vector2Int currentPosition = corners[i];
-            //roomBounds.Add(currentPosition);
-            Vector2Int nextPosition = corners.Count == i+1? corners[0]: corners[i+1];
-            bool isFromX = currentPosition.x - nextPosition.x != 0;
+    // public HashSet<Vector2Int> GetBounds()
+    // {
+    //     List<Vector2Int> corners = new List<Vector2Int>();
+    //     HashSet<Vector2Int> roomBounds = new HashSet<Vector2Int>();
+    //     corners.Add(new Vector2Int(this.roomBounds.xMax, this.roomBounds.yMax));
+    //     corners.Add(new Vector2Int(this.roomBounds.xMax, this.roomBounds.yMin));
+    //     corners.Add(new Vector2Int(this.roomBounds.xMin, this.roomBounds.yMin));
+    //     corners.Add(new Vector2Int(this.roomBounds.xMin, this.roomBounds.yMax));
+    //     for (int i = 0;i<corners.Count;i++)
+    //     {
+    //         Vector2Int currentPosition = corners[i];
+    //         //roomBounds.Add(currentPosition);
+    //         Vector2Int nextPosition = corners.Count == i+1? corners[0]: corners[i+1];
+    //         bool isFromX = currentPosition.x - nextPosition.x != 0;
 
-            if (isFromX)
-            {
-                for(int walkingInt = currentPosition.x; walkingInt<nextPosition.x; walkingInt++)
-                {
-                    // Vector2Int temp = new Vector2Int(walkingInt, currentPosition.y);
-                    // Debug.Log((new Vector2Int(walkingInt, currentPosition.y)).ToString());
-                    roomBounds.Add(new Vector2Int(walkingInt, currentPosition.y));
-                }
-            }
-            else
-            {
-                for(int walkingInt = currentPosition.y; walkingInt<nextPosition.y; walkingInt++)
-                {
-                    //Debug.Log((new Vector2Int(currentPosition.x, walkingInt)).ToString());
-                    roomBounds.Add(new Vector2Int(currentPosition.x, walkingInt));
-                }
-            }
+    //         if (isFromX)
+    //         {
+    //             for(int walkingInt = currentPosition.x; walkingInt<nextPosition.x; walkingInt++)
+    //             {
+    //                 // Vector2Int temp = new Vector2Int(walkingInt, currentPosition.y);
+    //                 // Debug.Log((new Vector2Int(walkingInt, currentPosition.y)).ToString());
+    //                 roomBounds.Add(new Vector2Int(walkingInt, currentPosition.y));
+    //             }
+    //         }
+    //         else
+    //         {
+    //             for(int walkingInt = currentPosition.y; walkingInt<nextPosition.y; walkingInt++)
+    //             {
+    //                 //Debug.Log((new Vector2Int(currentPosition.x, walkingInt)).ToString());
+    //                 roomBounds.Add(new Vector2Int(currentPosition.x, walkingInt));
+    //             }
+    //         }
 
-        }
+    //     }
 
-        return roomBounds;
-    }
+    //     return roomBounds;
+    // }
 
 
     public void SpawnRoom()
@@ -434,17 +469,24 @@ public class Corridor
     private HashSet<FloorTile> Floor;
     public HashSet<FloorTile> floor {get { return this.Floor; }}
     private HashSet<Room> ConnectingRooms;
+    private HashSet<Door> Doors;
+    private GameObject doorPrefab;
+    public HashSet<Door> doors {get {return this.Doors;}}
 
 
-    public Corridor()
+    public Corridor(GameObject doorPrefab)
     {
         Floor = new HashSet<FloorTile>();
         ConnectingRooms = new HashSet<Room>();
+        this.Doors = new HashSet<Door>();
     }
 
     public void AddTile(Vector2Int position)
     {
-        this.Floor.Add(new FloorTile(position));
+        FloorTile corridorTile = new FloorTile(position);
+        this.Floor.Add(corridorTile);
+        Door currentDoor = new Door(this.doorPrefab, corridorTile);
+        this.Doors.Add(currentDoor);
     }
 
     public void SpawnDoors()
@@ -454,23 +496,23 @@ public class Corridor
             //FindClosestDoors(room, Door1);
         } 
     }
-    private void FindClosestTile(Room room, FloorTile doorTile)
-    {
-        FloorTile closest = null;
-        foreach (FloorTile tile in this.Floor)
-        {
-            closest = closest == null ? tile : closest;
+    // private void FindClosestTile(Room room, FloorTile doorTile)
+    // {
+    //     FloorTile closest = null;
+    //     foreach (FloorTile tile in this.Floor)
+    //     {
+    //         closest = closest == null ? tile : closest;
 
-            foreach (Vector2Int roomTile in room.GetBounds())
-            {
-                if (CompareVector2Int(tile.position, roomTile) < CompareVector2Int(closest.position, roomTile))
-                {
-                    closest = tile;
-                }
-            }
-        }
-        doorTile = closest;
-    }
+    //         foreach (Vector2Int roomTile in room.GetBounds())
+    //         {
+    //             if (CompareVector2Int(tile.position, roomTile) < CompareVector2Int(closest.position, roomTile))
+    //             {
+    //                 closest = tile;
+    //             }
+    //         }
+    //     }
+    //     doorTile = closest;
+    // }
 
     private int CompareVector2Int(Vector2Int left, Vector2Int right)
     {
