@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf2e5dbafb8a4fb1af6b6e793c7ae83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 3632524757054195431, guid: 8dc3a9cc8cdbe4523b07d03de3c3394b, type: 3}
+  Enemy: {fileID: 799654664545339679, guid: f6dbe8983855dcc4aad5ce9b9236b47c, type: 3}
 --- !u!1001 &1961445785291075398
 PrefabInstance:
   m_ObjectHideFlags: 0
