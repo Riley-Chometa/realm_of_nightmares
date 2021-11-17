@@ -87,8 +87,13 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     {
         foreach (var room in this.dungeon.rooms)
         {
-            if (room.roomType == RoomType.Spawn)
+            if (room.roomType == RoomType.Spawn){
                 this.Player.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
+                // foreach (Door door in room.doors)
+                // {
+                //     Instantiate(door.doorPrefab,new Vector3(door.position.x, door.position.y, -1),UnityEngine.Quaternion.identity);
+                // }
+            }
             else if (room.roomType == RoomType.End)
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
             else if (room.roomType == RoomType.Normal)
@@ -134,17 +139,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         }
         return corridors;
     }
-
-    // private void GenerateDoors()
-    // {
-    //     foreach (Room room in this.dungeon.rooms)
-    //     {
-    //         foreach (Door door in room.doors)
-    //         {
-    //             door.
-    //         }
-    //     }
-    // }
 
     private HashSet<Vector2Int> CreateCorridor(Vector2Int currentRoomCenter, Vector2Int destination)
     {
