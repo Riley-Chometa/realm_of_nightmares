@@ -42,7 +42,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private HashSet<Vector2Int> floor;
     [SerializeField]
     private GameObject doorPrefab;
-    public HashSet<GameObject> doors;
+    private HashSet<GameObject> doors;
+    [SerializeField]
+    private GameObject RoomTriggerPrefab;
 
     public void GenerateDungeon()
     {
@@ -90,23 +92,19 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     {
         foreach (var room in this.dungeon.rooms)
         {
-            if (room.roomType == RoomType.Spawn){
+            if (room.roomType == RoomType.Spawn)
                 this.Player.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
-                
-            }
             else if (room.roomType == RoomType.End)
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
-            else if (room.roomType == RoomType.Normal)
-                Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
-            // foreach (Door door in room.doors)
-            // {
-            //     Instantiate(this.doorPrefab,new Vector3(door.position.x, door.position.y, -1),UnityEngine.Quaternion.identity);
-            // }
-            
+            else if (room.roomType == RoomType.Normal){
+                GameObject spawner = Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
+                GameObject trigger = Instantiate(this.RoomTriggerPrefab,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1),UnityEngine.Quaternion.identity);
+            }
         } 
-        ToggleDoorOn();
+        
     }
-    private void ToggleDoorOn()
+
+    private void ToggleDoorsOn()
     {
         foreach (Room room in this.dungeon.rooms)
         {
@@ -114,17 +112,21 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             {
                 foreach (Door door in corridor.doors)
                 {
-                    Instantiate(this.doorPrefab,new Vector3(door.position.x, door.position.y, -1),UnityEngine.Quaternion.identity);
+                    GameObject tempDoor = Instantiate(this.doorPrefab,new Vector3(door.position.x, door.position.y, -1),UnityEngine.Quaternion.identity);
+                    this.doors.Add(tempDoor);
                 }
             }
         }
     }
-    private void ToggleDoorOff()
+
+    private void ToggleDoorsOff()
     {
         foreach (GameObject door in this.doors)
         {
+            Debug.Log("Extinguish");
             door.SendMessage("fireExtinguisher");
         }
+        this.doors.Clear();
     }
 
     private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomsList)
@@ -209,10 +211,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         }
         foreach (Room room in this.dungeon.rooms)
         {
-            // Debug.Log("room center: " + room.center);
-            // Debug.Log("position: "+ position);
-            // Debug.Log("destination:" + destination);
-            //Debug.Log(room.center == position || room.center == destination);
             
             if (room.center == position || room.center == destination)
             {
@@ -274,7 +272,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             this.dungeon.AddRoomBounds(room);
         }
         this.dungeon.SpawnRooms();
-        //Debug.Log(this.dungeon.rooms.Count);
         return floor;
     }
 }
@@ -291,7 +288,6 @@ public class Door
         this.position = new Vector2(tile.position.x+0.5f, tile.position.y+1.25f);
         this.tile = tile;
         this.doorPrefab = doorPrefab;
-        //Debug.Log(this.position);
     }
 }
 
