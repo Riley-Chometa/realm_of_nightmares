@@ -118,3 +118,5 @@ MonoBehaviour:
   target: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
   searchRange: 10
   attackRadius: 1
+  anim: {fileID: 3231471562956716118}
+  attackCooldown: 2

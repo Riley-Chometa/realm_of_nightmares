@@ -116,5 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
-  searchRange: 10
+  searchRange: 2
   attackRadius: 2
+  anim: {fileID: 799654664545339672}
+  attackCooldown: 2
