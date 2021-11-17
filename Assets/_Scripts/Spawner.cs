@@ -32,7 +32,6 @@ public class Spawner : MonoBehaviour
     private int maxSpawnFlag = 0;
 
 
-
     // Update is called once per frame
     void Update()
     {
@@ -47,12 +46,17 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    public void StartSpawning()
+    {
+        this.startSpawning = true;
+    }
+
     public void SpawnObject() {
 
         if (maxEnemies != 0 && maxSpawnFlag != 1) {                                                                      // If maximum enemy count isn't reached, spawn enemy
 
             GameObject child = Instantiate(Enemy, transform.position, UnityEngine.Quaternion.identity) as GameObject;
-            child.transform.parent = transform;
+            //child.transform.parent = transform;
             currentEnemies += 1;
 
             if (currentEnemies == maxEnemies) {

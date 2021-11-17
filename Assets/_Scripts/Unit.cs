@@ -53,7 +53,7 @@ public class Unit : MonoBehaviour
 
         if (Vector2.Distance(targetPosition, transform.position) < attackRadius && canAttack){
             anim.SetFloat("Speed", 0);
-            StopCoroutine(lastCoroutine);
+            StopCoroutine("FollowPath");
             canAttack = false;
             canMove = false;
             anim.SetTrigger("isAttack");    
@@ -114,10 +114,11 @@ public class Unit : MonoBehaviour
     public void OnPathFound(Vector2[] newPath, bool pathSuccessful){
         if (pathSuccessful){
             path = newPath;
-            if (lastCoroutine != null){
-                StopCoroutine(lastCoroutine);
-            }
-            lastCoroutine = StartCoroutine(FollowPath());
+            // if (lastCoroutine != null){
+                StopCoroutine("FollowPath");
+            // }
+            //lastCoroutine = 
+            StartCoroutine(FollowPath());
         }
     }
     /**

@@ -292,6 +292,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2623781722045990297, guid: 28f6ed21437a1324aad051496e44f6a3, type: 3}
+      propertyPath: gridWorldSize.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623781722045990297, guid: 28f6ed21437a1324aad051496e44f6a3, type: 3}
+      propertyPath: gridWorldSize.y
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 2623781722045990300, guid: 28f6ed21437a1324aad051496e44f6a3, type: 3}
       propertyPath: m_Name
       value: Astar
