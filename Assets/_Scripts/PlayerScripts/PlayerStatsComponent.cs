@@ -13,6 +13,8 @@ public class PlayerStatsComponent : MonoBehaviour
     private GameObject keyCounter;
     [SerializeField]
     private GameObject healthCounter;
+    [SerializeField]
+    private GameObject bombCounter;
     public int coinPurse = 0;
     private int startCoins = 0;
     public Text coinPurseText;
@@ -28,6 +30,11 @@ public class PlayerStatsComponent : MonoBehaviour
     private int startKeys = 0;
     public Text keyText;
 
+    // variables related to bombs
+    public int numBombs = 0;
+    private int startBombs = 0;
+    public Text bombText;
+
     private int currentHealth;
     private int maxHealth = 10;
     public Text healthText;
@@ -42,9 +49,11 @@ public class PlayerStatsComponent : MonoBehaviour
         keyText = keyCounter.GetComponent<Text>();
         healthText = healthCounter.GetComponent<Text>();
         healthText.text = "Health: " + currentHealth;
+        bombText = bombCounter.GetComponent<Text>();
         modifyCoins(startCoins);
         modifyKeys(startKeys);
         modifyScore(startScore);
+        modifyBombs(startBombs);
         
     }
     public void modifyCoins(int amount)
@@ -78,6 +87,17 @@ public class PlayerStatsComponent : MonoBehaviour
     public int getNumKeys()
     {
         return this.numKeys;
+    }
+
+    public void modifyBombs(int amount)
+    {
+        numBombs += amount;
+        bombText.text = "Bombs: " + numBombs;
+    }
+
+    public int getNumBomb()
+    {
+        return this.numBombs;
     }
 
     public void modifyHealth(int amount){

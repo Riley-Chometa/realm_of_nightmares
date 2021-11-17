@@ -19,24 +19,22 @@ public class Bomb_Explosion : MonoBehaviour
     //To hold all of the game objects that the bomb comes into contact with. 
     private List<GameObject> list = new List<GameObject>(); 
 
-    public bool playerTouchBomb = false;
-    public bool objectsTouchBomb = false;
-    public bool enemyTouchBomb = false;
-
     // Start is called before the first frame update
     void Start()
     {
         scaleChange = new Vector3(18f, 18f, 1f);
+        Debug.Log("Using a bomb");
+        StartCoroutine(bombExplosion());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("b"))
-        {
-            Debug.Log("Using a bomb");
-            StartCoroutine(bombExplosion());
-        }
+       // if (Input.GetKeyDown("b"))
+       // {
+         //   Debug.Log("Using a bomb");
+           // StartCoroutine(bombExplosion());
+       // }
     }
 
     private void OnTriggerEnter2D(Collider2D coli)
@@ -63,12 +61,19 @@ public class Bomb_Explosion : MonoBehaviour
         if (coli.gameObject.tag == "Player")
         {
             list.Remove(coli.gameObject);
-            Debug.Log(coli.gameObject.name + " has entered the bomb radius");
+            Debug.Log(coli.gameObject.name + " has left the bomb radius");
+        }
+        if (coli.gameObject.tag == "enemy")
+        {
+            list.Remove(coli.gameObject);
+            Debug.Log(coli.gameObject.name + "has left the bomb radius");
+            //We don't need to do one of these for the breakable objects since they do not move. 
         }
     }
     //Create a function for the bomb object explosion
     public IEnumerator bombExplosion()
     {
+        yield return new WaitForSeconds(0.5f);
         source.PlayOneShot(countDown);
         anim.Play("Bomb_3");
         yield return new WaitForSeconds(1);

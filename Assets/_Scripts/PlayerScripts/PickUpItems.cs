@@ -104,7 +104,8 @@ public class PickUpItems : MonoBehaviour
             Destroy(other.gameObject);
             Debug.Log("Found a Bomb");
             audioSource.PlayOneShot(coinPickUp);
-            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyBombs(1);
+            playerstatsmodifier.modifyBombs(1);
+            //Destroy(GetComponent<Transform>().GetChild(0).gameObject); //Destroys the Light 2D child object 
         }
         // use this for inventory type storing itmes.
 
