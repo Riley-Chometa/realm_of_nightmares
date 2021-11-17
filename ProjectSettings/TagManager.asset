@@ -13,6 +13,10 @@ TagManager:
   - unbreakableObjects
   - torch
   - trap
+  - Heart
+  - Bombs
+  - Explosive
+  - BreakableObjects
   layers:
   - Default
   - TransparentFX

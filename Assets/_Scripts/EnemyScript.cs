@@ -58,7 +58,7 @@ public class EnemyScript : MonoBehaviour
         healthBar.setMaxHealth(newHealth);                      // Also updates the healthBar to the new maximum
     }
 
-    void Damage(int damage) {                                   // The enemy takes damage
+    public void Damage(int damage) {                                   // The enemy takes damage
         print("Dealt " + damage + " damage!");
         currentHealth -= damage;
         healthBar.setHealth(currentHealth);

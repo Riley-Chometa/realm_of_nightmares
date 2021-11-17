@@ -89,6 +89,13 @@ public class PickUpItems : MonoBehaviour
         else if (other.gameObject.tag == "trap"){
             playerOperator.getHit();
         }
+        else if (other.gameObject.tag == "Bombs")
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Found a Bomb");
+            audioSource.PlayOneShot(coinPickUp);
+            GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyBombs(1);
+        }
         // use this for inventory type storing itmes.
         else if (other.gameObject.tag == "PickUps"){
             Debug.Log("Found a pickup!");
