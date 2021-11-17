@@ -76,6 +76,8 @@ public class PlayerMovement : MonoBehaviour
     private float currentPickupTime;
     private bool isMagic;
 
+    public GameObject tempGenerator;
+
     // Initialize variables for the player.
     void Start(){
         storePreviousMovement = new Vector2(0,0);
@@ -130,6 +132,14 @@ public class PlayerMovement : MonoBehaviour
                 // pick up items.
                  
                  pickUpItem();
+                }
+                if (Input.GetKeyDown("f"))
+                {
+                    this.tempGenerator.SendMessage("ToggleDoorsOff");
+                }
+                if (Input.GetKeyDown("g"))
+                {
+                    this.tempGenerator.SendMessage("ToggleDoorsOn");
                 }
             }
         }

@@ -50,8 +50,9 @@ public class Spawner : MonoBehaviour
     public void SpawnObject() {
 
         if (maxEnemies != 0 && maxSpawnFlag != 1) {                                                                      // If maximum enemy count isn't reached, spawn enemy
-            GameObject child = Instantiate(Enemy, transform.position, transform.rotation) as GameObject;
 
+            GameObject child = Instantiate(Enemy, transform.position, UnityEngine.Quaternion.identity) as GameObject;
+            child.transform.parent = transform;
             currentEnemies += 1;
 
             if (currentEnemies == maxEnemies) {

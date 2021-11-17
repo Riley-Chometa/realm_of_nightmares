@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_Sprite: {fileID: 535897701329487140, guid: c6694c315a0ab0943bc78e30fffe2c55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -117,9 +117,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94610ce043df8544f93dc5df1061a0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  searchRange: 10
+  target: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
+  searchRange: 2
   attackRadius: 2
+  anim: {fileID: 799654664545339672}
+  attackCooldown: 2
 --- !u!114 &1391299427591521253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1188,3 +1190,4 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+>>>>>>> revamp_pcg_rooms
