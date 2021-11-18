@@ -14,8 +14,6 @@ public class PlayerStatsComponent : MonoBehaviour
     // [SerializeField]
     // private GameObject healthCounter;
     [SerializeField]
-    private GameObject healthCounter;
-    [SerializeField]
     private GameObject bombCounter;
     [SerializeField]
     private GameObject healthGrid;
@@ -45,7 +43,6 @@ public class PlayerStatsComponent : MonoBehaviour
 
     private int currentHealth;
     private int maxHealth = 10;
-    //public Text healthText;
     public GameObject player;
     private PlayerMovement playerController;
 
@@ -63,8 +60,6 @@ public class PlayerStatsComponent : MonoBehaviour
         modifyKeys(startKeys);
         modifyScore(startScore);
         modifyBombs(startBombs);
-        //healthText = healthCounter.GetComponent<Text>();
-        //healthText.text = "Health: " + currentHealth;
         shieldActive = false;
         modifyCoins(startCoins);
         modifyKeys(startKeys);

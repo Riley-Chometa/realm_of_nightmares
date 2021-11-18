@@ -116,7 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b447afdf1be20de49b0288832e34499b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transformer: {fileID: 0}
+  transformer: {fileID: 8158143757800888507}
+  playerstats: {fileID: 2804045876706637542, guid: f310561a7af7a4d48909d6748452f6ab, type: 3}
 --- !u!61 &8158143757800888510
 BoxCollider2D:
   m_ObjectHideFlags: 0
