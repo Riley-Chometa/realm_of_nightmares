@@ -11,6 +11,8 @@ public class BaseEnemy : MonoBehaviour
     private int currentHealth;
     [SerializeField]
     public HealthBar healthBar;
+    [SerializeField]
+    private List<GameObject> itemDrops = new List<GameObject>();
 
     // Collider and animation components.
     public Collider2D mainCollider;
@@ -61,10 +63,25 @@ public class BaseEnemy : MonoBehaviour
             GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOff");
         }
         GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
+        dropItem();
     }
 
     // After the Death Animation finishes the event calls the deathDestroy function to remove the enemy object from the game world.
     void deathDestroy(){
         Destroy(gameObject);
+    }
+
+    void dropItem() {
+        int numItems = itemDrops.Count;
+        int itemToDrop = Random.Range(0, numItems);
+
+        // Chance to drop nothing
+        if (itemToDrop == numItems) {
+            return;
+        }
+        else {
+            Instantiate(itemDrops[itemToDrop], transform.position, transform.rotation);
+        }
+
     }
 }
