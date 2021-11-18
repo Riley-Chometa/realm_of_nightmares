@@ -92,10 +92,7 @@ public class Pathfinding : MonoBehaviour
             waypoints.Add(path[0].WorldPosition);
         }
         Vector2 directionOld = Vector2.zero;
-
-        print(path.Count);
         for(int i = 1; i < path.Count; i++){
-            print("Help: " + path.Count);
             Vector2 directionNew = new Vector2(path[i-1].gridX - path[i].gridX, path[i-1].gridY - path[i].gridY);
             if (directionNew != directionOld){
                 waypoints.Add(path[i].WorldPosition);
