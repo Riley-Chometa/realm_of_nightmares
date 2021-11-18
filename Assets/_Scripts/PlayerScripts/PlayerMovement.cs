@@ -147,14 +147,6 @@ public class PlayerMovement : MonoBehaviour
                         Debug.Log("Player does not have any bombs to detonate.");
                     }
                 }
-                if (Input.GetKeyDown("f"))
-                {
-                    this.tempGenerator.SendMessage("ToggleDoorsOff");
-                }
-                if (Input.GetKeyDown("g"))
-                {
-                    this.tempGenerator.SendMessage("ToggleDoorsOn");
-                }
             }
         }
     }

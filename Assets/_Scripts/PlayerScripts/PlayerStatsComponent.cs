@@ -119,8 +119,7 @@ public class PlayerStatsComponent : MonoBehaviour
     {
         return this.numBombs;
     }
-
-    public void modifyHealth(int amount) {
+    public void modifyHealth(int amount){
         if (shieldActive && amount < 0) {
             this.deactivateShield();
             return;
