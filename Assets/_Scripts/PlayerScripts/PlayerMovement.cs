@@ -71,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject[] rangedObjects;
     private GameObject rangedObject;
     private Vector2 rangedAttackDirection;
+    public GameObject bombObject;
 
     private float pickupMaxTime = 30.0f;
     private float currentPickupTime;
@@ -133,6 +134,18 @@ public class PlayerMovement : MonoBehaviour
                  
                  pickUpItem();
                 }
+                if (Input.GetKeyDown("b"))
+                {
+                    if (GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStatsComponent>().getNumBomb() >= 1) 
+                    {
+                        GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStatsComponent>().modifyBombs(-1);
+                        GameObject newBomb = Instantiate(bombObject, currentAttackPoint.position, Quaternion.identity);
+                        newBomb.GetComponent<Bomb_Pickup>();
+                    }
+                    else
+                    {
+                        Debug.Log("Player does not have any bombs to detonate.");
+                    }
                 if (Input.GetKeyDown("f"))
                 {
                     this.tempGenerator.SendMessage("ToggleDoorsOff");

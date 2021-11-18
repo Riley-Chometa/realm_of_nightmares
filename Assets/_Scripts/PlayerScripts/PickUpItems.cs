@@ -99,6 +99,14 @@ public class PickUpItems : MonoBehaviour
         else if (other.gameObject.tag == "trap"){
             playerOperator.getHit();
         }
+        else if (other.gameObject.tag == "Bombs")
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Found a Bomb");
+            audioSource.PlayOneShot(coinPickUp);
+            playerstatsmodifier.modifyBombs(1);
+            //Destroy(GetComponent<Transform>().GetChild(0).gameObject); //Destroys the Light 2D child object 
+        }
         // use this for inventory type storing itmes.
 
         else if (other.gameObject.tag == "PickUps"){

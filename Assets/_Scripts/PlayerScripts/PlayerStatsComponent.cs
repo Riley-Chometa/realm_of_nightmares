@@ -14,6 +14,9 @@ public class PlayerStatsComponent : MonoBehaviour
     // [SerializeField]
     // private GameObject healthCounter;
     [SerializeField]
+    private GameObject healthCounter;
+    [SerializeField]
+    private GameObject bombCounter;
     private GameObject healthGrid;
     [SerializeField]
     private GameObject playerHeart;
@@ -34,6 +37,11 @@ public class PlayerStatsComponent : MonoBehaviour
     private int startKeys = 0;
     public Text keyText;
 
+    // variables related to bombs
+    public int numBombs = 0;
+    private int startBombs = 0;
+    public Text bombText;
+
     private int currentHealth;
     private int maxHealth = 10;
     //public Text healthText;
@@ -49,6 +57,13 @@ public class PlayerStatsComponent : MonoBehaviour
         coinPurseText = coinCounter.GetComponent<Text>();
         playerScoreText = scoreCounter.GetComponent<Text>();
         keyText = keyCounter.GetComponent<Text>();
+        healthText = healthCounter.GetComponent<Text>();
+        healthText.text = "Health: " + currentHealth;
+        bombText = bombCounter.GetComponent<Text>();
+        modifyCoins(startCoins);
+        modifyKeys(startKeys);
+        modifyScore(startScore);
+        modifyBombs(startBombs);
         //healthText = healthCounter.GetComponent<Text>();
         //healthText.text = "Health: " + currentHealth;
         shieldActive = false;
@@ -96,12 +111,26 @@ public class PlayerStatsComponent : MonoBehaviour
         return this.numKeys;
     }
 
+    public void modifyBombs(int amount)
+    {
+        numBombs += amount;
+        bombText.text = "Bombs: " + numBombs;
+    }
+
+    public int getNumBomb()
+    {
+        return this.numBombs;
+    }
+
+    public void modifyHealth(int amount){
+        if (currentHealth + amount <= maxHealth){
     public void modifyHealth(int amount) {
         if (shieldActive && amount < 0) {
             this.deactivateShield();
             return;
         }
         if (currentHealth + amount <= maxHealth) {
+
             currentHealth += amount;
             if (amount < 0 && hearts.Count != 0) {
                 GameObject heartToRemove = hearts[hearts.Count - 1];

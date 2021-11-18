@@ -18,7 +18,7 @@ public class RoomTrigger : MonoBehaviour
 
     public void SetBounds(BoundsInt bounds)
     {
-        gameObject.transform.GetComponent<BoxCollider2D>().size = new Vector2(bounds.xMax-bounds.xMin-8.0f, bounds.yMax-bounds.yMin-8.0f);
+        gameObject.transform.GetComponent<BoxCollider2D>().size = new Vector2((float)(bounds.xMax-bounds.xMin)-9.0f, (float)(bounds.yMax-bounds.yMin)-9.0f);
     }
     
     
