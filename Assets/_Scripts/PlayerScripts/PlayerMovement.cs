@@ -102,8 +102,8 @@ public class PlayerMovement : MonoBehaviour
         if (isAlive){
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-            anim.SetFloat("Horizontal", movement.x);
-            anim.SetFloat("Vertical", movement.y);
+            anim.SetFloat("Xdirection", movement.x);
+            anim.SetFloat("Ydirection", movement.y);
             anim.SetFloat("Speed", movement.sqrMagnitude);
 
             float xdirection = movement.x;

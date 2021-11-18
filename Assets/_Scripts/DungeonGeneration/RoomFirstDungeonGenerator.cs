@@ -48,6 +48,12 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private GameObject RoomTriggerPrefab;
     public static int difficulty = 3;
     private GameObject ParentSpawn;
+    [SerializeField]
+    private GameObject FloorTrap;
+    [SerializeField]
+    private GameObject BarrelLight;
+    [SerializeField]
+    private GameObject Bow;
 
     public void GenerateDungeon()
     {
@@ -96,7 +102,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     }
     public void Respawn()
     {
-        difficulty -= 2;
+        if (difficulty >3)
+        {
+            difficulty -= 2;
+        }
     }
 
     private void ClearDungeon()
@@ -110,14 +119,20 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         {
             Destroy(child.gameObject);
         }
+        DestroyDoors();
+        
     }
 
     private void SpawnRoomsAssets()
     {
         foreach (var room in this.dungeon.rooms)
         {
-            if (room.roomType == RoomType.Spawn)
+            if (room.roomType == RoomType.Spawn){
                 this.Player.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
+                if (difficulty >= 5) {
+                    GameObject bow = Instantiate(this.Bow, new Vector3(room.center.x+2, room.center.y, -1), UnityEngine.Quaternion.identity);
+                }
+            }
             else if (room.roomType == RoomType.End)
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
             else if (room.roomType == RoomType.Normal){
@@ -128,11 +143,44 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 spawner.SendMessage("SetMaxEnemies", difficulty);
                 spawner.transform.SetParent(this.ParentSpawn.transform);
                 trigger.transform.SetParent(this.ParentSpawn.transform);
+                
+
             }
+            SpawnLights(room);
+            SpawnFloorTraps(room);
         } 
         ToggleDoorsOn();
         ToggleDoorsOff();
         
+    }
+    private void SpawnFloorTraps(Room room)
+    {
+        foreach (FloorTile tile in room.floor)
+        {
+            if (Random.Range(0,99)<1 && CanSpawnTrap(room, tile))
+            {
+                GameObject trap = Instantiate(this.FloorTrap, new Vector3(tile.position.x, tile.position.y, -1), UnityEngine.Quaternion.identity);
+                trap.transform.SetParent(this.ParentSpawn.transform);
+            }
+        }
+                
+    }
+
+    private bool CanSpawnTrap(Room room, FloorTile tile)
+    {
+        return tile.position != room.center && 
+                tile.position.x < room.roomBounds.xMax - 8 &&
+                tile.position.x > room.roomBounds.xMin + 8 &&
+                tile.position.y < room.roomBounds.yMax - 8 &&
+                tile.position.y > room.roomBounds.yMin + 8
+                ;
+    }
+    private void SpawnLights(Room room)
+    {
+        Instantiate(this.BarrelLight, new Vector3(room.center.x +5, room.center.y + 5, -1), UnityEngine.Quaternion.identity).transform.SetParent(this.ParentSpawn.transform);
+        Instantiate(this.BarrelLight, new Vector3(room.center.x +5, room.center.y - 5, -1), UnityEngine.Quaternion.identity).transform.SetParent(this.ParentSpawn.transform);
+        Instantiate(this.BarrelLight, new Vector3(room.center.x -5, room.center.y - 5, -1), UnityEngine.Quaternion.identity).transform.SetParent(this.ParentSpawn.transform);
+        Instantiate(this.BarrelLight, new Vector3(room.center.x -5, room.center.y + 5, -1), UnityEngine.Quaternion.identity).transform.SetParent(this.ParentSpawn.transform);
     }
 
     private void ToggleDoorsOn()
@@ -383,7 +431,7 @@ This method will be used to track room specific items such as FloorTiles and ite
 */
 public class Room
 {
-    private HashSet<FloorTile> floor;
+    private HashSet<FloorTile> Floor;
     private int MaxSpawners;
     private RoomType RoomType;
     private bool PlayerHasEntered = false;
@@ -394,11 +442,12 @@ public class Room
     public HashSet<Door> doors;
     public HashSet<Corridor> corridors;
     public Vector2Int center;
+    public HashSet<FloorTile> floor {get{return this.Floor;}}
 
 
     public Room(HashSet<FloorTile> floor, RoomType roomType, Dungeon dungeon)
     {
-        this.floor = floor;
+        this.Floor = floor;
         this.RoomType = roomType;
         this.Dungeon = dungeon;
         this.corridors = new HashSet<Corridor>();
@@ -413,7 +462,7 @@ public class Room
 
     public void addTile(Vector2Int position)
     {
-        this.floor.Add(new FloorTile(position));
+        this.Floor.Add(new FloorTile(position));
     }
 
     public Vector2Int GetCenterTile()
