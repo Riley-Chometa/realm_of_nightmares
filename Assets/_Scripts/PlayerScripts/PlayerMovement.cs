@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private int maxStamina = 80;
     [SerializeField]
-    private int currentStamina;
+    public int currentStamina;
     [SerializeField]
     private int staminaBurnRate = 2;
     [SerializeField]
@@ -423,5 +423,19 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(currentAttackPoint.position, attackRange);    
+    }
+    public void SavePlayer(){
+      save_sys.SavePlayer(this);
+    }
+
+    public void LoadPlayer(){
+      player_data data = save_sys.LoadPlayer();
+      currentStamina = data.currentStamina;
+      attackDamage = data.attackDamage;
+      Vector3 position;
+      position.x = data.position[0];
+      position.y = data.position[1];
+      position.z = data.position[2];
+      transform.position = position;
     }
 }

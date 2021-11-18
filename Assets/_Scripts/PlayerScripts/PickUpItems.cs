@@ -135,4 +135,19 @@ public class PickUpItems : MonoBehaviour
             playerOperator.canPickUp = false;
         }
     }
+    public void SaveStats(){
+      int coinPurse = GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().getCoins();
+      int playerScore = GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().getScore();
+      int numKeys = GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().getNumKeys();
+      score_data data = new score_data(coinPurse,playerScore,numKeys);
+      save_sys.SaveScore(data);
+    }
+
+    public void LoadStats(){
+      score_data score = save_sys.LoadScore();
+      GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyCoins(score.coinPurse);
+      GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyScore(score.playerScore);
+      GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyKeys(score.numKeys);
+
+    }
 }
