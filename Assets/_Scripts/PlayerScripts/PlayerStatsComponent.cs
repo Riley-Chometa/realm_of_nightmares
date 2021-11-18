@@ -57,8 +57,6 @@ public class PlayerStatsComponent : MonoBehaviour
         coinPurseText = coinCounter.GetComponent<Text>();
         playerScoreText = scoreCounter.GetComponent<Text>();
         keyText = keyCounter.GetComponent<Text>();
-        healthText = healthCounter.GetComponent<Text>();
-        healthText.text = "Health: " + currentHealth;
         bombText = bombCounter.GetComponent<Text>();
         modifyCoins(startCoins);
         modifyKeys(startKeys);
@@ -123,8 +121,6 @@ public class PlayerStatsComponent : MonoBehaviour
     }
 
     public void modifyHealth(int amount){
-        if (currentHealth + amount <= maxHealth){
-    public void modifyHealth(int amount) {
         if (shieldActive && amount < 0) {
             this.deactivateShield();
             return;
