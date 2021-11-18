@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame, Contains primary input from player.
     void Update()
     {   
-        Debug.Log(canInput);
+        //Debug.Log(canInput);
 
         if (isAlive){
             movement.x = Input.GetAxisRaw("Horizontal");
@@ -137,9 +137,9 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (Input.GetKeyDown("b"))
                 {
-                    if (GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStatsComponent>().getNumBomb() >= 1) 
+                    if (GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().getNumBomb() >= 1) 
                     {
-                        GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStatsComponent>().modifyBombs(-1);
+                        GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyBombs(-1);
                         GameObject newBomb = Instantiate(bombObject, currentAttackPoint.position, Quaternion.identity);
                         newBomb.GetComponent<Bomb_Pickup>();
                     }

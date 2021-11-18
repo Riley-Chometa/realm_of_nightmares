@@ -616,6 +616,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1528406772}
     - target: {fileID: 4389603736547947980, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
+      propertyPath: bombObject
+      value: 
+      objectReference: {fileID: 8169619587413910459, guid: 325de7e843b3dec45a1c840657c0c366, type: 3}
+    - target: {fileID: 4389603736547947980, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 511550877}
@@ -679,6 +683,10 @@ PrefabInstance:
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 2804045876706637542, guid: f310561a7af7a4d48909d6748452f6ab, type: 3}
+    - target: {fileID: 6880384692104962964, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
+      propertyPath: m_Intensity
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
 --- !u!1001 &828463034
@@ -833,6 +841,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2047586966}
+    - target: {fileID: 2804045876706637541, guid: f310561a7af7a4d48909d6748452f6ab, type: 3}
+      propertyPath: bombText
+      value: 
+      objectReference: {fileID: 1428617975}
+    - target: {fileID: 2804045876706637541, guid: f310561a7af7a4d48909d6748452f6ab, type: 3}
+      propertyPath: numBombs
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2804045876706637541, guid: f310561a7af7a4d48909d6748452f6ab, type: 3}
       propertyPath: healthGrid
       value: 
@@ -101776,6 +101792,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 414711412128173122, guid: 585dd2f5a50e41346b46cae94c6e33a3, type: 3}
   m_PrefabInstance: {fileID: 828463034}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1428617975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 414711412128173502, guid: 585dd2f5a50e41346b46cae94c6e33a3, type: 3}
+  m_PrefabInstance: {fileID: 828463034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428617972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1528406772 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 586702855332529628, guid: 92dc93e58d8bd6645be2b822d6641a54, type: 3}
@@ -101985,7 +102012,6 @@ MonoBehaviour:
   RoomTriggerPrefab: {fileID: 1661981626136288727, guid: 91dd7ccb63c4f744387ca391215a0a22, type: 3}
   FloorTrap: {fileID: 9163938458794825614, guid: 5b88ae550feafc94b8da12fa9e620e2d, type: 3}
   BarrelLight: {fileID: 8165836512248293362, guid: a6a22fa6e1c7c8548bef3c6020d2b697, type: 3}
-  Bow: {fileID: 0}
 --- !u!4 &1826959209
 Transform:
   m_ObjectHideFlags: 0

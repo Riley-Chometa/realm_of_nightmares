@@ -52,8 +52,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private GameObject FloorTrap;
     [SerializeField]
     private GameObject BarrelLight;
-    [SerializeField]
-    private GameObject Bow;
 
     public void GenerateDungeon()
     {
@@ -108,6 +106,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         }
     }
 
+
     private void ClearDungeon()
     {
         
@@ -127,12 +126,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     {
         foreach (var room in this.dungeon.rooms)
         {
-            if (room.roomType == RoomType.Spawn){
+            if (room.roomType == RoomType.Spawn)
                 this.Player.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
-                if (difficulty >= 5) {
-                    GameObject bow = Instantiate(this.Bow, new Vector3(room.center.x+2, room.center.y, -1), UnityEngine.Quaternion.identity);
-                }
-            }
             else if (room.roomType == RoomType.End)
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
             else if (room.roomType == RoomType.Normal){
