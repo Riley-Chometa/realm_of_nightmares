@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseEnemy : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {   
     // Health Variables
     [SerializeField]
@@ -33,7 +33,7 @@ public class BaseEnemy : MonoBehaviour
         if (anim != null) {
             anim.SetBool("hit", true);
         }
-        print("DAMAGE");
+        //print("DAMAGE");
         if (currentHealth <= 0){
             death();
         }
@@ -56,11 +56,7 @@ public class BaseEnemy : MonoBehaviour
         else {
             deathDestroy();
         }
-        if (gameObject.name == "Spawner")
-        {
-            Debug.Log("Spawner");
-            gameObject.GetComponent<Spawner>().SendMessage("ToggleDoorsOff");
-        }
+        gameObject.GetComponent<Spawner>().SendMessage("ToggleDoorsOff");
         GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
     }
 

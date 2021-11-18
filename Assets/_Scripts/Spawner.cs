@@ -46,6 +46,11 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    public void ToggleDoorsOff()
+    {
+        GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOff");
+    }
+
     public void StartSpawning()
     {
         this.startSpawning = true;

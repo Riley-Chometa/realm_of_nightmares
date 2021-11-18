@@ -153,7 +153,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Current Health: 220'
+  m_Text: 'Current Health: 100'
 --- !u!1 &2498017186663526564
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +371,9 @@ MonoBehaviour:
   notch: {fileID: 8323964238659818335, guid: 64c8dfa23a99a48bfbd77607c64d8030, type: 3}
   healthFrame: {fileID: 6470634031878877797}
   notchList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
 --- !u!222 &8140696497730025711
 CanvasRenderer:

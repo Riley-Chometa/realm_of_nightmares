@@ -264,6 +264,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9070221795832729808}
     m_Modifications:
+    - target: {fileID: 1074953203811491197, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: notchList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1074953203811491197, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: notchList.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2498017185032043519, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: m_Text
+      value: 'Current Health: 220'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891903530423225809, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6449038870627409453, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
       propertyPath: m_Name
       value: HealthBar
@@ -358,6 +374,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547469802725700872, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640887080264807885, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.13595366
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640887080264807885, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7640887080264807885, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
+      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
