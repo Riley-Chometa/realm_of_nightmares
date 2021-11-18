@@ -15,6 +15,11 @@ public class RoomTrigger : MonoBehaviour
     {
         this.Spawner = spawner;
     }
+
+    public void SetBounds(BoundsInt bounds)
+    {
+        gameObject.transform.GetComponent<BoxCollider2D>().size = new Vector2(bounds.xMax-bounds.xMin-8.0f, bounds.yMax-bounds.yMin-8.0f);
+    }
     
     
 

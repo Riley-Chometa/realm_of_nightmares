@@ -113,6 +113,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 GameObject spawner = Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
                 GameObject trigger = Instantiate(this.RoomTriggerPrefab,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1),UnityEngine.Quaternion.identity);
                 trigger.SendMessage("SetSpawner", spawner);
+                trigger.SendMessage("SetBounds", room.roomBounds);
                 spawner.SendMessage("SetMaxEnemies", difficulty);
                 //spawner.transform.SetParent(gameObject.transform);
             }
