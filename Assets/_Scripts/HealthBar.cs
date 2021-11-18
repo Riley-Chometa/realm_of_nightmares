@@ -45,18 +45,18 @@ public class HealthBar : MonoBehaviour
 
         fill.color = gradient.Evaluate(1f);
 
-        int numNotches = health / 100;                                      // Each notch is set at intervals of 100 HP
-
-        print("NUMBER NOTCHES, HEALTH: " + numNotches + " " + health);      // Testing purposes
+        int numNotches = health / 25;                                      // Each notch is set at intervals of 100 HP
 
         // Adds the amount of needed notches and positions them on the HP bar
         // to show chunks of 100 HP
         for (int i = 1; i <= numNotches; i++) { 
             GameObject currentNotch = Instantiate(notch, healthFrame);                  // Creates new notch
-            currentNotch.transform.localPosition = new Vector3(healthFrame.rect.xMin + healthFrame.rect.width * (float) (100 * i) / health, 0, 0);              // Sets each notch's position
-            print("XMAX: " + healthFrame.rect.xMax + " LOCATION: " + healthFrame.rect.xMin + healthFrame.rect.width * ((float) i / ((float) numNotches + 1)));  // Testing purposes
+            currentNotch.transform.localPosition = new Vector3(healthFrame.rect.xMin + healthFrame.rect.width * (float) (25 * i) / health, 0, 0);              // Sets each notch's position
             notchList.Add(currentNotch);                                                // Adds new notch to the container
         }
+
+        Text healthText = this.transform.GetChild(3).GetComponent<Text>();
+        healthText.text = "Current Health: " + health;
     }
     
     public void setHealth(int health) {
@@ -67,6 +67,9 @@ public class HealthBar : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);             // Changes colour of bar if certain thresholds are met
 
         AudioSource.PlayClipAtPoint(hitSoundEffect, transform.position);    // Play punch sound effect
+
+        Text healthText = this.transform.GetChild(3).GetComponent<Text>();
+        healthText.text = "Current Health: " + health;
 
         
     }

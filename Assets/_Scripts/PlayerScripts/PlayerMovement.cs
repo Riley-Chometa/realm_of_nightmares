@@ -77,6 +77,8 @@ public class PlayerMovement : MonoBehaviour
     private float currentPickupTime;
     private bool isMagic;
 
+    public GameObject tempGenerator;
+
     // Initialize variables for the player.
     void Start(){
         storePreviousMovement = new Vector2(0,0);
@@ -144,6 +146,13 @@ public class PlayerMovement : MonoBehaviour
                     {
                         Debug.Log("Player does not have any bombs to detonate.");
                     }
+                if (Input.GetKeyDown("f"))
+                {
+                    this.tempGenerator.SendMessage("ToggleDoorsOff");
+                }
+                if (Input.GetKeyDown("g"))
+                {
+                    this.tempGenerator.SendMessage("ToggleDoorsOn");
                 }
             }
         }
@@ -333,7 +342,7 @@ public class PlayerMovement : MonoBehaviour
     public void getHit(){
         if (getHitTimer <= 0){
         playerStatsComponent.GetComponent<PlayerStatsComponent>().modifyHealth(-1);
-        // Debug.Log("Hey I Got Hit!");
+        Debug.Log("Hey I Got Hit!");
         audioSource.PlayOneShot(hitSound);
         canMove = false;
         moveSpeed = -moveSpeed;

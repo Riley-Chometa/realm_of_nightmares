@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_Sprite: {fileID: 141554055328625651, guid: b757191f5e661324eab6510f7416e34a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -118,3 +118,5 @@ MonoBehaviour:
   target: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
   searchRange: 10
   attackRadius: 1
+  anim: {fileID: 3231471562956716118}
+  attackCooldown: 2

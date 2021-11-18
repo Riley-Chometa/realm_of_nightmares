@@ -25,6 +25,7 @@ TagManager:
   - SilverCoin
   - BronzeCoin
   - GoldCoin
+  - Shield
   layers:
   - Default
   - TransparentFX

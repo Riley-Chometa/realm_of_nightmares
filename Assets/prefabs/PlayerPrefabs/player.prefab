@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78db2535dcd28cf4abca841d1737f0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStatsComponent: {fileID: 0}
   moveSpeedMax: 7
   sprintMaxSpeed: 20
   maxStamina: 150
@@ -317,8 +318,8 @@ MonoBehaviour:
   deceleration: 40
   rb: {fileID: 4389603736547947971}
   anim: {fileID: 4389603736547947983}
-  staminaBar: {fileID: 0}
-  PickUpBar: {fileID: 0}
+  staminaBar: {fileID: 3220204907690943950, guid: cfcdf87f9c6484d4a963520ff0c65f31, type: 3}
+  PickUpBar: {fileID: 5308355454166157169, guid: 1cd88f280ed50874b9ef801bec64932c, type: 3}
   attackDamage: 20
   baseAttackDamage: 20
   attackPointRight: {fileID: 4389603735768159291}
@@ -329,7 +330,7 @@ MonoBehaviour:
   attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8
   attackSwingSound: {fileID: 8300000, guid: 3d9169df5523cf84da54cf8d7cae2972, type: 3}
   hitSound: {fileID: 8300000, guid: 31e17ddb94d8f49ca9f4249bac77aef8, type: 3}
   fireBallSound: {fileID: 8300000, guid: ab5d0c156bdde5246a98fd5c5051962d, type: 3}
@@ -341,6 +342,7 @@ MonoBehaviour:
   - {fileID: 9058938428321844512, guid: 207c766c2bb8f3c4b91c54c797e82ff6, type: 3}
   - {fileID: 8048761701203785476, guid: 627846c7db69b844395f55013d59a140, type: 3}
   - {fileID: 6331598603782407021, guid: e65903ac5ba8a1c49abe0f0a84ad4c67, type: 3}
+  tempGenerator: {fileID: 0}
 --- !u!70 &4389603736547947970
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -379,6 +381,7 @@ MonoBehaviour:
   minLightIntensity: 0.4
   currInnerRadius: 0
   currOuterRadius: 0
+  playerStats: {fileID: 0}
 --- !u!82 &818974974820444869
 AudioSource:
   m_ObjectHideFlags: 0
