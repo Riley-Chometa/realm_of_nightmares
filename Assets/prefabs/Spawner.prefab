@@ -866,7 +866,7 @@ MonoBehaviour:
   Enemy: {fileID: 3760860670172964300, guid: 2734ae41aa40b1945876097571db54a7, type: 3}
   maxEnemies: 1
   timeToSpawn: 4
-  startSpawning: 1
+  startSpawning: 0
 --- !u!114 &3051220997630888302
 MonoBehaviour:
   m_ObjectHideFlags: 0

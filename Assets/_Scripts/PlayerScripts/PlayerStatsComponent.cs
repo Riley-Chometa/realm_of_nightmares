@@ -56,7 +56,7 @@ public class PlayerStatsComponent : MonoBehaviour
         playerScoreText = scoreCounter.GetComponent<Text>();
         keyText = keyCounter.GetComponent<Text>();
         bombText = bombCounter.GetComponent<Text>();
-        modifyCoins(startCoins);
+        coinPurse = startCoins;
         modifyKeys(startKeys);
         modifyScore(startScore);
         modifyBombs(startBombs);
