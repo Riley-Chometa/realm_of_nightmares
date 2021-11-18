@@ -98,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame, Contains primary input from player.
     void Update()
     {   
+        Debug.Log(canInput);
 
         if (isAlive){
             movement.x = Input.GetAxisRaw("Horizontal");
@@ -360,6 +361,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void stopGettingHit(){
+        canInput = true;
         canMove = true;
         moveSpeed = 0;
     }
