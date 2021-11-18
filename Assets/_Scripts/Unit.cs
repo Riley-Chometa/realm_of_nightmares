@@ -35,7 +35,7 @@ public class Unit : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
         targetPosition = target.transform.position;
         if (Vector2.Distance(transform.position, targetPosition) < searchRange){
-            PathRequestManager.RequestPath(transform.position, targetPosition, OnPathFound);
+            PathRequestManager.RequestPath(transform.position, targetPosition, this);
         }
         
 
@@ -44,10 +44,10 @@ public class Unit : MonoBehaviour
 
     protected void Update() {
         
-        if (canMove){
+        if (canMove && Vector2.Distance(targetPosition, target.transform.position) != 0){
             targetPosition = target.transform.position;
             if (Vector2.Distance(transform.position, targetPosition) < searchRange){
-                PathRequestManager.RequestPath(transform.position, targetPosition, OnPathFound);
+                PathRequestManager.RequestPath(transform.position, targetPosition, this);
             }
         }
 
@@ -68,7 +68,7 @@ public class Unit : MonoBehaviour
         canMove = true;
         targetPosition = target.transform.position;
         if (Vector2.Distance(targetPosition, transform.position) < searchRange){
-            PathRequestManager.RequestPath(transform.position, targetPosition, OnPathFound);
+            PathRequestManager.RequestPath(transform.position, targetPosition, this);
         }
         if (Vector2.Distance(targetPosition, transform.position) < attackRadius){
             float xdirection = targetPosition.x - transform.position.x;
@@ -128,7 +128,8 @@ public class Unit : MonoBehaviour
         if (path.Length > 0){
             Vector2 currentWaypoint = path[0];
             while(true){
-                if((Vector2)transform.position == currentWaypoint){
+                Debug.DrawLine(transform.position, currentWaypoint, Color.white, 2f, false);
+                if(Vector2.Distance(transform.position, currentWaypoint) < 0.1f){
                     targetIndex++;
                     if(targetIndex >= path.Length){
                         targetIndex = 0;
@@ -164,6 +165,7 @@ public class Unit : MonoBehaviour
         
     }
     private void OnDrawGizmos() {
+
         Gizmos.DrawWireSphere(transform.position, searchRange);
         switch(curDirection){
             case Direction.Up:{
