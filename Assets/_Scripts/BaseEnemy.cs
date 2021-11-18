@@ -33,7 +33,7 @@ public class BaseEnemy : MonoBehaviour
         if (anim != null) {
             anim.SetBool("hit", true);
         }
-        print("DAMAGE");
+        //print("DAMAGE");
         if (currentHealth <= 0){
             death();
         }
@@ -56,10 +56,9 @@ public class BaseEnemy : MonoBehaviour
         else {
             deathDestroy();
         }
-        if (gameObject.name == "Spawner")
+        if (gameObject.name.Equals("Spawner(Clone)"))
         {
-            Debug.Log("Spawner");
-            gameObject.GetComponent<Spawner>().SendMessage("ToggleDoorsOff");
+            GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOff");
         }
         GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
     }

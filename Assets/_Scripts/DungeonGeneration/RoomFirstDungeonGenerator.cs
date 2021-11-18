@@ -1,3 +1,4 @@
+using System.Net.Sockets;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Numerics;
@@ -102,13 +103,17 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 GameObject spawner = Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
                 GameObject trigger = Instantiate(this.RoomTriggerPrefab,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1),UnityEngine.Quaternion.identity);
                 trigger.SendMessage("SetSpawner", spawner);
+                //spawner.transform.SetParent(gameObject.transform);
             }
         } 
+        ToggleDoorsOn();
+        ToggleDoorsOff();
         
     }
 
     private void ToggleDoorsOn()
     {
+        DestroyDoors();
         foreach (Room room in this.dungeon.rooms)
         {
             foreach (Corridor corridor in room.corridors)
@@ -117,8 +122,17 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 {
                     GameObject tempDoor = Instantiate(this.doorPrefab,new Vector3(door.position.x, door.position.y, -1),UnityEngine.Quaternion.identity);
                     this.doors.Add(tempDoor);
+                    tempDoor.transform.SetParent(gameObject.transform);
                 }
             }
+        }
+    }
+
+    private void DestroyDoors()
+    {
+        foreach(Transform child in gameObject.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 
@@ -126,7 +140,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     {
         foreach (GameObject door in this.doors)
         {
-            Debug.Log("Extinguish");
             door.SendMessage("fireExtinguisher");
         }
         this.doors.Clear();

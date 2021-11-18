@@ -120,7 +120,7 @@ public class PlayerStatsComponent : MonoBehaviour
         if (currentHealth <= 0){
             currentHealth = 0;
             Destroy(healthGrid);
-            Debug.Log(playerController);
+            //Debug.Log(playerController);
             playerController.playerDie();
         }
         //healthText.text = "Health: " + currentHealth;
