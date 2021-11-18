@@ -65,13 +65,18 @@ public class PlayerStatsComponent : MonoBehaviour
         modifyKeys(startKeys);
         modifyScore(startScore);
         //Debug.Log(maxHealth);
+        SetHeartPrefabs();
+        
+    }
+
+    private void SetHeartPrefabs()
+    {
         for (int i = 0; i <= maxHealth - 1; i++) {
             GameObject newHeart = Instantiate(playerHeart) as GameObject;
             //Debug.Log(newHeart);
             newHeart.transform.SetParent(healthGrid.transform);
             hearts.Add(newHeart);
         }
-        
     }
     public void modifyCoins(int amount)
     {
@@ -130,8 +135,12 @@ public class PlayerStatsComponent : MonoBehaviour
                 Destroy(heartToRemove);
             }
             if (amount > 0) {
-                GameObject newHeart = Instantiate(playerHeart) as GameObject;
-                newHeart.transform.SetParent(healthGrid.transform);
+                for (int i = 0; i<amount;i++)
+                {
+                    GameObject newHeart = Instantiate(playerHeart) as GameObject;
+                    newHeart.transform.SetParent(healthGrid.transform);
+                }
+                
             }
             
         }
@@ -140,7 +149,7 @@ public class PlayerStatsComponent : MonoBehaviour
         }
         if (currentHealth <= 0){
             currentHealth = 0;
-            Destroy(healthGrid);
+            //Destroy(healthGrid);
             //Debug.Log(playerController);
             playerController.playerDie();
         }
