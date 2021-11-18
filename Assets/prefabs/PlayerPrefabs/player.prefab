@@ -47,7 +47,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.3
+  m_Intensity: 0.75
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -342,6 +342,7 @@ MonoBehaviour:
   - {fileID: 9058938428321844512, guid: 207c766c2bb8f3c4b91c54c797e82ff6, type: 3}
   - {fileID: 8048761701203785476, guid: 627846c7db69b844395f55013d59a140, type: 3}
   - {fileID: 6331598603782407021, guid: e65903ac5ba8a1c49abe0f0a84ad4c67, type: 3}
+  bombObject: {fileID: 0}
   tempGenerator: {fileID: 0}
 --- !u!70 &4389603736547947970
 CapsuleCollider2D:

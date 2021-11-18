@@ -329,7 +329,20 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = 0;
         anim.SetFloat("Xdirection", storePreviousMovement[0]);
         anim.SetFloat("Ydirection", storePreviousMovement[1]);
-        anim.SetTrigger("isDead");
+        anim.SetBool("isDead", true);
+
+        Invoke("Respawn", 3);
+    }
+
+    private void Respawn()
+    {
+        GameObject generator = GameObject.Find("RoomsFirstDungeonGenerator");
+        generator.SendMessage("GenerateDungeon");
+        generator.SendMessage("Respawn");
+        anim.SetBool("isDead", false);
+        this.isAlive = true;
+        this.canMove = true;
+        this.playerStatsComponent.GetComponent<PlayerStatsComponent>().modifyHealth(10);
     }
 
     public void getHit(){

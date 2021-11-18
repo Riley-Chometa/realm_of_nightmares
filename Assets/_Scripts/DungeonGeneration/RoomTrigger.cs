@@ -24,7 +24,7 @@ public class RoomTrigger : MonoBehaviour
     
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (!this.entered){
+        if (!this.entered && other.gameObject.tag == "Player"){
             this.DungeonGenerator.SendMessage("ToggleDoorsOn");
             this.Spawner.SendMessage("StartSpawning");
             this.entered = true;

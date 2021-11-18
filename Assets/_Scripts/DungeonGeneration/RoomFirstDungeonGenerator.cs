@@ -94,6 +94,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         SpawnRoomsAssets();
                
     }
+    public void Respawn()
+    {
+        difficulty -= 2;
+    }
 
     private void ClearDungeon()
     {

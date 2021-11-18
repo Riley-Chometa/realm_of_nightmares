@@ -6,6 +6,10 @@ public class PauseM : MonoBehaviour
 {
     public static bool isPaused = false;
     public GameObject PauseMenu;
+    private void Start() {
+      isPaused = false;
+      Resume();
+    }
 
     // Update is called once per frame
     void Update()

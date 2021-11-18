@@ -17,6 +17,7 @@ public class PlayerStatsComponent : MonoBehaviour
     private GameObject healthCounter;
     [SerializeField]
     private GameObject bombCounter;
+    [SerializeField]
     private GameObject healthGrid;
     [SerializeField]
     private GameObject playerHeart;
@@ -68,9 +69,10 @@ public class PlayerStatsComponent : MonoBehaviour
         modifyCoins(startCoins);
         modifyKeys(startKeys);
         modifyScore(startScore);
-
+        Debug.Log(maxHealth);
         for (int i = 0; i <= maxHealth - 1; i++) {
             GameObject newHeart = Instantiate(playerHeart) as GameObject;
+            Debug.Log(newHeart);
             newHeart.transform.SetParent(healthGrid.transform);
             hearts.Add(newHeart);
         }

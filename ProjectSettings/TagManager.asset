@@ -26,6 +26,9 @@ TagManager:
   - BronzeCoin
   - GoldCoin
   - Shield
+  - Explosive
+  - BreakableObjects
+  - Bombs
   layers:
   - Default
   - TransparentFX
@@ -39,7 +42,7 @@ TagManager:
   - Arrows&MagicShots
   - Player
   - Enemy
-  - 
+  - Trigger
   - 
   - 
   - 
