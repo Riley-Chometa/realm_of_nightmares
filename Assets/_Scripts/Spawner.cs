@@ -67,4 +67,8 @@ public class Spawner : MonoBehaviour
     public void SetTimetoSpawn(int time) {
         timeToSpawn = 1;
     }
+
+    public void assignEnemyToSpawner(GameObject toAssign) {
+        Enemy = toAssign;
+    }
 }
