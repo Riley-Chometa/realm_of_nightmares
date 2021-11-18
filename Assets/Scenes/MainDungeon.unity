@@ -101682,12 +101682,12 @@ MonoBehaviour:
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
-  minRoomWidth: 25
-  minRoomHeight: 25
+  minRoomWidth: 20
+  minRoomHeight: 20
   dungeonWidth: 150
   dungeonHeight: 150
-  maxRooms: 9
-  offset: 3
+  maxRooms: 3
+  offset: 4
   randomWalkRooms: 0
   Player: {fileID: 2047586966}
   DungeonEndPoint: {fileID: 235608967}

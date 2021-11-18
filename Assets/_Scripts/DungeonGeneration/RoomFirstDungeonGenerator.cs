@@ -46,7 +46,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private HashSet<GameObject> doors;
     [SerializeField]
     private GameObject RoomTriggerPrefab;
-    private static int difficulty = 3;
+    public static int difficulty = 3;
 
     public void GenerateDungeon()
     {
@@ -68,6 +68,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         floor = new HashSet<Vector2Int>();
         doors = new HashSet<GameObject>();
         difficulty++;
+        this.maxRooms = difficulty;
+        ClearEnemies();
         if (randomWalkRooms)
         {
             floor = CreateRoomsRandomly(roomsList);
@@ -91,6 +93,14 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                
     }
 
+    private void ClearEnemies()
+    {
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Destroy(enemy);
+        }
+    }
+
     private void SpawnRoomsAssets()
     {
         foreach (var room in this.dungeon.rooms)
@@ -103,6 +113,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 GameObject spawner = Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
                 GameObject trigger = Instantiate(this.RoomTriggerPrefab,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1),UnityEngine.Quaternion.identity);
                 trigger.SendMessage("SetSpawner", spawner);
+                spawner.SendMessage("SetMaxEnemies", difficulty);
                 //spawner.transform.SetParent(gameObject.transform);
             }
         } 
