@@ -47,6 +47,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private GameObject RoomTriggerPrefab;
     public static int difficulty = 3;
+    private GameObject ParentSpawn;
 
     public void GenerateDungeon()
     {
@@ -67,9 +68,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         
         floor = new HashSet<Vector2Int>();
         doors = new HashSet<GameObject>();
+        this.ParentSpawn = GameObject.Find("SpawnedParent");
         difficulty++;
         this.maxRooms = difficulty;
-        ClearEnemies();
+
         if (randomWalkRooms)
         {
             floor = CreateRoomsRandomly(roomsList);
@@ -77,7 +79,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         else{
             floor = CreateSimpleRooms(roomsList);
         }
-
+        ClearDungeon();
         List<Vector2Int> roomCenters = new List<Vector2Int>();
         foreach (var room in roomsList)
         {
@@ -93,11 +95,16 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                
     }
 
-    private void ClearEnemies()
+    private void ClearDungeon()
     {
+        
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
             Destroy(enemy);
+        }
+        foreach (Transform child in this.ParentSpawn.transform)
+        {
+            Destroy(child.gameObject);
         }
     }
 
@@ -115,7 +122,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 trigger.SendMessage("SetSpawner", spawner);
                 trigger.SendMessage("SetBounds", room.roomBounds);
                 spawner.SendMessage("SetMaxEnemies", difficulty);
-                //spawner.transform.SetParent(gameObject.transform);
+                spawner.transform.SetParent(this.ParentSpawn.transform);
+                trigger.transform.SetParent(this.ParentSpawn.transform);
             }
         } 
         ToggleDoorsOn();

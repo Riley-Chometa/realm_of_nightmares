@@ -118,7 +118,7 @@ public class Unit : MonoBehaviour
                 StopCoroutine("FollowPath");
             // }
             //lastCoroutine = 
-            StartCoroutine(FollowPath());
+            StartCoroutine("FollowPath");
         }
     }
     /**
