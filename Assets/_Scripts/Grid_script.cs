@@ -21,6 +21,15 @@ public class Grid_script : MonoBehaviour
         
     }
 
+    public void ResetGrid()
+    {
+        displayGridGizmos = false; 
+        nodeDiameter = 2*nodeRadius;
+        gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
+        gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
+        createGrid();
+    }
+
     public int MaxSize{
         get{
             return gridSizeX * gridSizeY;

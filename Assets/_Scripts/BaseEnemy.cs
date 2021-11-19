@@ -80,7 +80,8 @@ public class BaseEnemy : MonoBehaviour
             return;
         }
         else {
-            Instantiate(itemDrops[itemToDrop], transform.position, transform.rotation);
+            GameObject temp = Instantiate(itemDrops[itemToDrop], transform.position, transform.rotation);
+            temp.transform.SetParent(GameObject.Find("SpawnedParent").transform);
         }
 
     }

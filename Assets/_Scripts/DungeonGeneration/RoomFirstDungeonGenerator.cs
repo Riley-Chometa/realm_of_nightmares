@@ -109,6 +109,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
     private void ClearDungeon()
     {
+        //GameObject.Find("Astar").SendMessage("ResetGrid");
         
         foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
         {
