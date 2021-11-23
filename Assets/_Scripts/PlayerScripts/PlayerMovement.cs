@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {   
-    public GameObject playerStatsComponent;
+    public PlayerStatsComponent playerStatsComponent;
     // Constants for movement speed and jump
     [SerializeField]
     private float moveSpeedMax = 7.0f;
@@ -35,14 +35,16 @@ public class PlayerMovement : MonoBehaviour
     private bool isAlive;
     private bool canInput;
     // Setup attributes and components needed for movement of player.
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     Vector2 movement;
     Vector2 storePreviousMovement;
 
-    public Animator anim;
-    public StaminaBar staminaBar;
-
-    public StaminaBar PickUpBar;
+    private Animator anim;
+    private Canvas canvas;
+    private StaminaBar staminaBar;
+    private GameObject stam;
+    private GameObject Pick;
+    private StaminaBar PickUpBar;
 
     //Attack Variables
     public int attackDamage;
@@ -51,7 +53,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPointLeft;
     public Transform attackPointUp;
     public Transform attackPointDown;
-
+    private Transform previousAttackPoint;
+    private Vector2 previousRangedAttackDirection;
     public Transform currentAttackPoint;
     public float attackRange = .5f;
     public LayerMask enemyLayers;
@@ -78,21 +81,30 @@ public class PlayerMovement : MonoBehaviour
     private bool isMagic;
 
     public GameObject tempGenerator;
+    private CanvasParts canvasParts;
 
     // Initialize variables for the player.
     void Start(){
+        canvasParts = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasParts>();
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         storePreviousMovement = new Vector2(0,0);
         currentAttackPoint = attackPointDown;
         currentStamina = maxStamina;
-        staminaBar.setStamina(maxStamina);
-        staminaBar.SetMaxValue(maxStamina);
-        PickUpBar.SetMaxValue((int) pickupMaxTime);
-        PickUpBar.setStamina(0);
+        stam = canvasParts.GetStaminaBar();
+        Pick = canvasParts.GetPickUpBar();
+        staminaBar = stam.GetComponent<StaminaBar>();
+        PickUpBar = Pick.GetComponent<StaminaBar>();
         canMove = true;
         isAlive = true;
         canInput = true;
         audioSource = GetComponent<AudioSource>();
         setAttackDamage(baseAttackDamage);
+        staminaBar.setStamina(maxStamina);
+        staminaBar.SetMaxValue(maxStamina);
+        PickUpBar.SetMaxValue((int) pickupMaxTime);
+        PickUpBar.setStamina(0);
+        playerStatsComponent = GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>();
     } 
 
     // Update is called once per frame, Contains primary input from player.
@@ -103,43 +115,42 @@ public class PlayerMovement : MonoBehaviour
         if (isAlive){
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-            anim.SetFloat("Xdirection", movement.x);
-            anim.SetFloat("Ydirection", movement.y);
+            // anim.SetFloat("Xdirection", movement.x);
+            // anim.SetFloat("Ydirection", movement.y);
             anim.SetFloat("Speed", movement.sqrMagnitude);
 
             float xdirection = movement.x;
             float ydirection = movement.y;
             // simple movement information
-            // if (canMove){
-                if (movement.magnitude > .02){
-                    if (Mathf.Abs(xdirection) > Mathf.Abs(ydirection)){
-                        anim.SetFloat("Xdirection", xdirection);
-                        anim.SetFloat("Ydirection", 0);
-                    }
-                    else {
-                        anim.SetFloat("Xdirection", 0);
-                        anim.SetFloat("Ydirection", ydirection);
+            if (canInput){
+            if (movement.magnitude > .02){
+                storePreviousMovement = new Vector2(movement.x, movement.y);
+                if (Mathf.Abs(xdirection) > Mathf.Abs(ydirection)){
+                    anim.SetFloat("Xdirection", xdirection);
+                    anim.SetFloat("Ydirection", 0);
+                }
+                else {
+                    anim.SetFloat("Xdirection", 0);
+                    anim.SetFloat("Ydirection", ydirection);
                     }
                 }
-            // }
-            if (canInput){
+            
                 if (Input.GetKeyDown(KeyCode.Space)){
-                    storePreviousMovement = new Vector2(movement.x, movement.y);
+                    // storePreviousMovement = new Vector2(movement.x, movement.y);
                     canMove = false;
                     canInput = false;
                     Attack();
                 }
 
                 if (Input.GetKeyDown("e") && canPickUp){
-                // pick up items.
-                 
-                 pickUpItem();
+                    // pick up items.
+                    pickUpItem();
                 }
                 if (Input.GetKeyDown("b"))
                 {
-                    if (GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().getNumBomb() >= 1) 
+                    if (playerStatsComponent.getNumBomb() >= 1) 
                     {
-                        GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyBombs(-1);
+                        playerStatsComponent.modifyBombs(-1);
                         GameObject newBomb = Instantiate(bombObject, currentAttackPoint.position, Quaternion.identity);
                         newBomb.GetComponent<Bomb_Pickup>();
                     }
@@ -254,6 +265,7 @@ public class PlayerMovement : MonoBehaviour
         float y = storePreviousMovement[1];
         // anim.SetFloat("Xdirection", storePreviousMovement[0]);
         // anim.SetFloat("Ydirection", storePreviousMovement[1]);
+        Debug.Log("x: " +  x + "y: " +y);
         anim.SetFloat("Xdirection", x);
         anim.SetFloat("Ydirection", y);
         anim.SetTrigger("attack");
@@ -279,8 +291,12 @@ public class PlayerMovement : MonoBehaviour
             currentAttackPoint = attackPointDown;
             rangedAttackDirection = Vector2.down;
         }
+        else if (x == 0 && y == 0){
+            currentAttackPoint = previousAttackPoint;
+            rangedAttackDirection = previousRangedAttackDirection;
+        }
         // this is left quadrant
-        else if (x <= 0 && y <= .5 && y >= -.5){
+        else if (x < 0 && y <= .5 && y >= -.5){
             currentAttackPoint = attackPointLeft;
             rangedAttackDirection = Vector2.left;
         }
@@ -294,6 +310,8 @@ public class PlayerMovement : MonoBehaviour
             currentAttackPoint = attackPointUp;
             rangedAttackDirection = Vector2.up;
         }
+        previousAttackPoint = currentAttackPoint;
+        previousRangedAttackDirection = rangedAttackDirection;
     }
 
     void rangedAttack(){
@@ -349,7 +367,7 @@ public class PlayerMovement : MonoBehaviour
     public void getHit(){
         if (getHitTimer <= 0){
         playerStatsComponent.GetComponent<PlayerStatsComponent>().modifyHealth(-1);
-        Debug.Log("Hey I Got Hit!");
+        // Debug.Log("Hey I Got Hit!");
         audioSource.PlayOneShot(hitSound);
         canMove = false;
         moveSpeed = -moveSpeed;
@@ -370,9 +388,6 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         moveSpeed = 0;
         canInput = true;
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        storePreviousMovement = new Vector2(movement.x, movement.y);
     }
 
     private void pickUpItem(){

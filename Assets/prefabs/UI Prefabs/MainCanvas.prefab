@@ -400,9 +400,10 @@ GameObject:
   - component: {fileID: 1304636910875596999}
   - component: {fileID: 1304636910875596984}
   - component: {fileID: 1304636910875596985}
+  - component: {fileID: 7561105717789981469}
   m_Layer: 5
-  m_Name: Canvas
-  m_TagString: Untagged
+  m_Name: MainCanvas
+  m_TagString: Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -495,6 +496,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &7561105717789981469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304636910875596987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf100795f45da54e82e6288454a3ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaBar: {fileID: 1304636911548775876}
+  pickUpBar: {fileID: 1304636911299125215}
+  coinCounter: {fileID: 1304636910410330929}
+  scoreCounter: {fileID: 1304636912067446129}
+  keyCounter: {fileID: 1304636911659321657}
+  bombCounter: {fileID: 1304636910404626506}
+  playerHealth: {fileID: 1304636911467431959}
 --- !u!1 &1304636911299125215
 GameObject:
   m_ObjectHideFlags: 0

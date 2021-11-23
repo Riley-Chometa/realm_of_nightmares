@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 508427941512907366}
   - component: {fileID: 6934093131261758543}
   - component: {fileID: 4316969669532946075}
-  m_Layer: 10
+  m_Layer: 6
   m_Name: BronzeCoin
   m_TagString: BronzeCoin
   m_Icon: {fileID: 0}

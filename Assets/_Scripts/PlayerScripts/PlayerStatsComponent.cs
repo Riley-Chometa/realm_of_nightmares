@@ -4,18 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerStatsComponent : MonoBehaviour
 {
-
-    [SerializeField]
+private CanvasParts canvasParts;
     private GameObject coinCounter;
-    [SerializeField]
     private GameObject scoreCounter;
-    [SerializeField]
     private GameObject keyCounter;
     // [SerializeField]
     // private GameObject healthCounter;
-    [SerializeField]
     private GameObject bombCounter;
-    [SerializeField]
+    
     private GameObject healthGrid;
     [SerializeField]
     private GameObject playerHeart;
@@ -48,8 +44,15 @@ public class PlayerStatsComponent : MonoBehaviour
 
     private List<GameObject> hearts = new List<GameObject>();
     private bool shieldActive;
+    private GameObject shield;
     private void Start()
     {   
+        canvasParts = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasParts>();
+        coinCounter = canvasParts.GetCoinCounter();
+        scoreCounter = canvasParts.GetScoreCounter();
+        keyCounter = canvasParts.GetKeyCounter();
+        bombCounter = canvasParts.GetBombCounter();
+        healthGrid = canvasParts.GetPlayerHealth();
         currentHealth = maxHealth;
         playerController = player.GetComponent<PlayerMovement>();
         coinPurseText = coinCounter.GetComponent<Text>();
@@ -173,12 +176,12 @@ public class PlayerStatsComponent : MonoBehaviour
     public void activateShield() {
         if (shieldActive != true) {
             GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
-            GameObject shield = Instantiate(playerShield, player[0].transform.position, player[0].transform.rotation) as GameObject;
+            shield = Instantiate(playerShield, player[0].transform.position, player[0].transform.rotation) as GameObject;
         }
         shieldActive = true;
     }
     public void deactivateShield() {
         shieldActive = false;
-        Destroy(GameObject.Find("Shield(Clone)"));
+        Destroy(shield);
     }
 }
