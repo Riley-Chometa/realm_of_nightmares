@@ -445,12 +445,8 @@ public class PlayerMovement : MonoBehaviour
         }
         Gizmos.DrawWireSphere(currentAttackPoint.position, attackRange);    
     }
-    public void SavePlayer(){
-      save_sys.SavePlayer(this);
-    }
-
-    public void LoadPlayer(){
-      player_data data = save_sys.LoadPlayer();
+    
+    public void LoadPlayer(player_data data){
       currentStamina = data.currentStamina;
       attackDamage = data.attackDamage;
       Vector3 position;

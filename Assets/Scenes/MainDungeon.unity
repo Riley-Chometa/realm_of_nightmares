@@ -101856,6 +101856,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1304636910277480585, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 1644529779}
     - target: {fileID: 1304636910842492250, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
