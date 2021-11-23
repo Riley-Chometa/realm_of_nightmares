@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {   
-    public GameObject playerStatsComponent;
+    public PlayerStatsComponent playerStatsComponent;
     // Constants for movement speed and jump
     [SerializeField]
     private float moveSpeedMax = 7.0f;
@@ -92,9 +92,6 @@ public class PlayerMovement : MonoBehaviour
         currentStamina = maxStamina;
         stam = canvasParts.GetStaminaBar();
         Pick = canvasParts.GetPickUpBar();
-        if (staminaBar != null){
-            Debug.Log("Found Stamina Bar");
-        }
         staminaBar = stam.GetComponent<StaminaBar>();
         PickUpBar = Pick.GetComponent<StaminaBar>();
         canMove = true;
@@ -106,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
         staminaBar.SetMaxValue(maxStamina);
         PickUpBar.SetMaxValue((int) pickupMaxTime);
         PickUpBar.setStamina(0);
+        playerStatsComponent = GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>();
     } 
 
     // Update is called once per frame, Contains primary input from player.
@@ -144,15 +142,14 @@ public class PlayerMovement : MonoBehaviour
                 }
 
                 if (Input.GetKeyDown("e") && canPickUp){
-                // pick up items.
-                 
-                 pickUpItem();
+                    // pick up items.
+                    pickUpItem();
                 }
                 if (Input.GetKeyDown("b"))
                 {
-                    if (GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().getNumBomb() >= 1) 
+                    if (playerStatsComponent.getNumBomb() >= 1) 
                     {
-                        GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyBombs(-1);
+                        playerStatsComponent.modifyBombs(-1);
                         GameObject newBomb = Instantiate(bombObject, currentAttackPoint.position, Quaternion.identity);
                         newBomb.GetComponent<Bomb_Pickup>();
                     }
