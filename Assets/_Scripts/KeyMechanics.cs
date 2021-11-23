@@ -19,7 +19,7 @@ public class KeyMechanics : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            playerstats.GetComponent<PlayerStatsComponent>().modifyKeys(1);
+            this.playerstats.GetComponent<PlayerStatsComponent>().modifyKeys(1);
             Destroy(this.gameObject);
             
         }

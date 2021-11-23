@@ -13,12 +13,21 @@ public class Grid_script : MonoBehaviour
     int gridSizeX, gridSizeY;
 
     void Awake(){
-        displayGridGizmos = true; 
+        displayGridGizmos = false; 
         nodeDiameter = 2*nodeRadius;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
         createGrid();
         
+    }
+
+    public void ResetGrid()
+    {
+        displayGridGizmos = false; 
+        nodeDiameter = 2*nodeRadius;
+        gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
+        gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
+        createGrid();
     }
 
     public int MaxSize{

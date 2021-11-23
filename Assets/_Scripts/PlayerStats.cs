@@ -21,6 +21,11 @@ public class PlayerStats : MonoBehaviour
     private int startKeys = 0;
     public Text keyText;
 
+    // Variables related to player bombs
+    public int numBombs = 0;
+    private int startBombs = 0;
+    public Text bombText; 
+
     /*
     private void Start() {
            coinPurseText = GetComponent<Text>();
@@ -33,6 +38,7 @@ public class PlayerStats : MonoBehaviour
         modifyCoins(startCoins);
         modifyKeys(startKeys);
         modifyScore(startScore);
+        modifyBombs(startBombs);
         
     }
     public void modifyCoins(int amount)
@@ -71,6 +77,17 @@ public class PlayerStats : MonoBehaviour
     public int getNumKeys()
     {
         return this.numKeys;
+    }
+
+    public void modifyBombs(int amount)
+    {
+        numBombs += amount;
+        bombText.text = "Bombs: " + numBombs;
+    }
+
+    public int getNumBombs()
+    {
+        return this.numBombs;
     }
 
 }

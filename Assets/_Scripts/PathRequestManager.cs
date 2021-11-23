@@ -17,8 +17,8 @@ public class PathRequestManager : MonoBehaviour
         instance = this;
         pathfinding = GetComponent<Pathfinding>();
     }
-    public static void RequestPath(Vector2 pathStart, Vector2 pathEnd, Action<Vector2[], bool> callback){
-        PathRequest newRequest = new PathRequest(pathStart, pathEnd, callback);
+    public static void RequestPath(Vector2 pathStart, Vector2 pathEnd, Unit enemy){
+        PathRequest newRequest = new PathRequest(pathStart, pathEnd, enemy);
         instance.PathRequestQueue.Enqueue(newRequest);
         instance.TryProcessNext();
     }
@@ -32,19 +32,21 @@ public class PathRequestManager : MonoBehaviour
     }
 
     public void FinishedProcessingPAth(Vector2[] path, bool success){
-        currentPathRequest.callback(path,success);
-        isProcessingPath = false;
-        TryProcessNext();
+        if (currentPathRequest.enemy != null){
+            currentPathRequest.enemy.OnPathFound(path,success);
+            isProcessingPath = false;
+            TryProcessNext();
+        }
     }
     struct PathRequest {
         public Vector2 pathStart;
         public Vector2 pathEnd;
-        public Action<Vector2[], bool> callback;
+        public Unit enemy;
 
-        public PathRequest(Vector2 start, Vector2 end, Action<Vector2[], bool> call){
+        public PathRequest(Vector2 start, Vector2 end, Unit call){
             pathStart = start;
             pathEnd = end;
-            callback = call;
+            enemy = call;
         }
     }
 }

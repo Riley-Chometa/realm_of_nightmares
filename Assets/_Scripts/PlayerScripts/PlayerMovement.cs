@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private int maxStamina = 80;
     [SerializeField]
-    private int currentStamina;
+    public int currentStamina;
     [SerializeField]
     private int staminaBurnRate = 2;
     [SerializeField]
@@ -35,14 +35,15 @@ public class PlayerMovement : MonoBehaviour
     private bool isAlive;
     private bool canInput;
     // Setup attributes and components needed for movement of player.
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     Vector2 movement;
     Vector2 storePreviousMovement;
 
-    public Animator anim;
-    public StaminaBar staminaBar;
+    private Animator anim;
+    private Canvas canvas;
+    private StaminaBar staminaBar;
 
-    public StaminaBar PickUpBar;
+    private StaminaBar PickUpBar;
 
     //Attack Variables
     public int attackDamage;
@@ -71,13 +72,18 @@ public class PlayerMovement : MonoBehaviour
     public GameObject[] rangedObjects;
     private GameObject rangedObject;
     private Vector2 rangedAttackDirection;
+    public GameObject bombObject;
 
     private float pickupMaxTime = 30.0f;
     private float currentPickupTime;
     private bool isMagic;
 
+    public GameObject tempGenerator;
+
     // Initialize variables for the player.
     void Start(){
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         storePreviousMovement = new Vector2(0,0);
         currentAttackPoint = attackPointDown;
         currentStamina = maxStamina;
@@ -95,12 +101,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame, Contains primary input from player.
     void Update()
     {   
+        //Debug.Log(canInput);
 
         if (isAlive){
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-            anim.SetFloat("Horizontal", movement.x);
-            anim.SetFloat("Vertical", movement.y);
+            anim.SetFloat("Xdirection", movement.x);
+            anim.SetFloat("Ydirection", movement.y);
             anim.SetFloat("Speed", movement.sqrMagnitude);
 
             float xdirection = movement.x;
@@ -130,6 +137,19 @@ public class PlayerMovement : MonoBehaviour
                 // pick up items.
                  
                  pickUpItem();
+                }
+                if (Input.GetKeyDown("b"))
+                {
+                    if (GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().getNumBomb() >= 1) 
+                    {
+                        GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyBombs(-1);
+                        GameObject newBomb = Instantiate(bombObject, currentAttackPoint.position, Quaternion.identity);
+                        newBomb.GetComponent<Bomb_Pickup>();
+                    }
+                    else
+                    {
+                        Debug.Log("Player does not have any bombs to detonate.");
+                    }
                 }
             }
         }
@@ -313,13 +333,26 @@ public class PlayerMovement : MonoBehaviour
         moveSpeed = 0;
         anim.SetFloat("Xdirection", storePreviousMovement[0]);
         anim.SetFloat("Ydirection", storePreviousMovement[1]);
-        anim.SetTrigger("isDead");
+        anim.SetBool("isDead", true);
+
+        Invoke("Respawn", 3);
+    }
+
+    private void Respawn()
+    {
+        GameObject generator = GameObject.Find("RoomsFirstDungeonGenerator");
+        generator.SendMessage("GenerateDungeon");
+        generator.SendMessage("Respawn");
+        anim.SetBool("isDead", false);
+        this.isAlive = true;
+        this.canMove = true;
+        this.playerStatsComponent.GetComponent<PlayerStatsComponent>().modifyHealth(10);
     }
 
     public void getHit(){
         if (getHitTimer <= 0){
         playerStatsComponent.GetComponent<PlayerStatsComponent>().modifyHealth(-1);
-        // Debug.Log("Hey I Got Hit!");
+        Debug.Log("Hey I Got Hit!");
         audioSource.PlayOneShot(hitSound);
         canMove = false;
         moveSpeed = -moveSpeed;
@@ -331,6 +364,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void stopGettingHit(){
+        canInput = true;
         canMove = true;
         moveSpeed = 0;
     }
@@ -413,5 +447,19 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(currentAttackPoint.position, attackRange);    
+    }
+    public void SavePlayer(){
+      save_sys.SavePlayer(this);
+    }
+
+    public void LoadPlayer(){
+      player_data data = save_sys.LoadPlayer();
+      currentStamina = data.currentStamina;
+      attackDamage = data.attackDamage;
+      Vector3 position;
+      position.x = data.position[0];
+      position.y = data.position[1];
+      position.z = data.position[2];
+      transform.position = position;
     }
 }

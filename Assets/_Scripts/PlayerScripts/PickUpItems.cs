@@ -99,10 +99,23 @@ public class PickUpItems : MonoBehaviour
         else if (other.gameObject.tag == "trap"){
             playerOperator.getHit();
         }
+        else if (other.gameObject.tag == "Bombs")
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Found a Bomb");
+            audioSource.PlayOneShot(coinPickUp);
+            playerstatsmodifier.modifyBombs(1);
+            //Destroy(GetComponent<Transform>().GetChild(0).gameObject); //Destroys the Light 2D child object 
+        }
         // use this for inventory type storing itmes.
 
         else if (other.gameObject.tag == "PickUps"){
             
+        }
+
+        else if (other.gameObject.tag == "Shield") {
+            playerstatsmodifier.activateShield();
+            Destroy(other.gameObject);
         }
     }
 
@@ -129,5 +142,20 @@ public class PickUpItems : MonoBehaviour
         if (other.gameObject.tag == "BasicBow" || other.gameObject.tag == "FireBow" || other.gameObject.tag == "FirePotion"){
             playerOperator.canPickUp = false;
         }
+    }
+    public void SaveStats(){
+      int coinPurse = GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().getCoins();
+      int playerScore = GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().getScore();
+      int numKeys = GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().getNumKeys();
+      score_data data = new score_data(coinPurse,playerScore,numKeys);
+      save_sys.SaveScore(data);
+    }
+
+    public void LoadStats(){
+      score_data score = save_sys.LoadScore();
+      GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyCoins(score.coinPurse);
+      GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyScore(score.playerScore);
+      GameObject.FindWithTag("CoinUpdater").GetComponent<PlayerStats>().modifyKeys(score.numKeys);
+
     }
 }
