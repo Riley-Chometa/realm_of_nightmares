@@ -4,18 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerStatsComponent : MonoBehaviour
 {
-
-    [SerializeField]
+private CanvasParts canvasParts;
     private GameObject coinCounter;
-    [SerializeField]
     private GameObject scoreCounter;
-    [SerializeField]
     private GameObject keyCounter;
     // [SerializeField]
     // private GameObject healthCounter;
-    [SerializeField]
     private GameObject bombCounter;
-    [SerializeField]
+    
     private GameObject healthGrid;
     [SerializeField]
     private GameObject playerHeart;
@@ -51,6 +47,12 @@ public class PlayerStatsComponent : MonoBehaviour
     private GameObject shield;
     private void Start()
     {   
+        canvasParts = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasParts>();
+        coinCounter = canvasParts.GetCoinCounter();
+        scoreCounter = canvasParts.GetScoreCounter();
+        keyCounter = canvasParts.GetKeyCounter();
+        bombCounter = canvasParts.GetBombCounter();
+        healthGrid = canvasParts.GetPlayerHealth();
         currentHealth = maxHealth;
         playerController = player.GetComponent<PlayerMovement>();
         coinPurseText = coinCounter.GetComponent<Text>();

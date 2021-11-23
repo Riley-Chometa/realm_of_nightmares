@@ -42,7 +42,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private Canvas canvas;
     private StaminaBar staminaBar;
-
+    private GameObject stam;
+    private GameObject Pick;
     private StaminaBar PickUpBar;
 
     //Attack Variables
@@ -79,23 +80,32 @@ public class PlayerMovement : MonoBehaviour
     private bool isMagic;
 
     public GameObject tempGenerator;
+    private CanvasParts canvasParts;
 
     // Initialize variables for the player.
     void Start(){
+        canvasParts = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasParts>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         storePreviousMovement = new Vector2(0,0);
         currentAttackPoint = attackPointDown;
         currentStamina = maxStamina;
-        staminaBar.setStamina(maxStamina);
-        staminaBar.SetMaxValue(maxStamina);
-        PickUpBar.SetMaxValue((int) pickupMaxTime);
-        PickUpBar.setStamina(0);
+        stam = canvasParts.GetStaminaBar();
+        Pick = canvasParts.GetPickUpBar();
+        if (staminaBar != null){
+            Debug.Log("Found Stamina Bar");
+        }
+        staminaBar = stam.GetComponent<StaminaBar>();
+        PickUpBar = Pick.GetComponent<StaminaBar>();
         canMove = true;
         isAlive = true;
         canInput = true;
         audioSource = GetComponent<AudioSource>();
         setAttackDamage(baseAttackDamage);
+        staminaBar.setStamina(maxStamina);
+        staminaBar.SetMaxValue(maxStamina);
+        PickUpBar.SetMaxValue((int) pickupMaxTime);
+        PickUpBar.setStamina(0);
     } 
 
     // Update is called once per frame, Contains primary input from player.

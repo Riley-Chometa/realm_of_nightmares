@@ -1068,6 +1068,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fe029d6c2ed8644698c0821bbbedf12, type: 3}
+--- !u!1 &275527150 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3360566480520383890, guid: 3c343998d7590b3489d518c3051294f4, type: 3}
+  m_PrefabInstance: {fileID: 1458832658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &331607363 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4389603736547947981, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
@@ -1244,6 +1249,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0223ca402d9b88c40b68f66a461cae05, type: 3}
+--- !u!1 &581913186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9173538007847665741, guid: 3c343998d7590b3489d518c3051294f4, type: 3}
+  m_PrefabInstance: {fileID: 1458832658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &583920367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1443,6 +1453,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7abd7ee5201ad34c8b54f89fc39815c, type: 3}
+--- !u!1 &734060402 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3360566481675128390, guid: 3c343998d7590b3489d518c3051294f4, type: 3}
+  m_PrefabInstance: {fileID: 1458832658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &819738852
 GameObject:
   m_ObjectHideFlags: 0
@@ -2395,6 +2410,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &841255566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5911899517441437226, guid: 3c343998d7590b3489d518c3051294f4, type: 3}
+  m_PrefabInstance: {fileID: 1458832658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &896700809
 GameObject:
   m_ObjectHideFlags: 0
@@ -2735,6 +2755,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1343283139 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3360566479681127741, guid: 3c343998d7590b3489d518c3051294f4, type: 3}
+  m_PrefabInstance: {fileID: 1458832658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1404168645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2898,6 +2923,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas2
       objectReference: {fileID: 0}
+    - target: {fileID: 3360566479816481005, guid: 3c343998d7590b3489d518c3051294f4, type: 3}
+      propertyPath: m_TagString
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 5184474179906716438, guid: 3c343998d7590b3489d518c3051294f4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2921,6 +2950,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf100795f45da54e82e6288454a3ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staminaBar: {fileID: 1803127541}
+  pickUpBar: {fileID: 1923013775}
+  coinCounter: {fileID: 275527150}
+  scoreCounter: {fileID: 734060402}
+  keyCounter: {fileID: 1343283139}
+  bombCounter: {fileID: 841255566}
+  playerHealth: {fileID: 581913186}
 --- !u!1001 &1486221609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3183,6 +3219,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b88ae550feafc94b8da12fa9e620e2d, type: 3}
+--- !u!1 &1803127541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 149557933188368766, guid: 3c343998d7590b3489d518c3051294f4, type: 3}
+  m_PrefabInstance: {fileID: 1458832658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1803501574
 GameObject:
   m_ObjectHideFlags: 0
@@ -3322,6 +3363,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
+--- !u!1 &1923013775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 149557932056496325, guid: 3c343998d7590b3489d518c3051294f4, type: 3}
+  m_PrefabInstance: {fileID: 1458832658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1950897678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3757,7 +3803,7 @@ PrefabInstance:
     - target: {fileID: 2804045876706637541, guid: f310561a7af7a4d48909d6748452f6ab, type: 3}
       propertyPath: healthGrid
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 581913186}
     - target: {fileID: 2804045876706637541, guid: f310561a7af7a4d48909d6748452f6ab, type: 3}
       propertyPath: keyCounter
       value: 

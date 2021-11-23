@@ -7,7 +7,7 @@ TagManager:
   - Wall
   - Tree
   - Enemy
-  - CoinUpdater
+  - Canvas
   - PickUps
   - unbreakableObjects
   - torch
