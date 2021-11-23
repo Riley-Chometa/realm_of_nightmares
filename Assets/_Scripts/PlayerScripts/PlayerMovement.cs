@@ -53,7 +53,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPointLeft;
     public Transform attackPointUp;
     public Transform attackPointDown;
-
+    private Transform previousAttackPoint;
+    private Vector2 previousRangedAttackDirection;
     public Transform currentAttackPoint;
     public float attackRange = .5f;
     public LayerMask enemyLayers;
@@ -114,28 +115,28 @@ public class PlayerMovement : MonoBehaviour
         if (isAlive){
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-            anim.SetFloat("Xdirection", movement.x);
-            anim.SetFloat("Ydirection", movement.y);
+            // anim.SetFloat("Xdirection", movement.x);
+            // anim.SetFloat("Ydirection", movement.y);
             anim.SetFloat("Speed", movement.sqrMagnitude);
 
             float xdirection = movement.x;
             float ydirection = movement.y;
             // simple movement information
-            // if (canMove){
-                if (movement.magnitude > .02){
-                    if (Mathf.Abs(xdirection) > Mathf.Abs(ydirection)){
-                        anim.SetFloat("Xdirection", xdirection);
-                        anim.SetFloat("Ydirection", 0);
-                    }
-                    else {
-                        anim.SetFloat("Xdirection", 0);
-                        anim.SetFloat("Ydirection", ydirection);
+            if (canInput){
+            if (movement.magnitude > .02){
+                storePreviousMovement = new Vector2(movement.x, movement.y);
+                if (Mathf.Abs(xdirection) > Mathf.Abs(ydirection)){
+                    anim.SetFloat("Xdirection", xdirection);
+                    anim.SetFloat("Ydirection", 0);
+                }
+                else {
+                    anim.SetFloat("Xdirection", 0);
+                    anim.SetFloat("Ydirection", ydirection);
                     }
                 }
-            // }
-            if (canInput){
+            
                 if (Input.GetKeyDown(KeyCode.Space)){
-                    storePreviousMovement = new Vector2(movement.x, movement.y);
+                    // storePreviousMovement = new Vector2(movement.x, movement.y);
                     canMove = false;
                     canInput = false;
                     Attack();
@@ -264,6 +265,7 @@ public class PlayerMovement : MonoBehaviour
         float y = storePreviousMovement[1];
         // anim.SetFloat("Xdirection", storePreviousMovement[0]);
         // anim.SetFloat("Ydirection", storePreviousMovement[1]);
+        Debug.Log("x: " +  x + "y: " +y);
         anim.SetFloat("Xdirection", x);
         anim.SetFloat("Ydirection", y);
         anim.SetTrigger("attack");
@@ -289,8 +291,12 @@ public class PlayerMovement : MonoBehaviour
             currentAttackPoint = attackPointDown;
             rangedAttackDirection = Vector2.down;
         }
+        else if (x == 0 && y == 0){
+            currentAttackPoint = previousAttackPoint;
+            rangedAttackDirection = previousRangedAttackDirection;
+        }
         // this is left quadrant
-        else if (x <= 0 && y <= .5 && y >= -.5){
+        else if (x < 0 && y <= .5 && y >= -.5){
             currentAttackPoint = attackPointLeft;
             rangedAttackDirection = Vector2.left;
         }
@@ -304,6 +310,8 @@ public class PlayerMovement : MonoBehaviour
             currentAttackPoint = attackPointUp;
             rangedAttackDirection = Vector2.up;
         }
+        previousAttackPoint = currentAttackPoint;
+        previousRangedAttackDirection = rangedAttackDirection;
     }
 
     void rangedAttack(){
@@ -359,7 +367,7 @@ public class PlayerMovement : MonoBehaviour
     public void getHit(){
         if (getHitTimer <= 0){
         playerStatsComponent.GetComponent<PlayerStatsComponent>().modifyHealth(-1);
-        Debug.Log("Hey I Got Hit!");
+        // Debug.Log("Hey I Got Hit!");
         audioSource.PlayOneShot(hitSound);
         canMove = false;
         moveSpeed = -moveSpeed;
@@ -380,9 +388,6 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         moveSpeed = 0;
         canInput = true;
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        storePreviousMovement = new Vector2(movement.x, movement.y);
     }
 
     private void pickUpItem(){
