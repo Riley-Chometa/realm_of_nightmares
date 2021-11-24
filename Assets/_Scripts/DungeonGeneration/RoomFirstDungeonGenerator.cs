@@ -52,6 +52,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private GameObject FloorTrap;
     [SerializeField]
     private GameObject BarrelLight;
+    [SerializeField]
+    private GameObject RoomPrefab;
 
     public void GenerateDungeon()
     {
@@ -74,7 +76,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         doors = new HashSet<GameObject>();
         this.ParentSpawn = GameObject.Find("SpawnedParent");
         difficulty++;
-        this.maxRooms = difficulty;
+        //this.maxRooms = difficulty;
 
         if (randomWalkRooms)
         {
@@ -102,7 +104,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     {
         if (difficulty >3)
         {
-            difficulty -= 2;
+            difficulty -= 1;
+            this.Player.transform.position = new Vector3(this.dungeon.startRoom.center.x, this.dungeon.startRoom.center.y, -1);
         }
     }
 
@@ -127,8 +130,10 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     {
         foreach (var room in this.dungeon.rooms)
         {
-            if (room.roomType == RoomType.Spawn)
+            if (room.roomType == RoomType.Spawn){
                 this.Player.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
+                this.dungeon.startRoom = room;
+            }
             else if (room.roomType == RoomType.End)
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
             else if (room.roomType == RoomType.Normal){
@@ -139,11 +144,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 spawner.SendMessage("SetMaxEnemies", difficulty);
                 spawner.transform.SetParent(this.ParentSpawn.transform);
                 trigger.transform.SetParent(this.ParentSpawn.transform);
-                
+                Instantiate(this.RoomPrefab, new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
 
             }
-            SpawnLights(room);
-            SpawnFloorTraps(room);
+            //SpawnLights(room);
+            //SpawnFloorTraps(room);
         } 
         ToggleDoorsOn();
         ToggleDoorsOff();
@@ -393,6 +398,7 @@ public class Dungeon
     private int Difficulty;
     public int difficulty {get; set;}
     public HashSet<Room> rooms {get { return this.Rooms;}}
+    public Room startRoom;
     
     public Dungeon()
     {

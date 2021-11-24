@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8165836512224855599}
   - component: {fileID: 8165836512224852432}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 8165836512248293365}
   - component: {fileID: 8165836512248293364}
   - component: {fileID: 8165836512248293363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,6 +204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallCandle1
       objectReference: {fileID: 0}
+    - target: {fileID: 775491179320977367, guid: 476082e4c9ae7c542b7c23ea01ecae0a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4234094559840569972, guid: 476082e4c9ae7c542b7c23ea01ecae0a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -255,6 +259,10 @@ PrefabInstance:
     - target: {fileID: 4234094559840569972, guid: 476082e4c9ae7c542b7c23ea01ecae0a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666414234448955650, guid: 476082e4c9ae7c542b7c23ea01ecae0a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 476082e4c9ae7c542b7c23ea01ecae0a, type: 3}
