@@ -109,14 +109,11 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame, Contains primary input from player.
     void Update()
-    {   
-        //Debug.Log(canInput);
+    {  
 
-        if (isAlive){
+        if (isAlive && canInput){
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-            // anim.SetFloat("Xdirection", movement.x);
-            // anim.SetFloat("Ydirection", movement.y);
             anim.SetFloat("Speed", movement.sqrMagnitude);
 
             float xdirection = movement.x;

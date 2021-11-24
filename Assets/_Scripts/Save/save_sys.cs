@@ -11,8 +11,9 @@ public class save_sys : MonoBehaviour
   int numKeys = 0;
   int numBombs = 0;
   private PlayerStatsComponent playerstatsmodifier;
-  public GameObject playerStats;
+  private GameObject playerStats;
   private void Start() {
+        playerStats = GameObject.Find("PlayerStats");
         playerstatsmodifier = playerStats.GetComponent<PlayerStatsComponent>();
     }
 

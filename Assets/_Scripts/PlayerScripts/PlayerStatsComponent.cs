@@ -133,9 +133,11 @@ private CanvasParts canvasParts;
 
             currentHealth += amount;
             if (amount < 0 && hearts.Count != 0) {
-                GameObject heartToRemove = hearts[hearts.Count - 1];
-                hearts.Remove(heartToRemove);
-                Destroy(heartToRemove);
+                for (int j = 0; j > amount; j--){
+                    GameObject heartToRemove = hearts[hearts.Count - 1];
+                    hearts.Remove(heartToRemove);
+                    Destroy(heartToRemove);
+                }
             }
             if (amount > 0) {
                 for (int i = 0; i<amount;i++)

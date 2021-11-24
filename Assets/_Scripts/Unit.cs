@@ -7,7 +7,7 @@ public class Unit : MonoBehaviour
     public GameObject target;
     public float searchRange;
     public float attackRadius;
-    public Animator anim;
+    private Animator anim;
     public float attackCooldown;
 
     private bool canAttack;
@@ -31,6 +31,7 @@ public class Unit : MonoBehaviour
         start = transform.position;
     }
     void Start(){
+        anim = this.GetComponent<Animator>();
         curDirection = Direction.Down;
         target = GameObject.FindGameObjectWithTag("Player");
         targetPosition = target.transform.position;
