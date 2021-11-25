@@ -17,6 +17,6 @@ public class TransitionTextScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        this.levelText.text = "Level: " + this.generator.GetComponent<RoomFirstDungeonGenerator>().level;
+        this.levelText.text = "Level " + this.generator.GetComponent<RoomFirstDungeonGenerator>().level;
     }
 }
