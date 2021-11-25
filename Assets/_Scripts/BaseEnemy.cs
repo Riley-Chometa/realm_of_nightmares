@@ -71,7 +71,11 @@ public class BaseEnemy : MonoBehaviour
     // Animation calls calls this function after the hit timeframe has finished.
     // meant to reset the enemy animator back to idle state.
     public void stopTakingDamage(){
+        if (this.gameObject.name != "Spawner(Clone)"){
+
+        
         enemyController.setCanMove(true);
+        }
         // Debug.Log("Triggered Stop Taking Damage for Enemy");
     }
 
@@ -83,9 +87,9 @@ public class BaseEnemy : MonoBehaviour
         if (anim != null) {
             anim.SetTrigger("death");
         }
-        else {
-            deathDestroy();
-        }
+        // else {
+        //     deathDestroy();
+        // }
         Debug.Log("before spawner toggle doors");
         if (gameObject.name.Equals("Spawner(Clone)"))
         {
