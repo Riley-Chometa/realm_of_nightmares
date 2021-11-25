@@ -352,9 +352,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Respawn()
     {
-        GameObject generator = GameObject.Find("RoomsFirstDungeonGenerator");
+        //GameObject generator = GameObject.Find("RoomsFirstDungeonGenerator");
         //generator.SendMessage("GenerateDungeon");
-        generator.SendMessage("Respawn");
+        //generator.SendMessage("Respawn");
         anim.SetBool("isDead", false);
         this.isAlive = true;
         this.canMove = true;

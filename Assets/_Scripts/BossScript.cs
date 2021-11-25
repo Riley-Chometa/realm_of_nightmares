@@ -12,8 +12,8 @@ public class BossScript : Unit
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
     }
 }

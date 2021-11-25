@@ -20,10 +20,11 @@ public class Unit : MonoBehaviour
 
     private Coroutine lastCoroutine;
     private Vector2 targetPosition;
-    float speed = 0.011f;
+    float speed = 0.03f;
     Vector2[] path;
     int targetIndex;
     Vector2 start;
+    private bool isDead = false;
 
 
     protected void Awake(){
@@ -53,24 +54,33 @@ public class Unit : MonoBehaviour
         }
     }
 
-    protected void Update() {
-        
-        if (canMove && Vector2.Distance(targetPosition, target.transform.position) != 0){
-            targetPosition = target.transform.position;
-            if (Vector2.Distance(transform.position, targetPosition) < searchRange){
-                PathRequestManager.RequestPath(transform.position, targetPosition, this);
-            }
-        }
+    public void SetDead()
+    {
+        this.isDead = true;
+    }
 
-        if (Vector2.Distance(targetPosition, transform.position) < attackRadius && canAttack){
-            anim.SetFloat("Speed", 0);
+    protected void FixedUpdate() {
+        if (!isDead){
+            if (canMove && Vector2.Distance(targetPosition, target.transform.position) != 0){
+                targetPosition = target.transform.position;
+                if (Vector2.Distance(transform.position, targetPosition) < searchRange){
+                    PathRequestManager.RequestPath(transform.position, targetPosition, this);
+                }
+            }
+
+            if (Vector2.Distance(targetPosition, transform.position) < attackRadius && canAttack){
+                anim.SetFloat("Speed", 0);
+                StopCoroutine("FollowPath");
+                canAttack = false;
+                canMove = false;
+                anim.SetTrigger("isAttack");    
+                StartCoroutine(Attack());
+            }
+        }else{
             StopCoroutine("FollowPath");
-            canAttack = false;
-            canMove = false;
-            anim.SetTrigger("isAttack");    
-            StartCoroutine(Attack());
+            StopCoroutine(Attack());
         }
-        
+            
 
     }
     IEnumerator AttackCooldown() {
@@ -140,7 +150,7 @@ public class Unit : MonoBehaviour
             Vector2 currentWaypoint = path[0];
             while(true){
                 Debug.DrawLine(transform.position, currentWaypoint, Color.white, 2f, false);
-                if(Vector2.Distance(transform.position, currentWaypoint) < 0.1f){
+                if(Vector2.Distance(transform.position, currentWaypoint) < speed){
                     targetIndex++;
                     if(targetIndex >= path.Length){
                         targetIndex = 0;

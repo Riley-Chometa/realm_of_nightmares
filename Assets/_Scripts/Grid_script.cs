@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grid_script : MonoBehaviour
 {
-    bool displayGridGizmos;
+    public bool displayGridGizmos;
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
@@ -13,12 +13,20 @@ public class Grid_script : MonoBehaviour
     int gridSizeX, gridSizeY;
 
     void Awake(){
-        displayGridGizmos = false; 
+         displayGridGizmos = true; 
+        // nodeDiameter = 2*nodeRadius;
+        // gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
+        // gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
+        // createGrid();
+    }
+
+    IEnumerator Start()
+    {
+        yield return new WaitForEndOfFrame();
         nodeDiameter = 2*nodeRadius;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
         createGrid();
-        
     }
 
     public void ResetGrid()

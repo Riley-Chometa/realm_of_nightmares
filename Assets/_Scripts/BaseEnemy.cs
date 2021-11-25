@@ -22,10 +22,12 @@ public class BaseEnemy : MonoBehaviour
     private float hitTimerMax = .5f;
     private float hitTimerValue = 0;
     private Unit enemyController;
+    public bool isAlive;
 
     // Set starting Variables.
     void Start()
     {
+        this.isAlive = true;
         enemyController = this.GetComponent<Unit>();
         anim = this.GetComponent<Animator>();
         canGetHit = true;
@@ -98,6 +100,7 @@ public class BaseEnemy : MonoBehaviour
         }
         GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
         dropItem();
+        gameObject.GetComponent<Unit>().SetDead();
     }
 
     // After the Death Animation finishes the event calls the deathDestroy function to remove the enemy object from the game world.

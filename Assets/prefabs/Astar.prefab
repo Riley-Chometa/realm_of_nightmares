@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338e4633794e8a443803839086dcc8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayGridGizmos: 1
   unwalkableMask:
     serializedVersion: 2
     m_Bits: 256
-  gridWorldSize: {x: 170, y: 170}
+  gridWorldSize: {x: 300, y: 300}
   nodeRadius: 0.5
 --- !u!114 &2623781722045990302
 MonoBehaviour:
