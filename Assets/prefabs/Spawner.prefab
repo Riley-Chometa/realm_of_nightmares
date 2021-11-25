@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: 5390270713034828532}
   - component: {fileID: 8718622755764118563}
   - component: {fileID: 563256837436668938}
+  - component: {fileID: 2176229130426252412}
   m_Layer: 11
   m_Name: Spawner
   m_TagString: Enemy
@@ -972,6 +973,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &2176229130426252412
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104776887883856583}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69dd340e43f300048b9496c515b81fcc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &9183470044980199812
 GameObject:
   m_ObjectHideFlags: 0
