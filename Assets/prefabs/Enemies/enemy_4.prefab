@@ -265,9 +265,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  searchRange: 0
-  attackRadius: 0
-  attackCooldown: 0
+  searchRange: 10
+  attackRadius: 1
+  attackCooldown: 2
 --- !u!95 &8857220039008338613
 Animator:
   serializedVersion: 3

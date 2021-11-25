@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 8
   m_Sprite: {fileID: -1128140643825651584, guid: b81ec59d60bba1242ba70bcb862f5abf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -122,7 +122,6 @@ MonoBehaviour:
   target: {fileID: 3217765303606303381, guid: 757acadebaca32047b0c6278f4239e07, type: 3}
   searchRange: 10
   attackRadius: 1
-  anim: {fileID: 741453201927514571}
   attackCooldown: 2
 --- !u!50 &1122318978198961058
 Rigidbody2D:
@@ -195,7 +194,6 @@ MonoBehaviour:
   - {fileID: 7543431830449098110, guid: 01719744dc0dacc4db0046b9d5ff5f44, type: 3}
   - {fileID: 8355963177483736190, guid: 14168c442f2ff364dba549698b87f3bd, type: 3}
   mainCollider: {fileID: 4452891962826457526}
-  anim: {fileID: 0}
 --- !u!1 &8337367537861720549
 GameObject:
   m_ObjectHideFlags: 0
