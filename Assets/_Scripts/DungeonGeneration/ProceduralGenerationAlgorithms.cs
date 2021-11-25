@@ -76,8 +76,27 @@ public static class ProceduralGenerationAlgorithms
                 }
             }
         }
+        TrimRoomSize(roomsList, int.Parse((minHeight*1.25).ToString()));
         return roomsList;
     }
+
+    private static void TrimRoomSize(List<BoundsInt> roomsList, int maxSize)
+    {
+        for (int i = 0; i<roomsList.Count;i++)// (BoundsInt room in roomsList)
+        {
+            BoundsInt room = roomsList[i];
+            if (room.size.x > maxSize)
+            {
+                roomsList[i] = new BoundsInt(room.min, new Vector3Int(maxSize, room.size.y, room.size.z));
+            }
+            room = roomsList[i];
+            if (room.size.y > maxSize)
+            {
+                roomsList[i] = new BoundsInt(room.min, new Vector3Int(room.size.x, maxSize, room.size.z));
+            }
+        }
+    }
+
 
     private static void SplitVertically(int minWidth, Queue<BoundsInt> roomsQueue, BoundsInt room)
     {

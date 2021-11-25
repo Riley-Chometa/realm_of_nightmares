@@ -12,6 +12,8 @@ public class AutoSpawnDungeon : MonoBehaviour
 {
     [SerializeField]
     private RoomFirstDungeonGenerator generator;
+    [SerializeField]
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class AutoSpawnDungeon : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Player")
         {
+            animator.SetTrigger("StartTransition");
             generator.GenerateDungeon();
         }
     }
