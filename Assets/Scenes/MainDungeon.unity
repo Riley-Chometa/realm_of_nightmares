@@ -101687,6 +101687,7 @@ MonoBehaviour:
   minRoomHeight: 20
   dungeonWidth: 150
   dungeonHeight: 150
+  roomPrefabCount: 0
   maxRooms: 100
   offset: 4
   randomWalkRooms: 0

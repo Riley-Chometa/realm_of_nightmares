@@ -262,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
         float y = storePreviousMovement[1];
         // anim.SetFloat("Xdirection", storePreviousMovement[0]);
         // anim.SetFloat("Ydirection", storePreviousMovement[1]);
-        Debug.Log("x: " +  x + "y: " +y);
+        //Debug.Log("x: " +  x + "y: " +y);
         anim.SetFloat("Xdirection", x);
         anim.SetFloat("Ydirection", y);
         anim.SetTrigger("attack");
