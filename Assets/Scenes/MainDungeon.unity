@@ -101687,6 +101687,7 @@ MonoBehaviour:
   minRoomHeight: 20
   dungeonWidth: 150
   dungeonHeight: 150
+  roomPrefabCount: 8
   maxRooms: 100
   offset: 4
   randomWalkRooms: 0
@@ -101697,7 +101698,6 @@ MonoBehaviour:
   RoomTriggerPrefab: {fileID: 1661981626136288727, guid: 91dd7ccb63c4f744387ca391215a0a22, type: 3}
   FloorTrap: {fileID: 9163938458794825614, guid: 5b88ae550feafc94b8da12fa9e620e2d, type: 3}
   BarrelLight: {fileID: 8165836512248293362, guid: a6a22fa6e1c7c8548bef3c6020d2b697, type: 3}
-  RoomPrefab: {fileID: 4515048951730575662, guid: bdd4f99124f30cf479fb85e20fe11033, type: 3}
 --- !u!4 &1826959209
 Transform:
   m_ObjectHideFlags: 0

@@ -146,8 +146,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 spawner.SendMessage("SetMaxEnemies", difficulty);
                 spawner.transform.SetParent(this.ParentSpawn.transform);
                 trigger.transform.SetParent(this.ParentSpawn.transform);
-                Instantiate(GetRandomRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
-
+                GameObject randomRoomPrefab = Instantiate(GetRandomRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
+                randomRoomPrefab.transform.SetParent(this.ParentSpawn.transform);
             }
             //SpawnLights(room);
             //SpawnFloorTraps(room);
