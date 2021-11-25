@@ -49,13 +49,14 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private HashSet<GameObject> doors;
     [SerializeField]
     private GameObject RoomTriggerPrefab;
-    public static int difficulty = 1;
+    public int level = 0;
     private GameObject ParentSpawn;
     [SerializeField]
     private GameObject FloorTrap;
     [SerializeField]
     private GameObject BarrelLight;
     [SerializeField]
+    private GameObject Coin;
 
     public void GenerateDungeon()
     {
@@ -69,6 +70,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
     private void CreateRooms()
     {
+        this.level++;
         tileMapVisualizer.Clear();
         var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
                     new BoundsInt((Vector3Int) startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), 
@@ -77,9 +79,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         floor = new HashSet<Vector2Int>();
         doors = new HashSet<GameObject>();
         this.ParentSpawn = GameObject.Find("SpawnedParent");
-        difficulty++;
+        
         //this.maxRooms = difficulty;
-
         if (randomWalkRooms)
         {
             floor = CreateRoomsRandomly(roomsList);
@@ -101,14 +102,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         WallGenerator.CreateWalls(floor, tileMapVisualizer);
         SpawnRoomsAssets();
                
-    }
-    public void Respawn()
-    {
-        if (difficulty >1)
-        {
-            difficulty -= 1;
-            this.Player.transform.position = new Vector3(this.dungeon.startRoom.center.x, this.dungeon.startRoom.center.y, -1);
-        }
     }
 
 
@@ -143,7 +136,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 GameObject trigger = Instantiate(this.RoomTriggerPrefab,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1),UnityEngine.Quaternion.identity);
                 trigger.SendMessage("SetSpawner", spawner);
                 trigger.SendMessage("SetBounds", room.roomBounds);
-                spawner.SendMessage("SetMaxEnemies", difficulty);
+                spawner.SendMessage("SetMaxEnemies", this.level);
                 spawner.transform.SetParent(this.ParentSpawn.transform);
                 trigger.transform.SetParent(this.ParentSpawn.transform);
                 GameObject randomRoomPrefab = Instantiate(GetRandomRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
@@ -154,6 +147,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         } 
         ToggleDoorsOn();
         ToggleDoorsOff();
+        SpawnCoins();
         
     }
 
@@ -167,35 +161,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         }
         return loadedRoomPrefab;
     }
-    private void SpawnFloorTraps(Room room)
-    {
-        foreach (FloorTile tile in room.floor)
-        {
-            if (Random.Range(0,99)<1 && CanSpawnTrap(room, tile))
-            {
-                GameObject trap = Instantiate(this.FloorTrap, new Vector3(tile.position.x, tile.position.y, -1), UnityEngine.Quaternion.identity);
-                trap.transform.SetParent(this.ParentSpawn.transform);
-            }
-        }
-                
-    }
 
-    private bool CanSpawnTrap(Room room, FloorTile tile)
-    {
-        return tile.position != room.center && 
-                tile.position.x < room.roomBounds.xMax - 8 &&
-                tile.position.x > room.roomBounds.xMin + 8 &&
-                tile.position.y < room.roomBounds.yMax - 8 &&
-                tile.position.y > room.roomBounds.yMin + 8
-                ;
-    }
-    private void SpawnLights(Room room)
-    {
-        Instantiate(this.BarrelLight, new Vector3(room.center.x +5, room.center.y + 5, -1), UnityEngine.Quaternion.identity).transform.SetParent(this.ParentSpawn.transform);
-        Instantiate(this.BarrelLight, new Vector3(room.center.x +5, room.center.y - 5, -1), UnityEngine.Quaternion.identity).transform.SetParent(this.ParentSpawn.transform);
-        Instantiate(this.BarrelLight, new Vector3(room.center.x -5, room.center.y - 5, -1), UnityEngine.Quaternion.identity).transform.SetParent(this.ParentSpawn.transform);
-        Instantiate(this.BarrelLight, new Vector3(room.center.x -5, room.center.y + 5, -1), UnityEngine.Quaternion.identity).transform.SetParent(this.ParentSpawn.transform);
-    }
+ 
 
     private void ToggleDoorsOn()
     {
@@ -212,6 +179,26 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 }
             }
         }
+    }
+
+    private void SpawnCoins()
+    {
+        foreach (Room room in this.dungeon.rooms)
+        {
+            foreach (Corridor corridor in room.corridors)
+            {
+                foreach (Door door in corridor.doors)
+                {
+                    GameObject coin = Instantiate(this.Coin,new Vector3(door.position.x, door.position.y-0.5f, -1),UnityEngine.Quaternion.identity);
+                    coin.transform.SetParent(this.ParentSpawn.transform);
+                }
+            }
+        }
+    }
+
+    private void HallwayLoop()
+    {
+
     }
 
     private void DestroyDoors()

@@ -50,7 +50,8 @@ public class BaseEnemy : MonoBehaviour
             hitTimerValue = hitTimerMax;
             currentHealth -= damage;
             healthBar.setHealth(currentHealth);
-            enemyController.setCanMove(false);
+            if (enemyController != null)
+                enemyController.setCanMove(false);
             if (anim != null) {
                 anim.SetTrigger("getHit");
                 // Debug.Log("Enemy Hit Bool Triggered");
@@ -58,8 +59,10 @@ public class BaseEnemy : MonoBehaviour
             }
             //print("DAMAGE");
             if (currentHealth <= 0){
-                enemyController.setCanMove(false);
+                if (enemyController != null)
+                    enemyController.setCanMove(false);
                 death();
+                Debug.Log("Past Death");
             
             }
         }
@@ -83,9 +86,11 @@ public class BaseEnemy : MonoBehaviour
         else {
             deathDestroy();
         }
+        Debug.Log("before spawner toggle doors");
         if (gameObject.name.Equals("Spawner(Clone)"))
         {
             GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOff");
+            Destroy(gameObject);
         }
         GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
         dropItem();

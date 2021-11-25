@@ -76,7 +76,7 @@ public static class ProceduralGenerationAlgorithms
                 }
             }
         }
-        TrimRoomSize(roomsList, int.Parse((minHeight*1.5).ToString()));
+        TrimRoomSize(roomsList, int.Parse((minHeight*1.25).ToString()));
         return roomsList;
     }
 
