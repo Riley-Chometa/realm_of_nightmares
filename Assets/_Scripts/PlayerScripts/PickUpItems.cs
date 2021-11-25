@@ -40,7 +40,8 @@ public class PickUpItems : MonoBehaviour
     public GameObject playerStats;
     private PlayerStatsComponent playerstatsmodifier;
     private void Start() {
-        playerstatsmodifier = playerStats.GetComponent<PlayerStatsComponent>();
+        GameObject tempStats = GameObject.Find("PlayerStats");
+        playerstatsmodifier = tempStats.GetComponent<PlayerStatsComponent>();
         currentIntensity = minLightIntensity;
         currInnerRadius = minInnerRadius;
         currOuterRadius = minOuterRadius;

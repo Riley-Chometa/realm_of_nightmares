@@ -25,6 +25,7 @@ public class Unit : MonoBehaviour
     int targetIndex;
     Vector2 start;
 
+
     protected void Awake(){
         canAttack = true;
         canMove = true;
@@ -42,6 +43,15 @@ public class Unit : MonoBehaviour
 
     }
 
+    public void setCanMove(bool value){
+        canMove = value;
+        if (!value){
+        StopCoroutine("FollowPath");
+        }
+        else {
+            StartCoroutine("FollowPath");
+        }
+    }
 
     protected void Update() {
         

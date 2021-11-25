@@ -30,37 +30,37 @@ public class CanvasParts : MonoBehaviour
     // }
 
     public GameObject GetStaminaBar(){
-        Debug.Log("Got Component Stamina:");
+        //Debug.Log("Got Component Stamina:");
         return staminaBar;
     }
 
     public GameObject GetPickUpBar(){
-        Debug.Log("Got Component PickUpBar");
+        // Debug.Log("Got Component PickUpBar");
         return pickUpBar;
     }
 
     public GameObject GetCoinCounter(){
-        Debug.Log("Got Component CoinCounter");
+        // Debug.Log("Got Component CoinCounter");
         return coinCounter;
     }
 
     public GameObject GetScoreCounter(){
-        Debug.Log("Got Component ScoreCounter");
+        // Debug.Log("Got Component ScoreCounter");
         return scoreCounter;
     }
 
     public GameObject GetKeyCounter(){
-        Debug.Log("Got Component KeyCounter");
+        // Debug.Log("Got Component KeyCounter");
         return keyCounter;
     }
 
     public GameObject GetBombCounter(){
-        Debug.Log("Got Component BombCounter");
+        // Debug.Log("Got Component BombCounter");
         return bombCounter;
     }
 
     public GameObject GetPlayerHealth(){
-        Debug.Log("Got Component PlayerHealth");
+        // Debug.Log("Got Component PlayerHealth");
         return playerHealth;
     }
 }
