@@ -13,8 +13,11 @@ private CanvasParts canvasParts;
     private GameObject bombCounter;
     
     private GameObject healthGrid;
+    private GameObject backgroundGrid;
     [SerializeField]
     private GameObject playerHeart;
+    // [SerializeField]
+    // private GameObject backgroundHeart;
     [SerializeField]
     private GameObject playerShield;
     public int coinPurse = 0;
@@ -39,10 +42,12 @@ private CanvasParts canvasParts;
 
     private int currentHealth;
     private int maxHealth = 10;
+    private int NthHit;
     public GameObject player;
     private PlayerMovement playerController;
 
     private List<GameObject> hearts = new List<GameObject>();
+    //private List<GameObject> backgroundHearts = new List<GameObject>();
     private bool shieldActive;
     private GameObject shield;
     private void Start()
@@ -53,6 +58,7 @@ private CanvasParts canvasParts;
         keyCounter = canvasParts.GetKeyCounter();
         bombCounter = canvasParts.GetBombCounter();
         healthGrid = canvasParts.GetPlayerHealth();
+        //backgroundGrid = canvasParts.GetBackgroundHealth();
         currentHealth = maxHealth;
         playerController = player.GetComponent<PlayerMovement>();
         coinPurseText = coinCounter.GetComponent<Text>();
@@ -68,6 +74,7 @@ private CanvasParts canvasParts;
         modifyKeys(startKeys);
         modifyScore(startScore);
         //Debug.Log(maxHealth);
+        NthHit = 0;
         SetHeartPrefabs();
         
     }
@@ -80,6 +87,12 @@ private CanvasParts canvasParts;
             newHeart.transform.SetParent(healthGrid.transform);
             hearts.Add(newHeart);
         }
+        // for (int i = 0; i <= maxHealth - 1; i++) {
+        //     GameObject newHeart = Instantiate(backgroundHeart) as GameObject;
+        //     //Debug.Log(newHeart);
+        //     newHeart.transform.SetParent(backgroundGrid.transform);
+        //     backgroundHearts.Add(newHeart);
+        // }
     }
     public void modifyCoins(int amount)
     {
@@ -124,31 +137,60 @@ private CanvasParts canvasParts;
     {
         return this.numBombs;
     }
+
     public void modifyHealth(int amount){
         if (shieldActive && amount < 0) {
             this.deactivateShield();
             return;
         }
         if (currentHealth + amount <= maxHealth) {
-
-            currentHealth += amount;
-            if (amount < 0 && hearts.Count != 0) {
-                GameObject heartToRemove = hearts[hearts.Count - 1];
-                hearts.Remove(heartToRemove);
-                Destroy(heartToRemove);
+            if (amount < 0) {
+                NthHit += 1;
             }
+            GameObject heartToRemove = hearts[hearts.Count - 1];
+            if (NthHit == 4) {
+                NthHit = 0;
+                if (amount < 0 && hearts.Count != 0) {
+                    hearts.Remove(heartToRemove);
+                    Destroy(heartToRemove);
+                    currentHealth += amount;
+                } 
+            }
+            if (NthHit != 4 && amount < 0) {
+                Vector3 scaleChange = new Vector3(-0.25f, -0.25f, -0.25f);
+                heartToRemove.transform.localScale += scaleChange;
+            }   
+            
             if (amount > 0) {
-                for (int i = 0; i<amount;i++)
+                Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);
+                if (NthHit != 0) {
+                    hearts[hearts.Count - 1].transform.localScale = scale;
+                    NthHit = 0;
+                }
+                else {
+                    for (int i = 0; i<amount;i++)
                 {
+                    print("HEALED");
                     GameObject newHeart = Instantiate(playerHeart) as GameObject;
                     newHeart.transform.SetParent(healthGrid.transform);
+                    hearts.Add(newHeart);
                 }
+                }
+                
+                // if (NthHit != 4) {
+                //     GameObject newHeart = Instantiate(playerHeart) as GameObject;
+                //     newHeart.transform.SetParent(healthGrid.transform);
+                //     newHeart.transform.localScale = scale;
+                //     hearts.Add(newHeart);
+                // }
                 
             }
             
         }
         else {
             currentHealth = maxHealth;
+            hearts[hearts.Count - 1].transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            NthHit = 0;
         }
         if (currentHealth <= 0){
             currentHealth = 0;

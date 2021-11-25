@@ -14,6 +14,9 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField]
     private List<GameObject> itemDrops = new List<GameObject>();
 
+    [SerializeField]
+    private bool isTest = false;
+
     // Collider and animation components.
     public Collider2D mainCollider;
     public Animator anim;
@@ -60,7 +63,13 @@ public class BaseEnemy : MonoBehaviour
         }
         if (gameObject.name.Equals("Spawner(Clone)"))
         {
+            GameObject.Find("StatTracker").GetComponent<StatTracker>().currentSpawners += 1;
+            print("SPAWNERS KILLED: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentSpawners);
             GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOff");
+        }
+        else {
+            GameObject.Find("StatTracker").GetComponent<StatTracker>().currentEnemies += 1;
+            print("ENEMIES KILLED: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentEnemies);
         }
         GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
         dropItem();
@@ -81,8 +90,9 @@ public class BaseEnemy : MonoBehaviour
         }
         else {
             GameObject temp = Instantiate(itemDrops[itemToDrop], transform.position, transform.rotation);
-            temp.transform.SetParent(GameObject.Find("SpawnedParent").transform);
+            if (isTest) {
+                    temp.transform.SetParent(GameObject.Find("SpawnedParent").transform);
+            }
         }
-
     }
 }

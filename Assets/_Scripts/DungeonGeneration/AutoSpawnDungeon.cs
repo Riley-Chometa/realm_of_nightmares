@@ -21,6 +21,7 @@ public class AutoSpawnDungeon : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Player")
         {
+            GameObject.Find("StatTracker").GetComponent<StatTracker>().endOfLevel();
             generator.GenerateDungeon();
         }
     }
