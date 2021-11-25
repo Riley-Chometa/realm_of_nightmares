@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canMove;
     private bool isAlive;
-    private bool canInput;
+    public bool canInput;
     // Setup attributes and components needed for movement of player.
     private Rigidbody2D rb;
     Vector2 movement;
