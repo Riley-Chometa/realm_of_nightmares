@@ -56,7 +56,6 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private GameObject BarrelLight;
     [SerializeField]
-    private GameObject RoomPrefab;
 
     public void GenerateDungeon()
     {

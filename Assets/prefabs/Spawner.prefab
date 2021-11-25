@@ -843,7 +843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9104776887883856583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.28, y: 14.48, z: 0}
+  m_LocalPosition: {x: 8.28, y: 14.48, z: -1}
   m_LocalScale: {x: 4, y: 5, z: 1}
   m_Children:
   - {fileID: 9070221795832729808}
@@ -884,7 +884,6 @@ MonoBehaviour:
   healthBar: {fileID: 5995276278104599645}
   itemDrops: []
   mainCollider: {fileID: 8718622755764118563}
-  anim: {fileID: 0}
 --- !u!212 &5390270713034828532
 SpriteRenderer:
   m_ObjectHideFlags: 0
