@@ -57,9 +57,12 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private GameObject BarrelLight;
     [SerializeField]
     private GameObject Coin;
+    [SerializeField]
+    private GameObject aStar;
 
     public void GenerateDungeon()
     {
+        Destroy(GameObject.Find("Astar(Clone)"));
         CreateRooms();
     }
 
@@ -101,7 +104,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         tileMapVisualizer.PaintFloorTiles(floor);
         WallGenerator.CreateWalls(floor, tileMapVisualizer);
         SpawnRoomsAssets();
-               
+        //System.Threading.Thread.Sleep(5000);
+        GameObject a = Instantiate(this.aStar);//.SendMessage("ResetGrid");
+        //a.SendMessage("ResetGrid");
     }
 
 
@@ -189,8 +194,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             {
                 foreach (Door door in corridor.doors)
                 {
+                    if (Random.Range(0,99) > 69)
+                    {
                     GameObject coin = Instantiate(this.Coin,new Vector3(door.position.x, door.position.y-0.5f, -1),UnityEngine.Quaternion.identity);
                     coin.transform.SetParent(this.ParentSpawn.transform);
+                    }
                 }
             }
         }

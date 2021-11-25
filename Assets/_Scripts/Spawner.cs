@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
     private int maxEnemies = 5;                             // Maximum allowable enemies on screen at once
 
     [SerializeField]
-    private float timeToSpawn = 4;
+    private float timeToSpawn = 2;
 
     [SerializeField]
     private bool startSpawning = false;
@@ -39,9 +39,9 @@ public class Spawner : MonoBehaviour
             if (currentTimeToSpawn > 0) {                       // Reduce timer
                 currentTimeToSpawn -= Time.deltaTime;
             }   
-        else {                                              // Timer is at 0 - Spawn new enemy
-            SpawnObject();
-            currentTimeToSpawn = timeToSpawn;
+            else {                                              // Timer is at 0 - Spawn new enemy
+                SpawnObject();
+                currentTimeToSpawn = timeToSpawn;
             }
         }
     }
@@ -64,9 +64,9 @@ public class Spawner : MonoBehaviour
             //child.transform.parent = transform;
             currentEnemies += 1;
 
-            if (currentEnemies == maxEnemies) {
-                maxSpawnFlag = 1;
-            }
+            // if (currentEnemies == maxEnemies) {
+            //     maxSpawnFlag = 1;
+            // }
         }
     }
 
