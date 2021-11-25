@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net.Sockets;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -19,6 +20,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     //the width and height of the entire dungeon, this is the starting size before it start to get cut into pieces
     [SerializeField]
     private int dungeonWidth = 20, dungeonHeight = 20;
+    [SerializeField]
+    private int roomPrefabCount = 0;
     // the maximum number of rooms allowed
     [SerializeField]
     private int maxRooms = 20;
@@ -46,7 +49,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private HashSet<GameObject> doors;
     [SerializeField]
     private GameObject RoomTriggerPrefab;
-    public static int difficulty = 3;
+    public static int difficulty = 1;
     private GameObject ParentSpawn;
     [SerializeField]
     private GameObject FloorTrap;
@@ -102,7 +105,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     }
     public void Respawn()
     {
-        if (difficulty >3)
+        if (difficulty >1)
         {
             difficulty -= 1;
             this.Player.transform.position = new Vector3(this.dungeon.startRoom.center.x, this.dungeon.startRoom.center.y, -1);
@@ -144,7 +147,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 spawner.SendMessage("SetMaxEnemies", difficulty);
                 spawner.transform.SetParent(this.ParentSpawn.transform);
                 trigger.transform.SetParent(this.ParentSpawn.transform);
-                Instantiate(this.RoomPrefab, new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
+                Instantiate(GetRandomRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
 
             }
             //SpawnLights(room);
@@ -153,6 +156,17 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         ToggleDoorsOn();
         ToggleDoorsOff();
         
+    }
+
+    private GameObject GetRandomRoomPrefab()
+    {
+        int roomNumber = Random.Range(1,this.roomPrefabCount);
+        GameObject loadedRoomPrefab = (GameObject)Resources.Load("RoomPrefabs/RoomPrefab" + roomNumber);
+        if (loadedRoomPrefab == null)
+        {
+            throw new FileNotFoundException("RoomPrefab" + roomNumber + " not found, please check the Assets/Resources/RoomPrefabs/ folder to ensure the file exists.");
+        }
+        return loadedRoomPrefab;
     }
     private void SpawnFloorTraps(Room room)
     {

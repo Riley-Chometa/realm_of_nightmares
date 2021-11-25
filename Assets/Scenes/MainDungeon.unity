@@ -101683,10 +101683,10 @@ MonoBehaviour:
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
-  minRoomWidth: 16
-  minRoomHeight: 16
-  dungeonWidth: 75
-  dungeonHeight: 75
+  minRoomWidth: 20
+  minRoomHeight: 20
+  dungeonWidth: 150
+  dungeonHeight: 150
   maxRooms: 100
   offset: 4
   randomWalkRooms: 0
@@ -101923,6 +101923,58 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 74
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2333712553559622609, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: generator
+      value: 
+      objectReference: {fileID: 1826959208}
+    - target: {fileID: 2333712553559622622, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_Name
+      value: SpawnDungeon
+      objectReference: {fileID: 0}
     - target: {fileID: 6032363259209350555, guid: b00a62e98e2725e4fb5a3cab87d3677f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -101994,58 +102046,6 @@ PrefabInstance:
     - target: {fileID: 6032363259613766826, guid: b00a62e98e2725e4fb5a3cab87d3677f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 65
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 74
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622608, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2333712553559622609, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: generator
-      value: 
-      objectReference: {fileID: 1826959208}
-    - target: {fileID: 2333712553559622622, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
-      propertyPath: m_Name
-      value: SpawnDungeon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
