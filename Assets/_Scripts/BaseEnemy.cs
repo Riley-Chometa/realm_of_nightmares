@@ -97,10 +97,12 @@ public class BaseEnemy : MonoBehaviour
         {
             GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOff");
             Destroy(gameObject);
+        }else {
+            GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
+            dropItem();
+            gameObject.GetComponent<Unit>().SetDead();
         }
-        GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
-        dropItem();
-        gameObject.GetComponent<Unit>().SetDead();
+        
     }
 
     // After the Death Animation finishes the event calls the deathDestroy function to remove the enemy object from the game world.

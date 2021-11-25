@@ -194,8 +194,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             {
                 foreach (Door door in corridor.doors)
                 {
+                    if (Random.Range(0,99) > 69)
+                    {
                     GameObject coin = Instantiate(this.Coin,new Vector3(door.position.x, door.position.y-0.5f, -1),UnityEngine.Quaternion.identity);
                     coin.transform.SetParent(this.ParentSpawn.transform);
+                    }
                 }
             }
         }

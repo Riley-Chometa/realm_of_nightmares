@@ -32,7 +32,7 @@ public class PathRequestManager : MonoBehaviour
     }
 
     public void FinishedProcessingPAth(Vector2[] path, bool success){
-        if (currentPathRequest.enemy != null){
+        if (currentPathRequest.enemy != null && path != null){
             currentPathRequest.enemy.OnPathFound(path,success);
             isProcessingPath = false;
             TryProcessNext();

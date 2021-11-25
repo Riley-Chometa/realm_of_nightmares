@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6992189030704469109}
   - component: {fileID: 6992189030704469108}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 6992189031088411547}
   - component: {fileID: 6992189031088411544}
   - component: {fileID: 6992189031088411545}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barrel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6992189031154041309}
   - component: {fileID: 6992189031154041308}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6992189031322924005}
   - component: {fileID: 6992189031322924004}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bottle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
