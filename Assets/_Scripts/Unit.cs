@@ -20,7 +20,7 @@ public class Unit : MonoBehaviour
 
     private Coroutine lastCoroutine;
     private Vector2 targetPosition;
-    float speed = 0.03f;
+    public float speed = 0.02f;
     Vector2[] path;
     int targetIndex;
     Vector2 start;

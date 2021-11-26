@@ -137,14 +137,14 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             else if (room.roomType == RoomType.End)
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
             else if (room.roomType == RoomType.Normal){
-                GameObject spawner = Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
+                GameObject spawner = Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 0),UnityEngine.Quaternion.identity);
                 GameObject trigger = Instantiate(this.RoomTriggerPrefab,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1),UnityEngine.Quaternion.identity);
                 trigger.SendMessage("SetSpawner", spawner);
                 trigger.SendMessage("SetBounds", room.roomBounds);
                 spawner.SendMessage("SetMaxEnemies", this.level);
                 spawner.transform.SetParent(this.ParentSpawn.transform);
                 trigger.transform.SetParent(this.ParentSpawn.transform);
-                GameObject randomRoomPrefab = Instantiate(GetRandomRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 1),UnityEngine.Quaternion.identity);
+                GameObject randomRoomPrefab = Instantiate(GetRandomRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 0),UnityEngine.Quaternion.identity);
                 randomRoomPrefab.transform.SetParent(this.ParentSpawn.transform);
             }
             //SpawnLights(room);
