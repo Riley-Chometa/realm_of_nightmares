@@ -188,16 +188,18 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
     private void SpawnCoins()
     {
+        bool skipTile = false;
         foreach (Room room in this.dungeon.rooms)
         {
             foreach (Corridor corridor in room.corridors)
             {
                 foreach (Door door in corridor.doors)
                 {
-                    if (Random.Range(0,99) > 69)
+                    skipTile = !skipTile;
+                    if (!skipTile)//Random.Range(0,99) > 69)
                     {
-                    GameObject coin = Instantiate(this.Coin,new Vector3(door.position.x, door.position.y-0.5f, -1),UnityEngine.Quaternion.identity);
-                    coin.transform.SetParent(this.ParentSpawn.transform);
+                        GameObject coin = Instantiate(this.Coin,new Vector3(door.position.x, door.position.y-0.5f, -1),UnityEngine.Quaternion.identity);
+                        coin.transform.SetParent(this.ParentSpawn.transform);
                     }
                 }
             }
