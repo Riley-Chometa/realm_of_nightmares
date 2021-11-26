@@ -167,6 +167,7 @@ private CanvasParts canvasParts;
 
     public void modifyMaxHealth(int amount){
         maxHealth += amount;
+        modifyHealth(1);
     }
     public int getMaxHealth(){
         return this.maxHealth;

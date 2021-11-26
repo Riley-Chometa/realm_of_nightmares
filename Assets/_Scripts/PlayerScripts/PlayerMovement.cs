@@ -447,6 +447,10 @@ public class PlayerMovement : MonoBehaviour
     public void setAttackDamage(int damage){
         attackDamage = damage;
     }
+
+    public int getAttackDamage(){
+        return attackDamage;
+    }
     public void setPickUpTimer(){
         currentPickupTime = pickupMaxTime;
     }
