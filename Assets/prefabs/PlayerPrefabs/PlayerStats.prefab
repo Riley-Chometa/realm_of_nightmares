@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48a07a63414d3f44a810e0168ebcb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinCounter: {fileID: 0}
-  scoreCounter: {fileID: 0}
-  keyCounter: {fileID: 0}
+  playerHeart: {fileID: 0}
+  backgroundHeart: {fileID: 6581867795477914452, guid: 305eda34e51554340ae19272f9d7ea7c, type: 3}
+  playerShield: {fileID: 0}
   coinPurse: 0
   coinPurseText: {fileID: 0}
   playerScore: 0
@@ -53,3 +53,6 @@ MonoBehaviour:
   playerScoreText: {fileID: 0}
   numKeys: 0
   keyText: {fileID: 0}
+  numBombs: 0
+  bombText: {fileID: 0}
+  player: {fileID: 0}

@@ -14,6 +14,9 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField]
     private List<GameObject> itemDrops = new List<GameObject>();
 
+    [SerializeField]
+    private bool isTest = false;
+
     // Collider and animation components.
     public Collider2D mainCollider;
     private Animator anim;
@@ -95,14 +98,18 @@ public class BaseEnemy : MonoBehaviour
         Debug.Log("before spawner toggle doors");
         if (gameObject.name.Equals("Spawner(Clone)"))
         {
+            GameObject.Find("StatTracker").GetComponent<StatTracker>().currentSpawners += 1;
+            print("SPAWNERS KILLED: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentSpawners);
             GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOff");
             Destroy(gameObject);
         }else {
-            GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
+            
             dropItem();
             gameObject.GetComponent<Unit>().SetDead();
+            GameObject.Find("StatTracker").GetComponent<StatTracker>().currentEnemies += 1;
+            print("ENEMIES KILLED: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentEnemies);
         }
-        
+        GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
     }
 
     // After the Death Animation finishes the event calls the deathDestroy function to remove the enemy object from the game world.
@@ -120,9 +127,10 @@ public class BaseEnemy : MonoBehaviour
         }
         else {
             GameObject temp = Instantiate(itemDrops[itemToDrop], transform.position, transform.rotation);
-            temp.transform.SetParent(GameObject.Find("SpawnedParent").transform);
+            if (isTest) {
+                    temp.transform.SetParent(GameObject.Find("SpawnedParent").transform);
+            }
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
