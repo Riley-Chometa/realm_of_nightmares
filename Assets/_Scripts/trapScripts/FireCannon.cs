@@ -25,6 +25,8 @@ public class FireCannon : MonoBehaviour
         InvokeRepeating("createFire3", spawnTime, spawnTime);
         InvokeRepeating("createFire4", spawnTime, spawnTime);
     }
+
+    
     private void createFire1(){
         GameObject fireBall1 = Instantiate(fireBallShoot, left.position, Quaternion.identity);
         fireBall1.GetComponent<shootFireBall>().setDirection(throwDirectionWest);
