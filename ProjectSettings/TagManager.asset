@@ -29,6 +29,8 @@ TagManager:
   - Explosive
   - BreakableObjects
   - Bombs
+  - CoinUpdater
+  - spawner
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ public class ShopHeart : MonoBehaviour
 {
     private bool canPurchase = false;
     public GameObject shopkeeper;
-    public GameObject heartPrefab;
+
     public PlayerStatsComponent playerInfo;
 
     
@@ -27,6 +27,7 @@ public class ShopHeart : MonoBehaviour
                 if (playerInfo.getCoins() < 10){
                     canPurchase = false;
                 }
+                shopkeeper.GetComponent<ShopKeeper>().changeText("Purchase Complete!");
             }
         }
     }
@@ -40,11 +41,13 @@ public class ShopHeart : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player"){
+            shopkeeper.GetComponent<ShopKeeper>().startDialog(1,"Heart Cost 10 Coins!" );
             shopkeeper.GetComponent<ShopKeeper>().changeText("Heart Cost 10 Coins!");
-            shopkeeper.GetComponent<ShopKeeper>().playDialog(1);
+            // shopkeeper.GetComponent<ShopKeeper>().playDialog(1);
             tempText = Instantiate(floatingText, tm.position + new Vector3(0, 1.5f, 0), Quaternion.identity, tm);
             tempText.GetComponent<TextMesh>().text = printMe;
-            tempText.GetComponent<TextMesh>().fontSize = 48;
+            tempText.GetComponent<TextMesh>().fontSize = 36;
+            tempText.GetComponent<Transform>().localScale = new Vector3(.1f, .1f, .1f);
             tempE = Instantiate(pressE, tm.position + new Vector3(0, -1, 0), Quaternion.identity, tm);
             tempE.GetComponent<Transform>().localScale = new Vector3(.2f, .2f, .2f);
         }
@@ -53,6 +56,8 @@ public class ShopHeart : MonoBehaviour
         if (other.gameObject.tag == "Player"){
             Destroy(tempText, 0.1f);
             Destroy(tempE, .01f);
+            shopkeeper.GetComponent<ShopKeeper>().stopDialog();
+            canPurchase = false;
         }
     }
 }
