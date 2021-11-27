@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float moveSpeedMax = 7.0f;
     private float moveSpeed = 0.0f;
+    private float storedMoveSpeed;
     [SerializeField]
     private float sprintMaxSpeed = 20.0f;
     [SerializeField]
@@ -248,9 +249,11 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed = 0;
             }
         }
+        moveSpeed = storedMoveSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
+        storedMoveSpeed = moveSpeed;
         if (other.gameObject.tag != "Coins"){
             moveSpeed = 0;
         }    

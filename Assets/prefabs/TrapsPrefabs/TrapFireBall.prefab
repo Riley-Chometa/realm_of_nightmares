@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6331598602911464914}
   - component: {fileID: 6331598602911464912}
   - component: {fileID: 6331598602911464913}
-  m_Layer: 9
+  m_Layer: 7
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,10 +99,10 @@ GameObject:
   - component: {fileID: 6331598603782407009}
   - component: {fileID: 6331598603782407010}
   - component: {fileID: 6331598603782407011}
-  - component: {fileID: 5443995435035074445}
-  m_Layer: 9
-  m_Name: FireBall
-  m_TagString: Untagged
+  - component: {fileID: 3463881153851932304}
+  m_Layer: 7
+  m_Name: TrapFireBall
+  m_TagString: trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,14 +114,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6331598603782407021}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.0000005682481}
+  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0.0000006490813, w: -0.00000077271574}
   m_LocalPosition: {x: 18.489815, y: 14.512966, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_Children:
   - {fileID: 6331598602911464914}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &6331598603782407008
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: cec6f907ca1a16848a2308c3b71b0a58, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.5424528, b: 0.5424528, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -239,7 +239,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.45726776, y: 0.22871971}
   m_EdgeRadius: 0
---- !u!114 &5443995435035074445
+--- !u!114 &3463881153851932304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6331598603782407021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7d16bd000965645b5f7d11cc59760c, type: 3}
+  m_Script: {fileID: 11500000, guid: d7cd0fdc3f00c42448b528252ac7b4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6331598603782407010}
