@@ -59,6 +59,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private GameObject Coin;
     [SerializeField]
     private GameObject aStar;
+    [SerializeField]
+    private GameObject Bomb;
 
     public void GenerateDungeon()
     {
@@ -201,17 +203,13 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                     skipTile = !skipTile;
                     if (!skipTile)//Random.Range(0,99) > 69)
                     {
-                        GameObject coin = Instantiate(this.Coin,new Vector3(door.position.x, door.position.y-0.5f, 0),UnityEngine.Quaternion.identity);
+                        GameObject objectToInstantiate = Random.Range(1,100) >5? this.Coin: this.Bomb;
+                        GameObject coin = Instantiate(objectToInstantiate,new Vector3(door.position.x, door.position.y-0.5f, 0),UnityEngine.Quaternion.identity);
                         coin.transform.SetParent(this.ParentSpawn.transform);
                     }
                 }
             }
         }
-    }
-
-    private void HallwayLoop()
-    {
-
     }
 
     private void DestroyDoors()

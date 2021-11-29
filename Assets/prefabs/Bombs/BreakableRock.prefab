@@ -128,6 +128,7 @@ MonoBehaviour:
   anim: {fileID: 706278397250731912}
   source: {fileID: 706278397250731913}
   rockSmash: {fileID: 8300000, guid: 02fd041b6bbdfd842b40d4fc7a75e243, type: 3}
+  rockHP: 5
 --- !u!95 &706278397250731912
 Animator:
   serializedVersion: 3
