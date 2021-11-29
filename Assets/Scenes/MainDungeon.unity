@@ -352,6 +352,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7445384290232209107, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
 --- !u!1 &235608967 stripped
@@ -509,7 +513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2804045876706637541, guid: f310561a7af7a4d48909d6748452f6ab, type: 3}
       propertyPath: numBombs
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2804045876706637541, guid: f310561a7af7a4d48909d6748452f6ab, type: 3}
       propertyPath: healthGrid
@@ -101618,8 +101622,8 @@ MonoBehaviour:
   tileMapVisualizer: {fileID: 42996280}
   startPosition: {x: 0, y: 0}
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
-  minRoomWidth: 20
-  minRoomHeight: 20
+  minRoomWidth: 23
+  minRoomHeight: 23
   dungeonWidth: 150
   dungeonHeight: 150
   roomPrefabCount: 8
@@ -101843,6 +101847,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5631190326367576441, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_PointLightInnerAngle
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 5631190326367576441, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8667225463491540193, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
       propertyPath: m_Color.a
       value: 1

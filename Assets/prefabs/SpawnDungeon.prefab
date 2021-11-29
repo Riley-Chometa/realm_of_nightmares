@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6812740867680436914}
   - component: {fileID: 5631190326367576441}
+  - component: {fileID: 5534606892625705572}
   m_Layer: 0
   m_Name: Point Light 2D
   m_TagString: Untagged
@@ -45,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.34
+  m_FalloffIntensity: 0.67
   m_Color: {r: 0.8773585, g: 0.04432616, b: 0.028969401, a: 1}
   m_Intensity: 0.9
   m_LightVolumeOpacity: 0.219
@@ -59,7 +60,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 358.83
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.3
-  m_PointLightOuterRadius: 1.5
+  m_PointLightOuterRadius: 15
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -68,6 +69,19 @@ MonoBehaviour:
   m_ShapeLightFalloffSize: 0.5
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath: []
+--- !u!114 &5534606892625705572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5438139071037237520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fb448a6a7060a4f85e54f3fef9e082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightingComponent: {fileID: 5631190326367576441}
 --- !u!1 &8667225462311436568
 GameObject:
   m_ObjectHideFlags: 0

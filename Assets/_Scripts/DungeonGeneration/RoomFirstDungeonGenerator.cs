@@ -80,7 +80,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         tileMapVisualizer.Clear();
         var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
                     new BoundsInt((Vector3Int) startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), 
-                    minRoomWidth, minRoomHeight, maxRooms);
+                    minRoomWidth, minRoomHeight);
         
         floor = new HashSet<Vector2Int>();
         doors = new HashSet<GameObject>();
@@ -181,7 +181,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             {
                 foreach (Door door in corridor.doors)
                 {
-                    GameObject tempDoor = Instantiate(this.doorPrefab,new Vector3(door.position.x, door.position.y, -1),UnityEngine.Quaternion.identity);
+                    GameObject tempDoor = Instantiate(this.doorPrefab,new Vector3(door.position.x, door.position.y, 0),UnityEngine.Quaternion.identity);
                     this.doors.Add(tempDoor);
                     tempDoor.transform.SetParent(gameObject.transform);
                 }
@@ -201,7 +201,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                     skipTile = !skipTile;
                     if (!skipTile)//Random.Range(0,99) > 69)
                     {
-                        GameObject coin = Instantiate(this.Coin,new Vector3(door.position.x, door.position.y-0.5f, -1),UnityEngine.Quaternion.identity);
+                        GameObject coin = Instantiate(this.Coin,new Vector3(door.position.x, door.position.y-0.5f, 0),UnityEngine.Quaternion.identity);
                         coin.transform.SetParent(this.ParentSpawn.transform);
                     }
                 }
