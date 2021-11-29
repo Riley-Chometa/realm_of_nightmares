@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 1826959207}
     - target: {fileID: 4389603736547947980, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
       propertyPath: enemyLayers.m_Bits
-      value: 2048
+      value: 2312
       objectReference: {fileID: 0}
     - target: {fileID: 4389603736547947980, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
       propertyPath: playerStatsComponent
@@ -101843,6 +101843,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8667225463491540193, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667225463491540193, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667225463491540193, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667225463491540193, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8667225463491540194, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
       propertyPath: m_RootOrder
       value: 9

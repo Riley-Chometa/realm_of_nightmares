@@ -326,7 +326,7 @@ MonoBehaviour:
   attackRange: 0.5
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 2312
   attackSwingSound: {fileID: 8300000, guid: 3d9169df5523cf84da54cf8d7cae2972, type: 3}
   hitSound: {fileID: 8300000, guid: 31e17ddb94d8f49ca9f4249bac77aef8, type: 3}
   fireBallSound: {fileID: 8300000, guid: ab5d0c156bdde5246a98fd5c5051962d, type: 3}

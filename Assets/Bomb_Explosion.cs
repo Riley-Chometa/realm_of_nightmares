@@ -94,7 +94,7 @@ public class Bomb_Explosion : MonoBehaviour
             }
             if (obj.gameObject.tag == "BreakableObjects")
             {
-                obj.gameObject.GetComponent<BreakableRock>().destroyRock();
+                obj.gameObject.GetComponent<BreakableRock>().rockHit(5);
             }
             if (obj.gameObject.tag == "Enemy")
             {

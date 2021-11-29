@@ -254,7 +254,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag != "Coins"){
             moveSpeed = 0;
         }    
-    }
+    } 
 
     // Make the player attack.
     void Attack(){
@@ -335,6 +335,11 @@ public class PlayerMovement : MonoBehaviour
         foreach (Collider2D enemy in enemiesHit){
             if (enemy.gameObject.tag == "Enemy"){
             enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
+            }
+            if (enemy.gameObject.tag == "BreakableObjects")
+            {
+            enemy.GetComponent<BreakableRock>().rockHit(1);
+            Debug.Log("Player has dealt 1 damage to rock");
             }
         }
     }
