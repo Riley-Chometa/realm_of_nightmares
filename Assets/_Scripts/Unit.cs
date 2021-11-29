@@ -50,13 +50,17 @@ public class Unit : MonoBehaviour
         StopCoroutine("FollowPath");
         }
         else {
-            StartCoroutine("FollowPath");
+            if (Vector2.Distance(transform.position, targetPosition) < searchRange){
+                    PathRequestManager.RequestPath(transform.position, targetPosition, this);
+            }
         }
     }
 
     public void SetDead()
     {
         this.isDead = true;
+        StopCoroutine("FollowPath");
+        StopCoroutine(Attack());
     }
 
     protected void FixedUpdate() {
@@ -136,7 +140,7 @@ public class Unit : MonoBehaviour
         if (pathSuccessful){
             path = newPath;
             // if (lastCoroutine != null){
-                StopCoroutine("FollowPath");
+            StopCoroutine("FollowPath");
             // }
             //lastCoroutine = 
             StartCoroutine("FollowPath");
@@ -179,6 +183,9 @@ public class Unit : MonoBehaviour
                         curDirection = Direction.Down;
                     }
                 }
+            while(Time.timeScale == 0){
+                yield return null;
+            }
             transform.position = Vector2.MoveTowards(transform.position, currentWaypoint, speed);
             yield return null;
             }

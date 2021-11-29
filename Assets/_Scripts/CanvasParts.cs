@@ -18,6 +18,8 @@ public class CanvasParts : MonoBehaviour
     private GameObject bombCounter;
     [SerializeField]
     private GameObject playerHealth;
+    // [SerializeField]
+    // private GameObject backgroundHealth;
 
     // private void Start() {
         // staminaBar = this.transform.GetChild(0).gameObject;
@@ -63,4 +65,8 @@ public class CanvasParts : MonoBehaviour
         // Debug.Log("Got Component PlayerHealth");
         return playerHealth;
     }
+
+    // public GameObject GetBackgroundHealth() {
+    //     return backgroundHealth;
+    // }
 }

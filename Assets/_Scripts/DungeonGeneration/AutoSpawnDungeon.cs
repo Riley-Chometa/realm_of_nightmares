@@ -24,6 +24,7 @@ public class AutoSpawnDungeon : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             animator.SetTrigger("StartTransition");
+            GameObject.Find("StatTracker").GetComponent<StatTracker>().endOfLevel();
             generator.GenerateDungeon();
         }
     }

@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float moveSpeedMax = 7.0f;
     private float moveSpeed = 0.0f;
+    private float storedMoveSpeed;
     [SerializeField]
     private float sprintMaxSpeed = 20.0f;
     [SerializeField]
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canMove;
     private bool isAlive;
-    private bool canInput;
+    public bool canInput;
     // Setup attributes and components needed for movement of player.
     private Rigidbody2D rb;
     Vector2 movement;
@@ -248,9 +249,11 @@ public class PlayerMovement : MonoBehaviour
                 moveSpeed = 0;
             }
         }
+        moveSpeed = storedMoveSpeed;
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
+        storedMoveSpeed = moveSpeed;
         if (other.gameObject.tag != "Coins"){
             moveSpeed = 0;
         }    
@@ -451,6 +454,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void setAttackDamage(int damage){
         attackDamage = damage;
+    }
+
+    public int getAttackDamage(){
+        return attackDamage;
     }
     public void setPickUpTimer(){
         currentPickupTime = pickupMaxTime;

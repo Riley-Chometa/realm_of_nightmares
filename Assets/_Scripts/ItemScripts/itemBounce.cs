@@ -8,7 +8,7 @@ public class itemBounce : MonoBehaviour
     private Rigidbody2D rb;
     private float heightTime = .25f;
     private float currTime;
-    private float moveSpeed = .25f;
+    private float moveSpeed = .05f;
     private bool goingUp = true;
     // Start is called before the first frame update
     void Start()

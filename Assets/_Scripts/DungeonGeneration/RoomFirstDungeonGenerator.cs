@@ -71,6 +71,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         CreateRooms();
     }
 
+    public int getLevel(){
+        return this.level;
+    }
     private void CreateRooms()
     {
         this.level++;
