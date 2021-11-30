@@ -22,6 +22,9 @@ public class Spawner : MonoBehaviour
 
     [SerializeField]
     private float timeToSpawn = 2;
+    [SerializeField]
+    private float activeTime = 10;
+    private float currentTime = 0;
 
     [SerializeField]
     private bool startSpawning = false;
@@ -36,12 +39,20 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         if (startSpawning) {
-            if (currentTimeToSpawn > 0) {                       // Reduce timer
+            if (currentTime < activeTime) {
+                if (currentTimeToSpawn > 0) {                       // Reduce timer
                 currentTimeToSpawn -= Time.deltaTime;
+                currentTime += Time.deltaTime;
             }   
             else {                                              // Timer is at 0 - Spawn new enemy
                 SpawnObject();
                 currentTimeToSpawn = timeToSpawn;
+                }
+            }
+            else {
+                //gameObject.GetComponent<FireDoorMechanics>().fireExtinguisher();
+                ToggleDoorsOff();
+                startSpawning = false;
             }
         }
     }
@@ -53,21 +64,14 @@ public class Spawner : MonoBehaviour
 
     public void StartSpawning()
     {
+        //GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOn");
+        currentTime = 0;
         this.startSpawning = true;
     }
 
     public void SpawnObject() {
-
-        if (maxEnemies != 0 && maxSpawnFlag != 1) {                                                                      // If maximum enemy count isn't reached, spawn enemy
-
-            GameObject child = Instantiate(Enemy, transform.position, UnityEngine.Quaternion.identity) as GameObject;
-            //child.transform.parent = transform;
-            currentEnemies += 1;
-
-            // if (currentEnemies == maxEnemies) {
-            //     maxSpawnFlag = 1;
-            // }
-        }
+                                                                     
+        GameObject child = Instantiate(Enemy, transform.position, UnityEngine.Quaternion.identity) as GameObject;
     }
 
     public void SetMaxEnemies(int num) {
@@ -75,6 +79,10 @@ public class Spawner : MonoBehaviour
     }
 
     public void SetTimetoSpawn(int time) {
-        timeToSpawn = 1;
+        timeToSpawn = time;
+    }
+
+    public void SetActiveTime(int time) {
+        activeTime = time;
     }
 }

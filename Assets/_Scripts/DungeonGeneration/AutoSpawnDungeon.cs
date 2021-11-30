@@ -14,6 +14,8 @@ public class AutoSpawnDungeon : MonoBehaviour
     private RoomFirstDungeonGenerator generator;
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private GameObject statCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,15 +25,11 @@ public class AutoSpawnDungeon : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Player")
         {
+            Instantiate(statCanvas, transform.position, transform.rotation);
             animator.SetTrigger("StartTransition");
             GameObject.Find("StatTracker").GetComponent<StatTracker>().endOfLevel();
             generator.GenerateDungeon();
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
 
