@@ -49,7 +49,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     private HashSet<GameObject> doors;
     [SerializeField]
     private GameObject RoomTriggerPrefab;
-    public int level = 0;
+    public static int level = 1;
     private GameObject ParentSpawn;
     [SerializeField]
     private GameObject FloorTrap;
@@ -74,11 +74,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     }
 
     public int getLevel(){
-        return this.level;
+        return level;
     }
     private void CreateRooms()
     {
-        this.level++;
+        //level++;
         tileMapVisualizer.Clear();
         var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
                     new BoundsInt((Vector3Int) startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), 
@@ -146,7 +146,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 GameObject trigger = Instantiate(this.RoomTriggerPrefab,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1),UnityEngine.Quaternion.identity);
                 trigger.SendMessage("SetSpawner", spawner);
                 trigger.SendMessage("SetBounds", room.roomBounds);
-                spawner.SendMessage("SetMaxEnemies", this.level);
+                spawner.SendMessage("SetMaxEnemies", level);
                 spawner.transform.SetParent(this.ParentSpawn.transform);
                 trigger.transform.SetParent(this.ParentSpawn.transform);
                 GameObject randomRoomPrefab = Instantiate(GetRandomRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 0),UnityEngine.Quaternion.identity);
