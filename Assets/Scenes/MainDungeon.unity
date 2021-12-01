@@ -101635,7 +101635,6 @@ MonoBehaviour:
   EnemySpawner: {fileID: 9104776887883856583, guid: 0e1ad0ba4319646d99439e8ab57a6cfe, type: 3}
   doorPrefab: {fileID: 4256885619414004782, guid: f3ee28e9c79233a43972cb7a45f9c00b, type: 3}
   RoomTriggerPrefab: {fileID: 1661981626136288727, guid: 91dd7ccb63c4f744387ca391215a0a22, type: 3}
-  level: 0
   FloorTrap: {fileID: 9163938458794825614, guid: 5b88ae550feafc94b8da12fa9e620e2d, type: 3}
   BarrelLight: {fileID: 8165836512248293362, guid: a6a22fa6e1c7c8548bef3c6020d2b697, type: 3}
   Coin: {fileID: 1341216373451993642, guid: 2ae023dc1aec69047923f5d5631f9389, type: 3}
