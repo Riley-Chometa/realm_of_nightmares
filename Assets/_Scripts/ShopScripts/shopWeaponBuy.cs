@@ -55,7 +55,7 @@ public class shopWeaponBuy : MonoBehaviour
     }
 
     private void setWeaponVariables(){
-        var temp = GameObject.Find("RoomsFirstDungeonGenerator (1)").GetComponent<RoomFirstDungeonGenerator>();
+        var temp = GameObject.Find("RoomsFirstDungeonGenerator").GetComponent<RoomFirstDungeonGenerator>();
         level = temp.getLevel();
         int playerDamage = playerController.getAttackDamage();
         if (level > 5){

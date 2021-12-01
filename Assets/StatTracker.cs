@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class StatTracker : MonoBehaviour
 {
+
+    // public static StatTracker Instance;
+
     // Total Stats
     // Enemy Stats
     private int totalEnemies = 0;
-    private int totalSpawners = 0;
 
 
     // Coin Stats
@@ -23,7 +25,6 @@ public class StatTracker : MonoBehaviour
     // Current Stats
     // Enemy Stats
     public int currentEnemies;
-    public int currentSpawners;
 
 
     // Coin Stats
@@ -32,33 +33,57 @@ public class StatTracker : MonoBehaviour
     public int currentBronzeCoins;
 
 
-    // Projectile Stats
-    public int currentProjectiles;
-
-
     // Start is called before the first frame update
     void Start()
     {
         resetCounter();
     }
 
+    public int getCurrentEnemies() {
+        return currentEnemies;
+    }
+
+    public int getCurrentGold() {
+        return currentGoldCoins;
+    }
+
+    public int getCurrentSilver() {
+        return currentSilverCoins;
+    }
+
+    public int getCurrentBronze() {
+        return currentBronzeCoins;
+    }
+
+    public int getTotalEnemies() {
+        return totalEnemies + currentEnemies;
+    }
+
+    public int getTotalGold() {
+        return totalGoldCoins + currentGoldCoins;
+    }
+
+    public int getTotalSilver() {
+        return totalSilverCoins + currentSilverCoins;
+    }
+
+    public int getTotalBronze() {
+        return totalBronzeCoins + currentBronzeCoins;
+    }
+
     public void endOfLevel() {
         totalEnemies += currentEnemies;
-        totalSpawners += currentSpawners;
         totalGoldCoins += currentGoldCoins;
         totalSilverCoins += currentSilverCoins;
         totalBronzeCoins += currentBronzeCoins;
-        totalProjectiles += currentProjectiles;
 
         resetCounter();
     }
 
     void resetCounter() {
         currentEnemies = 0;
-        currentSpawners = 0;
         currentGoldCoins = 0;
         currentSilverCoins = 0;
         currentBronzeCoins = 0;
-        currentProjectiles = 0;
     }
 }
