@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TransitionTextScript : MonoBehaviour
 {
     private Text levelText;
+    private bool inStore = false;
     //private GameObject generator;
     // Start is called before the first frame update
     void Start()
@@ -13,10 +14,16 @@ public class TransitionTextScript : MonoBehaviour
         this.levelText = gameObject.GetComponent<Text>();
         //this.generator = GameObject.Find("RoomsFirstDungeonGenerator");
     }   
+    private void FixedUpdate() {
+        if (!inStore)
+            this.levelText.text = "Level " + GameObject.Find("RoomsFirstDungeonGenerator").GetComponent<RoomFirstDungeonGenerator>().level;
+        else
+            this.levelText.text = "";
 
-    // Update is called once per frame
-    void FixedUpdate()
+    }
+
+    public void toggleInStore()
     {
-        this.levelText.text = "Level " + RoomFirstDungeonGenerator.level;
+        inStore = !inStore;
     }
 }
