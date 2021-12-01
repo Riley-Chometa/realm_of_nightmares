@@ -27,15 +27,15 @@ public class CoinMechanics : MonoBehaviour
             Destroy(this.gameObject);
             if (gameObject.tag == "GoldCoin") {
                 GameObject.Find("StatTracker").GetComponent<StatTracker>().currentGoldCoins += 1;
-                print("GOLD COINS: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentGoldCoins);
+                //print("GOLD COINS: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentGoldCoins);
             }
             if (gameObject.tag == "SilverCoin") {
                 GameObject.Find("StatTracker").GetComponent<StatTracker>().currentSilverCoins += 1;
-                print("SILVER COINS: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentSilverCoins);
+                //print("SILVER COINS: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentSilverCoins);
             }
             if (gameObject.tag == "BronzeCoin") {
                 GameObject.Find("StatTracker").GetComponent<StatTracker>().currentBronzeCoins += 1;
-                print("BRONZE COINS: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentBronzeCoins);
+                //print("BRONZE COINS: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentBronzeCoins);
             }
             
             smoke = Instantiate(smokeAnimation, tm.position, tm.rotation);

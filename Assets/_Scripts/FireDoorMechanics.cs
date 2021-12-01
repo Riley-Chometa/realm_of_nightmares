@@ -14,10 +14,10 @@ public class FireDoorMechanics : MonoBehaviour
     private void Update()
     {
         // A simple if statement for testing the fireExtinguisher function. Gets rid of all the fire doors. 
-        if (Input.GetKeyDown("h")) 
-        {
-            fireExtinguisher();
-        }
+        // if (Input.GetKeyDown("h")) 
+        // {
+        //     fireExtinguisher();
+        // }
     }
 
     void OnCollisionEnter2D(Collision2D coli)

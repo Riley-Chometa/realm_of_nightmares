@@ -34,6 +34,7 @@ public class Spawner : MonoBehaviour
     private float currentTimeToSpawn;                       // Trackers to calculate when to spawn
     private int maxSpawnFlag = 0;
     private float spawnTime = 10.0f;
+    public GameObject aStar;
 
 
     // Update is called once per frame
@@ -57,8 +58,13 @@ public class Spawner : MonoBehaviour
             }
             if (spawnTime <= 0)
             {
+                // Destroy(GameObject.Find("Astar(Clone)"));
+                // Instantiate(this.aStar);
                 GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOff");
-                Destroy(gameObject);
+                gameObject.GetComponent<FireDoorMechanics>().fireExtinguisher();
+                this.startSpawning = false;
+
+                //Destroy(gameObject);
             }
             spawnTime -= Time.deltaTime;
         }
@@ -78,7 +84,9 @@ public class Spawner : MonoBehaviour
     }
 
     public void SpawnObject() {
-        GameObject child = Instantiate(Enemy, new Vector3(transform.position.x, transform.position.y, -1), UnityEngine.Quaternion.identity); //as GameObject;
+        GameObject child = Instantiate(Enemy, new Vector3(transform.position.x, transform.position.y-1f, 0f), UnityEngine.Quaternion.identity);
+        //child.transform.position = new Vector3(child.transform.position.x, child.transform.position.y, -1f);
+        //child.transform.SetParent(GameObject.Find("SpawnedParent").transform);
     }
 
     public void SetMaxEnemies(int num) {

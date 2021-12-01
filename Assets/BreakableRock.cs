@@ -40,7 +40,7 @@ public class BreakableRock : MonoBehaviour
     public void rockHit(int damagae)
     {
         rockHP -= damagae;
-        Debug.Log("Current RockHP = "+ rockHP);
+        //Debug.Log("Current RockHP = "+ rockHP);
     }
 
     public void destroyRock()

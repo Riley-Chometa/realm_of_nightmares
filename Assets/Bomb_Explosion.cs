@@ -23,7 +23,7 @@ public class Bomb_Explosion : MonoBehaviour
     void Start()
     {
         scaleChange = new Vector3(18f, 18f, 1f);
-        Debug.Log("Using a bomb");
+        //Debug.Log("Using a bomb");
         StartCoroutine(bombExplosion());
     }
 
@@ -42,17 +42,17 @@ public class Bomb_Explosion : MonoBehaviour
         if (coli.gameObject.tag == "Player")
         {
             list.Add(coli.gameObject);
-            Debug.Log(coli.gameObject.name + " has entered the bomb radius");
+            //Debug.Log(coli.gameObject.name + " has entered the bomb radius");
         }
         if (coli.gameObject.tag == "BreakableObjects")
         {
             list.Add(coli.gameObject);
-            Debug.Log(coli.gameObject.name + " has entered the bomb radius");
+            //Debug.Log(coli.gameObject.name + " has entered the bomb radius");
         }
         if (coli.gameObject.tag == "Enemy")
         {
             list.Add(coli.gameObject);
-            Debug.Log(coli.gameObject.name + " has entered the bomb radius");
+            //Debug.Log(coli.gameObject.name + " has entered the bomb radius");
         }
     }
 
@@ -61,12 +61,12 @@ public class Bomb_Explosion : MonoBehaviour
         if (coli.gameObject.tag == "Player")
         {
             list.Remove(coli.gameObject);
-            Debug.Log(coli.gameObject.name + " has left the bomb radius");
+            //Debug.Log(coli.gameObject.name + " has left the bomb radius");
         }
         if (coli.gameObject.tag == "enemy")
         {
             list.Remove(coli.gameObject);
-            Debug.Log(coli.gameObject.name + "has left the bomb radius");
+            //Debug.Log(coli.gameObject.name + "has left the bomb radius");
             //We don't need to do one of these for the breakable objects since they do not move. 
         }
     }
