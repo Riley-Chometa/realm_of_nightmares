@@ -47338,6 +47338,7 @@ MonoBehaviour:
   EnemySpawner: {fileID: 0}
   doorPrefab: {fileID: 0}
   RoomTriggerPrefab: {fileID: 0}
+  level: 1
   FloorTrap: {fileID: 0}
   BarrelLight: {fileID: 0}
   Coin: {fileID: 0}

@@ -317,6 +317,7 @@ MonoBehaviour:
   staminaRecoveryRate: 1
   acceleration: 15
   deceleration: 40
+  canInput: 0
   attackDamage: 20
   baseAttackDamage: 20
   attackPointRight: {fileID: 4389603735768159291}
@@ -340,6 +341,7 @@ MonoBehaviour:
   - {fileID: 8048761701203785476, guid: 627846c7db69b844395f55013d59a140, type: 3}
   - {fileID: 6331598603782407021, guid: e65903ac5ba8a1c49abe0f0a84ad4c67, type: 3}
   bombObject: {fileID: 0}
+  accolade: {fileID: 3294491622237533582, guid: aff5c3a11eb66fd45befd372d15272b6, type: 3}
   tempGenerator: {fileID: 0}
 --- !u!70 &4389603736547947970
 CapsuleCollider2D:
@@ -549,3 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d9b396efec446d69aef464f5201f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentEnemies: 0
+  currentGoldCoins: 0
+  currentSilverCoins: 0
+  currentBronzeCoins: 0
