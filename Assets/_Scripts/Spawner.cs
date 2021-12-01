@@ -45,11 +45,11 @@ public class Spawner : MonoBehaviour
                 if (currentTimeToSpawn > 0) {                       // Reduce timer
                 currentTimeToSpawn -= Time.deltaTime;
                 currentTime += Time.deltaTime;
-            }   
-            else {                                              // Timer is at 0 - Spawn new enemy
-                SpawnObject();
-                currentTimeToSpawn = timeToSpawn;
-                }
+                }   
+                else {                                              // Timer is at 0 - Spawn new enemy
+                    //SpawnObject();
+                    //currentTimeToSpawn = timeToSpawn;
+                    }
             }
             else {
                 //gameObject.GetComponent<FireDoorMechanics>().fireExtinguisher();
