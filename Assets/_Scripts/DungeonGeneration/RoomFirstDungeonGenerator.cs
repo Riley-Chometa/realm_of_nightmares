@@ -138,6 +138,8 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             if (room.roomType == RoomType.Spawn){
                 this.Player.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
                 this.dungeon.startRoom = room;
+                GameObject randomRoomPrefab = Instantiate(GetRandomStartRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 0),UnityEngine.Quaternion.identity);
+                randomRoomPrefab.transform.SetParent(this.ParentSpawn.transform);
             }
             else if (room.roomType == RoomType.End)
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
@@ -168,6 +170,17 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         if (loadedRoomPrefab == null)
         {
             throw new FileNotFoundException("RoomPrefab" + roomNumber + " not found, please check the Assets/Resources/RoomPrefabs/ folder to ensure the file exists.");
+        }
+        return loadedRoomPrefab;
+    }
+
+    private GameObject GetRandomStartRoomPrefab()
+    {
+        int roomNumber = Random.Range(1,1);
+        GameObject loadedRoomPrefab = (GameObject)Resources.Load("RoomPrefabs/StartRoomPrefab" + roomNumber);
+        if (loadedRoomPrefab == null)
+        {
+            throw new FileNotFoundException("startRoomPrefab" + roomNumber + " not found, please check the Assets/Resources/RoomPrefabs/ folder to ensure the file exists.");
         }
         return loadedRoomPrefab;
     }

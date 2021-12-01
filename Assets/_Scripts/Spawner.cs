@@ -30,6 +30,7 @@ public class Spawner : MonoBehaviour
     private int currentEnemies = 0;
     private float currentTimeToSpawn;                       // Trackers to calculate when to spawn
     private int maxSpawnFlag = 0;
+    private float spawnTime = 10.0f;
 
 
     // Update is called once per frame
@@ -43,7 +44,14 @@ public class Spawner : MonoBehaviour
                 SpawnObject();
                 currentTimeToSpawn = timeToSpawn;
             }
+            if (spawnTime <= 0)
+            {
+                GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOff");
+                Destroy(gameObject);
+            }
+            spawnTime -= Time.deltaTime;
         }
+
     }
 
     public void ToggleDoorsOff()
@@ -60,7 +68,7 @@ public class Spawner : MonoBehaviour
 
         if (maxEnemies != 0 && maxSpawnFlag != 1) {                                                                      // If maximum enemy count isn't reached, spawn enemy
 
-            GameObject child = Instantiate(Enemy, transform.position, UnityEngine.Quaternion.identity) as GameObject;
+            GameObject child = Instantiate(Enemy, new Vector3(transform.position.x, transform.position.y-1, -1), UnityEngine.Quaternion.identity) as GameObject;
             //child.transform.parent = transform;
             currentEnemies += 1;
 
