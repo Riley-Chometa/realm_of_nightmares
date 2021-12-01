@@ -138,8 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 0}
-  animator: {fileID: 1875273827972061672}
---- !u!58 &1875273826942707922
+  animator: {fileID: 8667225464073299855}
+  statCanvas: {fileID: 8732064102262724741, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
+--- !u!58 &8667225463491540192
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

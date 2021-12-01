@@ -19,6 +19,8 @@ public class AutoSpawnDungeon : MonoBehaviour
     private GameObject Store;
     private GameObject player;
     private TransitionTextScript transitionText;
+    [SerializeField]
+    private GameObject statCanvas;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,11 +57,6 @@ public class AutoSpawnDungeon : MonoBehaviour
             // generator.GenerateDungeon();
         }
 
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
 

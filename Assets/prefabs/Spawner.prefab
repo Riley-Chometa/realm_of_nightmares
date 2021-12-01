@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8877841382483264614}
   - component: {fileID: 7483209009234386930}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.454
-  m_Color: {r: 0.19339621, g: 0.5162534, b: 1, a: 1}
+  m_FalloffIntensity: 0.408
+  m_Color: {r: 0.9960785, g: 0.29411766, b: 0.058823533, a: 1}
   m_Intensity: 2
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
+  m_PointLightInnerRadius: 1.5
   m_PointLightOuterRadius: 2.5
   m_PointLightDistance: 3
   m_PointLightQuality: 1
@@ -83,12 +83,13 @@ GameObject:
   - component: {fileID: 6014766486769375596}
   - component: {fileID: 8208563277145960039}
   - component: {fileID: 5390270713034828532}
-  - component: {fileID: 8718622755764118563}
   - component: {fileID: 563256837436668938}
   - component: {fileID: 2176229130426252412}
-  m_Layer: 11
+  - component: {fileID: -333704158935487088}
+  - component: {fileID: 829208362641655167}
+  m_Layer: 10
   m_Name: Spawner
-  m_TagString: Enemy
+  m_TagString: spawner
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,8 +102,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9104776887883856583}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.28, y: 14.48, z: -1}
-  m_LocalScale: {x: 4, y: 5, z: 1}
+  m_LocalPosition: {x: -39.612556, y: 6.2610474, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 8877841382483264614}
   m_Father: {fileID: 0}
@@ -123,6 +124,7 @@ MonoBehaviour:
   Enemy: {fileID: 8857220039008338612, guid: 5518d10ca72b6364bbb6b78d1a29f2ce, type: 3}
   maxEnemies: 1
   timeToSpawn: 4
+  activeTime: 20
   startSpawning: 0
 --- !u!212 &5390270713034828532
 SpriteRenderer:
@@ -164,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
-  m_Sprite: {fileID: 21300000, guid: 4c654cfcbbaa340dbad63c0610eb9da6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ffe22f98be762740815b36e3c714dc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -175,22 +177,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &8718622755764118563
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9104776887883856583}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.011169672, y: 0.0011170388}
-  m_Size: {x: 0.50038004, y: 0.71818715}
-  m_Direction: 0
 --- !u!50 &563256837436668938
 Rigidbody2D:
   serializedVersion: 4
@@ -222,7 +208,7 @@ Animator:
   m_GameObject: {fileID: 9104776887883856583}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69dd340e43f300048b9496c515b81fcc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 276a2710ef3f81444af09f5f547f3cd9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -231,3 +217,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-333704158935487088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104776887883856583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5e896ed9b684249aed05092388eb27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+  sizzleSound: {fileID: 8300000, guid: aa9d4eb9e3004cc48b9d047aa5c4ea55, type: 3}
+  steamSound: {fileID: 8300000, guid: facb462ae7b787c4faa62ce8c88616a4, type: 3}
+  animFire: {fileID: 0}
+--- !u!61 &829208362641655167
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104776887883856583}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.00082194805}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.32}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.25260764}
+  m_EdgeRadius: 0
