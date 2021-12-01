@@ -104,6 +104,6 @@ public class Bomb_Explosion : MonoBehaviour
 
         yield return new WaitForSeconds(0.90f);
         Destroy(gameObject);
-        Debug.Log("Bomb has been detonated");
+        // Debug.Log("Bomb has been detonated");
     }
 }

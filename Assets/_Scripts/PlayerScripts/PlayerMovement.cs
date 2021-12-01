@@ -347,7 +347,7 @@ public class PlayerMovement : MonoBehaviour
             if (enemy.gameObject.tag == "BreakableObjects")
             {
             enemy.GetComponent<BreakableRock>().rockHit(1);
-            Debug.Log("Player has dealt 1 damage to rock");
+            // Debug.Log("Player has dealt 1 damage to rock");
             }
         }
     }

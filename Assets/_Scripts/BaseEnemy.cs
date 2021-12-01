@@ -78,7 +78,7 @@ public class BaseEnemy : MonoBehaviour
                 if (enemyController != null)
                     enemyController.setCanMove(false);
                 death();
-                Debug.Log("Past Death");
+                // Debug.Log("Past Death");
             
             }
         }
@@ -110,7 +110,7 @@ public class BaseEnemy : MonoBehaviour
         // else {
         //     deathDestroy();
         // }
-        Debug.Log("before spawner toggle doors");
+        // Debug.Log("before spawner toggle doors");
         if (gameObject.name.Equals("Spawner(Clone)"))
         {
             GameObject.Find("RoomsFirstDungeonGenerator").SendMessage("ToggleDoorsOff");
@@ -120,7 +120,7 @@ public class BaseEnemy : MonoBehaviour
             dropItem();
             gameObject.GetComponent<Unit>().SetDead();
             GameObject.Find("StatTracker").GetComponent<StatTracker>().currentEnemies += 1;
-            print("ENEMIES KILLED: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentEnemies);
+            // print("ENEMIES KILLED: " + GameObject.Find("StatTracker").GetComponent<StatTracker>().currentEnemies);
         }
         GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyScore(100);
     }
@@ -131,14 +131,12 @@ public class BaseEnemy : MonoBehaviour
     }
 
     void dropItem() {
-        int numItems = itemDrops.Count;
-        int itemToDrop = Random.Range(0, numItems);
-
         // Chance to drop nothing
-        if (itemToDrop == numItems) {
+        if (Random.Range(1,100)<=5) {
             return;
         }
         else {
+            int itemToDrop = Random.Range(0, itemDrops.Count-1);
             GameObject temp = Instantiate(itemDrops[itemToDrop], transform.position, transform.rotation);
             if (!isTest) {
                     temp.transform.SetParent(GameObject.Find("SpawnedParent").transform);

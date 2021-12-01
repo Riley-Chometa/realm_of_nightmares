@@ -70,7 +70,7 @@ public class PickUpItems : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "BronzeCoin"){
             audioSource.PlayOneShot(coinPickUp);
-            playerstatsmodifier.modifyCoins(10);
+            playerstatsmodifier.modifyCoins(5);
             playerstatsmodifier.modifyScore(10);
         }
         else if (other.gameObject.tag == "SilverCoin"){
@@ -103,7 +103,7 @@ public class PickUpItems : MonoBehaviour
         else if (other.gameObject.tag == "Bombs")
         {
             Destroy(other.gameObject);
-            Debug.Log("Found a Bomb");
+            // Debug.Log("Found a Bomb");
             audioSource.PlayOneShot(coinPickUp);
             playerstatsmodifier.modifyBombs(1);
             //Destroy(GetComponent<Transform>().GetChild(0).gameObject); //Destroys the Light 2D child object 
