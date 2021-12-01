@@ -7,18 +7,6 @@ public class StatTracker : MonoBehaviour
 
     // public static StatTracker Instance;
 
-    // void Awake ()   
-    //    {
-    //     if (Instance == null)
-    //     {
-    //         DontDestroyOnLoad(gameObject);
-    //         Instance = this;
-    //     }
-    //     else if (Instance != this)
-    //     {
-    //         Destroy (gameObject);
-    //     }
-    //   }
     // Total Stats
     // Enemy Stats
     private int totalEnemies = 0;
@@ -51,6 +39,38 @@ public class StatTracker : MonoBehaviour
         resetCounter();
     }
 
+    public int getCurrentEnemies() {
+        return currentEnemies;
+    }
+
+    public int getCurrentGold() {
+        return currentGoldCoins;
+    }
+
+    public int getCurrentSilver() {
+        return currentSilverCoins;
+    }
+
+    public int getCurrentBronze() {
+        return currentBronzeCoins;
+    }
+
+    public int getTotalEnemies() {
+        return totalEnemies + currentEnemies;
+    }
+
+    public int getTotalGold() {
+        return totalGoldCoins + currentGoldCoins;
+    }
+
+    public int getTotalSilver() {
+        return totalSilverCoins + currentSilverCoins;
+    }
+
+    public int getTotalBronze() {
+        return totalBronzeCoins + currentBronzeCoins;
+    }
+
     public void endOfLevel() {
         totalEnemies += currentEnemies;
         totalGoldCoins += currentGoldCoins;
@@ -66,13 +86,4 @@ public class StatTracker : MonoBehaviour
         currentSilverCoins = 0;
         currentBronzeCoins = 0;
     }
-
-    // public void SaveStats()
-    // {
-    //     StatTracker.Instance.totalEnemies = totalEnemies;
-    //     StatTracker.Instance.totalSpawners = totalSpawners;
-    //     StatTracker.Instance.totalGoldCoins = totalGoldCoins;
-    //     StatTracker.Instance.totalSilverCoins = totalSilverCoins;
-    //     StatTracker.Instance.totalBronzeCoins = totalBronzeCoins;
-    //     }
 }
