@@ -27,9 +27,13 @@ public class BaseEnemy : MonoBehaviour
     private Unit enemyController;
     public bool isAlive;
 
+    public GameObject floatText;
+    private Transform thisEnemy;
+
     // Set starting Variables.
     void Start()
     {
+        thisEnemy = this.gameObject.GetComponent<Transform>();
         this.isAlive = true;
         enemyController = this.GetComponent<Unit>();
         anim = this.GetComponent<Animator>();
@@ -51,6 +55,13 @@ public class BaseEnemy : MonoBehaviour
     // Take the damage from the player. run hit animation and run death if true.
     public void TakeDamage(int damage){
         if (canGetHit){
+            // trigger floating text 
+            if (floatText){
+            showFloatingText(damage);
+            }
+
+
+            //
             canGetHit = false;
             hitTimerValue = hitTimerMax;
             currentHealth -= damage;
@@ -73,6 +84,10 @@ public class BaseEnemy : MonoBehaviour
         }
     }
 
+    private void showFloatingText(int damage){
+        var someText = Instantiate(floatText, thisEnemy.position, Quaternion.identity, thisEnemy);
+        someText.GetComponent<TextMesh>().text = damage.ToString();
+    }
     // Animation calls calls this function after the hit timeframe has finished.
     // meant to reset the enemy animator back to idle state.
     public void stopTakingDamage(){

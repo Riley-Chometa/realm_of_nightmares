@@ -76,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject rangedObject;
     private Vector2 rangedAttackDirection;
     public GameObject bombObject;
+    public GameObject accolade; /// ACcOLADES FOR ATTACKING 
 
     private float pickupMaxTime = 30.0f;
     private float currentPickupTime;
@@ -337,7 +338,11 @@ public class PlayerMovement : MonoBehaviour
         Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(currentAttackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in enemiesHit){
             if (enemy.gameObject.tag == "Enemy"){
-            enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
+                int attackModifier = Random.Range(-5, 10);
+                if (attackModifier > 3){
+                    Instantiate(accolade, transform.position, Quaternion.identity);
+                }
+            enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage + attackModifier);
             }
             if (enemy.gameObject.tag == "BreakableObjects")
             {

@@ -207,8 +207,10 @@ MonoBehaviour:
   - {fileID: 1341216373451993642, guid: 2ae023dc1aec69047923f5d5631f9389, type: 3}
   - {fileID: 325187142192850821, guid: a6e2591bada45864595d3ae00045c718, type: 3}
   - {fileID: 2896252009031110385, guid: 43e40036e1a902b44a954c5412728b39, type: 3}
+  isTest: 0
   mainCollider: {fileID: 0}
   isAlive: 0
+  floatText: {fileID: 828122502697778465, guid: 37f7399e7dc859846922d821188cf4d2, type: 3}
 --- !u!50 &8857220039008338611
 Rigidbody2D:
   serializedVersion: 4
