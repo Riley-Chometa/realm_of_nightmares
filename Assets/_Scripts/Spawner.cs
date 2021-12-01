@@ -47,8 +47,8 @@ public class Spawner : MonoBehaviour
                 currentTime += Time.deltaTime;
                 }   
                 else {                                              // Timer is at 0 - Spawn new enemy
-                    //SpawnObject();
-                    //currentTimeToSpawn = timeToSpawn;
+                    // SpawnObject();
+                    // currentTimeToSpawn = timeToSpawn;
                     }
             }
             else {

@@ -103937,8 +103937,8 @@ MonoBehaviour:
   randomWalkParameters: {fileID: 11400000, guid: 030871ac898b8054e83305a6dbb4bc39, type: 2}
   minRoomWidth: 23
   minRoomHeight: 23
-  dungeonWidth: 180
-  dungeonHeight: 180
+  dungeonWidth: 100
+  dungeonHeight: 100
   roomPrefabCount: 10
   maxRooms: 100
   offset: 4

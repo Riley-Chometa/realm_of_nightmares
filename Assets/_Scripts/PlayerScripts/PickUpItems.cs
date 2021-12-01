@@ -70,7 +70,7 @@ public class PickUpItems : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "BronzeCoin"){
             audioSource.PlayOneShot(coinPickUp);
-            playerstatsmodifier.modifyCoins(5);
+            playerstatsmodifier.modifyCoins(10);
             playerstatsmodifier.modifyScore(10);
         }
         else if (other.gameObject.tag == "SilverCoin"){
