@@ -350,6 +350,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1304636910404626505, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 385
+      objectReference: {fileID: 0}
+    - target: {fileID: 1304636910410330928, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 485
+      objectReference: {fileID: 0}
     - target: {fileID: 1304636910842492250, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -446,6 +454,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1304636911467431958, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
+      propertyPath: m_StartCorner
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1304636911467431958, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1304636912018370712, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -453,6 +469,10 @@ PrefabInstance:
     - target: {fileID: 1304636912018370712, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1304636912067446128, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 435
       objectReference: {fileID: 0}
     - target: {fileID: 7445384290232209107, guid: e373c93f5e4f14e4c9deb1a51352b2c2, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1391,6 +1411,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 2097670265}
+    - target: {fileID: 1875273826942707923, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
+      propertyPath: generator
+      value: 
+      objectReference: {fileID: 1826959208}
     - target: {fileID: 1875273826942707924, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1405,7 +1429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1875273826942707924, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1875273826942707924, guid: 4aeb500f6e57bbb49b752f5b2d7e4c2f, type: 3}
       propertyPath: m_LocalRotation.w

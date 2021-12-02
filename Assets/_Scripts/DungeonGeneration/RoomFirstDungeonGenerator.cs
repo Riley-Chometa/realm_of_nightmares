@@ -165,8 +165,15 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
     private GameObject GetRandomRoomPrefab()
     {
+        
         int roomNumber = Random.Range(1,this.roomPrefabCount);
-        GameObject loadedRoomPrefab = (GameObject)Resources.Load("RoomPrefabs/RoomPrefab" + roomNumber);
+        
+        String roomName = "RoomPrefabs/RoomPrefab" + roomNumber;
+        if (Random.Range(1,100)<=level)
+        {
+            roomName += "lvl2";
+        }
+        GameObject loadedRoomPrefab = (GameObject)Resources.Load(roomName);
         if (loadedRoomPrefab == null)
         {
             throw new FileNotFoundException("RoomPrefab" + roomNumber + " not found, please check the Assets/Resources/RoomPrefabs/ folder to ensure the file exists.");

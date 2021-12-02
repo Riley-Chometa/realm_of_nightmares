@@ -15,11 +15,7 @@ public class TransitionTextScript : MonoBehaviour
         //this.generator = GameObject.Find("RoomsFirstDungeonGenerator");
     }   
     private void FixedUpdate() {
-        if (!inStore)
-            this.levelText.text = "Level " + GameObject.Find("RoomsFirstDungeonGenerator").GetComponent<RoomFirstDungeonGenerator>().level;
-        else
-            this.levelText.text = "";
-
+        this.levelText.text = "Level " + GameObject.Find("RoomsFirstDungeonGenerator").GetComponent<RoomFirstDungeonGenerator>().level;
     }
 
     public void toggleInStore()

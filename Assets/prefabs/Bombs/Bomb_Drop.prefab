@@ -245,7 +245,7 @@ MonoBehaviour:
   countDown: {fileID: 8300000, guid: a62a1aee10d934c4fb193e809503b3af, type: 3}
   explosionSound: {fileID: 8300000, guid: 6bd8c5efea7bcd543a578f1078f7b4c9, type: 3}
   bomb: {fileID: 8169619587413910459}
-  bombDamage: 0
+  bombDamage: 50
 --- !u!50 &8169619587413910456
 Rigidbody2D:
   serializedVersion: 4

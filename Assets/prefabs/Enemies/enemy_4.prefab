@@ -248,7 +248,7 @@ MonoBehaviour:
   searchRange: 10
   attackRadius: 1
   attackCooldown: 2
-  speed: 0.04
+  speed: 0.03
 --- !u!95 &8857220039008338613
 Animator:
   serializedVersion: 3

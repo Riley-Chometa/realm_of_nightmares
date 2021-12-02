@@ -90,7 +90,7 @@ public class Bomb_Explosion : MonoBehaviour
             if (obj.gameObject.tag == "Player") //If the player is within the range of the bomb
             {
                 obj.gameObject.GetComponent<PlayerMovement>().getHit();
-                GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyHealth(-2);
+                GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>().modifyHealth(-5);
             }
             if (obj.gameObject.tag == "BreakableObjects")
             {

@@ -36,7 +36,7 @@ public class AutoSpawnDungeon : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Player")
         {
-            transitionText.toggleInStore();
+            
             if (!inStore)
             {
                 inStore = true;
@@ -44,6 +44,7 @@ public class AutoSpawnDungeon : MonoBehaviour
                 //SceneManager.LoadScene("TempStoreScene");
                 player.transform.position = new Vector3(Store.transform.position.x, Store.transform.position.y, 0);
                 animator.SetTrigger("StartTransition");
+                toggleStore();
             }
             else if (inStore)
             {
@@ -57,6 +58,12 @@ public class AutoSpawnDungeon : MonoBehaviour
             // generator.GenerateDungeon();
         }
 
+    }
+
+    private IEnumerator toggleStore()
+    {
+        yield return new WaitForSeconds(10);
+        transitionText.toggleInStore();
     }
 }
 
