@@ -20,11 +20,15 @@ public class Unit : MonoBehaviour
 
     private Coroutine lastCoroutine;
     private Vector2 targetPosition;
-    public float speed = 0.02f;
+    public float speed;
+    private float currentSpeed;
     Vector2[] path;
     int targetIndex;
     Vector2 start;
     private bool isDead = false;
+
+    CapsuleCollider2D collider;
+    CapsuleCollider2D targetCollider;
 
 
     protected void Awake(){
@@ -33,26 +37,20 @@ public class Unit : MonoBehaviour
         start = transform.position;
     }
     void Start(){
+        collider = GetComponent<CapsuleCollider2D>();
         anim = this.GetComponent<Animator>();
         curDirection = Direction.Down;
         target = GameObject.FindGameObjectWithTag("Player");
+        targetCollider = target.GetComponent<CapsuleCollider2D>();
         targetPosition = target.transform.position;
-        if (Vector2.Distance(transform.position, targetPosition) < searchRange){
-            PathRequestManager.RequestPath(transform.position, targetPosition, this);
-        }
-        
 
     }
+
 
     public void setCanMove(bool value){
         canMove = value;
         if (!value){
         StopCoroutine("FollowPath");
-        }
-        else {
-            if (Vector2.Distance(transform.position, targetPosition) < searchRange){
-                    PathRequestManager.RequestPath(transform.position, targetPosition, this);
-            }
         }
     }
 
@@ -64,22 +62,25 @@ public class Unit : MonoBehaviour
     }
 
     protected void FixedUpdate() {
+        
         if (!isDead){
-            if (canMove && Vector2.Distance(targetPosition, target.transform.position) != 0){
-                targetPosition = target.transform.position;
-                if (Vector2.Distance(transform.position, targetPosition) < searchRange){
-                    PathRequestManager.RequestPath(transform.position, targetPosition, this);
-                }
-            }
-
             if (Vector2.Distance(targetPosition, transform.position) < attackRadius && canAttack){
-                anim.SetFloat("Speed", 0);
+                currentSpeed =0;
+                anim.SetFloat("Speed", currentSpeed);
                 StopCoroutine("FollowPath");
                 canAttack = false;
                 canMove = false;
                 anim.SetTrigger("isAttack");    
                 StartCoroutine(Attack());
             }
+            else if (canMove && Vector2.Distance(targetPosition, target.transform.position) != 0){
+                targetPosition = target.transform.position;
+                if (Vector2.Distance(transform.position, targetPosition) < searchRange){
+                    PathRequestManager.RequestPath(transform.position, targetPosition, this);
+                }
+            }
+
+            
         }else{
             StopCoroutine("FollowPath");
             StopCoroutine(Attack());
@@ -92,13 +93,11 @@ public class Unit : MonoBehaviour
         canAttack = true;
         canMove = true;
         targetPosition = target.transform.position;
-        if (Vector2.Distance(targetPosition, transform.position) < searchRange){
-            PathRequestManager.RequestPath(transform.position, targetPosition, this);
-        }
         if (Vector2.Distance(targetPosition, transform.position) < attackRadius){
             float xdirection = targetPosition.x - transform.position.x;
             float ydirection = targetPosition.y - transform.position.y;
             if (Mathf.Abs(xdirection) > Mathf.Abs(ydirection)){
+
                 anim.SetFloat("Xdirection", xdirection);
                 anim.SetFloat("Ydirection", 0);
                 if(xdirection >0){
@@ -116,6 +115,7 @@ public class Unit : MonoBehaviour
                 }
             }
         }
+        
     }
 
     IEnumerator Attack(){
@@ -151,10 +151,14 @@ public class Unit : MonoBehaviour
     */
     IEnumerator FollowPath(){
         if (path.Length > 0){
+            targetIndex =0;
             Vector2 currentWaypoint = path[0];
+            currentSpeed = speed;
+            Vector2 previousPosition = transform.position;
             while(true){
                 Debug.DrawLine(transform.position, currentWaypoint, Color.white, 2f, false);
-                if(Vector2.Distance(transform.position, currentWaypoint) < speed){
+                print(transform.position+ " "+ currentWaypoint + " " + path[targetIndex]);
+                if(Vector2.Distance(transform.position, currentWaypoint) <= 0.1f){
                     targetIndex++;
                     if(targetIndex >= path.Length){
                         targetIndex = 0;
@@ -162,7 +166,7 @@ public class Unit : MonoBehaviour
                     }
                 currentWaypoint = path[targetIndex];
                 }
-                anim.SetFloat("Speed", speed);
+                anim.SetFloat("Speed", currentSpeed);
                 float xdirection = currentWaypoint.x - transform.position.x;
                 float ydirection = currentWaypoint.y - transform.position.y;
                 if (Mathf.Abs(xdirection) > Mathf.Abs(ydirection)){
@@ -186,7 +190,8 @@ public class Unit : MonoBehaviour
             while(Time.timeScale == 0){
                 yield return null;
             }
-            transform.position = Vector2.MoveTowards(transform.position, currentWaypoint, speed);
+            previousPosition = transform.position;
+            transform.position = Vector2.MoveTowards(transform.position, currentWaypoint, currentSpeed);
             yield return null;
             }
         }
