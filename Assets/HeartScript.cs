@@ -23,7 +23,7 @@ private GameObject target;
              }
          }
         
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
         player.modifyHealth(1);
      }
  }

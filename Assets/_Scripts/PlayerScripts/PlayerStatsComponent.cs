@@ -155,10 +155,10 @@ private CanvasParts canvasParts;
 //                 }
 // =======
             if (amount < 0) {
-                NthHit += 1;
+                NthHit -= amount;
             }
             GameObject heartToRemove = hearts[hearts.Count - 1];
-            if (NthHit == 4) {
+            if (NthHit >= 4) {
                 NthHit = 0;
                 if (amount < 0 && hearts.Count != 0) {
                     hearts.Remove(heartToRemove);
@@ -178,14 +178,20 @@ private CanvasParts canvasParts;
                     NthHit = 0;
                 }
                 else {
-                    for (int i = 0; i<amount;i++)
-                {
-                    print("HEALED");
-                    GameObject newHeart = Instantiate(playerHeart) as GameObject;
-                    newHeart.transform.SetParent(healthGrid.transform);
-                    hearts.Add(newHeart);
-                }
-                }
+                    if (currentHealth < maxHealth) {
+                        for (int i = 0; i<amount;i++)
+                    {
+                        print("HEALED");
+                        GameObject newHeart = Instantiate(playerHeart) as GameObject;
+                        newHeart.transform.SetParent(healthGrid.transform);
+                        hearts.Add(newHeart);
+                        currentHealth += amount;
+                        if (currentHealth > maxHealth) {
+                            currentHealth = maxHealth;
+                        }
+                    }
+                } 
+            }
                 
                 // if (NthHit != 4) {
                 //     GameObject newHeart = Instantiate(playerHeart) as GameObject;
@@ -217,7 +223,6 @@ private CanvasParts canvasParts;
 
     public void modifyMaxHealth(int amount){
         maxHealth += amount;
-        modifyHealth(1);
     }
     public int getMaxHealth(){
         return this.maxHealth;
