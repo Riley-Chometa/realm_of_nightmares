@@ -183,7 +183,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
     private GameObject GetRandomStartRoomPrefab()
     {
-        int roomNumber = Random.Range(1,1);
+        int roomNumber = Random.Range(1,4);
         GameObject loadedRoomPrefab = (GameObject)Resources.Load("RoomPrefabs/StartRoomPrefab" + roomNumber);
         if (loadedRoomPrefab == null)
         {

@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPointDown;
     private Transform previousAttackPoint;
     private Vector2 previousRangedAttackDirection;
+    private Vector2 currentPosition;
     public Transform currentAttackPoint;
     public float attackRange = .5f;
     public LayerMask enemyLayers;
@@ -218,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
             if (canMove){
             rb.MovePosition(rb.position + movement * (moveSpeed / Mathf.Sqrt(movement.x * movement.x + movement.y * movement.y)) * Time.fixedDeltaTime);
             }
+            currentPosition = transform.position;
         }
 
         else if (Mathf.Abs(movement.x) <=.02 && Mathf.Abs(movement.y) <= .02){
