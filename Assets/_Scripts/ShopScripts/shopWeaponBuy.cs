@@ -11,14 +11,14 @@ public class shopWeaponBuy : MonoBehaviour
     private PlayerMovement playerController;
 
     private int PurchasePrice;
-    private int level;
+    private int level = 0;
     public GameObject floatingText;
     public GameObject pressE;
     private GameObject tempText;
     private GameObject tempE;
     private string printMe = "Damage: ";
     private int[] swordPickUpDamages = {40, 60, 80, 100, 120, 150};
-    private int[] swordPrices = {150, 500, 750, 1000, 1250, 2000};
+    private int[] swordPrices = {150, 200, 250, 300, 350, 500};
     private int damage;
     public Transform tm;
     private SpriteRenderer spriteRenderer;
@@ -39,9 +39,13 @@ public class shopWeaponBuy : MonoBehaviour
                     playerController.setAttackDamage(swordPickUpDamages[level]);
                 }
                 canPurchase = false;
-                Destroy(this.gameObject);
+                // Destroy(this.gameObject);
                 shopkeeper.GetComponent<ShopKeeper>().changeText("Purchase Complete!");
-
+                level++;
+                if (level > 5){
+                    Destroy(this.gameObject);
+                }
+                setWeaponVariables();
 
             }
         }
@@ -55,8 +59,8 @@ public class shopWeaponBuy : MonoBehaviour
     }
 
     private void setWeaponVariables(){
-        var temp = GameObject.Find("RoomsFirstDungeonGenerator").GetComponent<RoomFirstDungeonGenerator>();
-        level = temp.getLevel();
+        // var temp = GameObject.Find("RoomsFirstDungeonGenerator").GetComponent<RoomFirstDungeonGenerator>();
+        // level = temp.getLevel();
         int playerDamage = playerController.getAttackDamage();
         if (level > 5){
             PurchasePrice = swordPrices[5];
@@ -78,7 +82,7 @@ public class shopWeaponBuy : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Collided with player!");
+        // Debug.Log("Collided with player!");
         if (other.gameObject.tag == "Player"){
             shopkeeper.GetComponent<ShopKeeper>().startDialog(1,"Sword Costs " + PurchasePrice + " Coins!" );
             shopkeeper.GetComponent<ShopKeeper>().changeText("Sword Costs " + PurchasePrice + " Coins!");

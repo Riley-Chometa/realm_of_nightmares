@@ -22,9 +22,9 @@ public class ShopGoldHeart : MonoBehaviour
     private void Update() {
         if (canPurchase){
             if (Input.GetKeyDown("e")){
-                playerInfo.modifyCoins(-1000);
+                playerInfo.modifyCoins(-100);
                 playerInfo.modifyMaxHealth(1);
-                if (playerInfo.getCoins() < 1000){
+                if (playerInfo.getCoins() < 100){
                     canPurchase = false;
                 }
                 shopkeeper.GetComponent<ShopKeeper>().changeText("Purchase Complete!");
@@ -33,7 +33,7 @@ public class ShopGoldHeart : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "Player"){
-            if (playerInfo.getCoins() >= 1000 && playerInfo.getMaxHealth() < 15){
+            if (playerInfo.getCoins() >= 100 && playerInfo.getMaxHealth() < 15){
                 canPurchase = true;
             }
         }
@@ -41,8 +41,8 @@ public class ShopGoldHeart : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player"){
-            shopkeeper.GetComponent<ShopKeeper>().startDialog(1,"Cost 1000 Coins!" );
-            shopkeeper.GetComponent<ShopKeeper>().changeText("Heart Cost 1000 Coins!");
+            shopkeeper.GetComponent<ShopKeeper>().startDialog(1,"Cost 100 Coins!" );
+            shopkeeper.GetComponent<ShopKeeper>().changeText("Heart Cost 100 Coins!");
             // shopkeeper.GetComponent<ShopKeeper>().playDialog(1);
             tempText = Instantiate(floatingText, tm.position + new Vector3(0, 1.5f, 0), Quaternion.identity, tm);
             tempText.GetComponent<TextMesh>().text = printMe;
