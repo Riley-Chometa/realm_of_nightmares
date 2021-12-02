@@ -151,7 +151,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 trigger.SendMessage("SetBounds", room.roomBounds);
                 spawner.transform.SetParent(this.ParentSpawn.transform);
                 trigger.transform.SetParent(this.ParentSpawn.transform);
-                GameObject randomRoomPrefab = Instantiate(GetRandomRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 0),UnityEngine.Quaternion.identity);
+                GameObject randomRoomPrefab = Instantiate(GetRandomRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y,-1),UnityEngine.Quaternion.identity);
                 randomRoomPrefab.transform.SetParent(this.ParentSpawn.transform);
             }
             //SpawnLights(room);
