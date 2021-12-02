@@ -35,7 +35,7 @@ public class ShopHeart : MonoBehaviour
         if (other.gameObject.tag == "Player"){
             if (playerInfo.getCoins() >= 10 && playerInfo.getHealth() < playerInfo.getMaxHealth()){
                 canPurchase = true;
-                
+                // Debug.Log("Set canpurchase to true");
             }
         }
     }

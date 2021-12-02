@@ -22,7 +22,7 @@ public class BaseEnemy : MonoBehaviour
     private Animator anim;
     
     private bool canGetHit;
-    private float hitTimerMax = .5f;
+    private float hitTimerMax = .25f;
     private float hitTimerValue = 0;
     private Unit enemyController;
     public bool isAlive;
@@ -153,6 +153,9 @@ public class BaseEnemy : MonoBehaviour
     //     // Debug.Log("Current Health: "+ this.currentHealth);
     // }
 
+    public void setMaxHealth(int newMaxHealth){
+        maxHealth = newMaxHealth;
+    }
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "trap"){
             this.TakeDamage(10);

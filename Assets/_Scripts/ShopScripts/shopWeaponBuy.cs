@@ -17,7 +17,7 @@ public class shopWeaponBuy : MonoBehaviour
     private GameObject tempText;
     private GameObject tempE;
     private string printMe = "Damage: ";
-    private int[] swordPickUpDamages = {40, 60, 80, 100, 120, 150};
+    private int[] swordPickUpDamages = {45, 50, 55, 60, 75, 80};
     private int[] swordPrices = {150, 200, 250, 300, 350, 500};
     private int damage;
     public Transform tm;
