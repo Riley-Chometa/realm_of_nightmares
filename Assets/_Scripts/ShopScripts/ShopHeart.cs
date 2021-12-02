@@ -37,6 +37,9 @@ public class ShopHeart : MonoBehaviour
                 canPurchase = true;
                 // Debug.Log("Set canpurchase to true");
             }
+            else {
+                canPurchase = false;
+            }
         }
     }
 
