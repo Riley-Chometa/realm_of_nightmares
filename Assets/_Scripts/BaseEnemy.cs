@@ -153,8 +153,9 @@ public class BaseEnemy : MonoBehaviour
     //     // Debug.Log("Current Health: "+ this.currentHealth);
     // }
 
-    public void setMaxHealth(int newMaxHealth){
-        maxHealth = newMaxHealth;
+    public void increaseHealth(){
+        maxHealth = maxHealth  + 15;
+        healthBar.setMaxHealth(maxHealth);
     }
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "trap"){
