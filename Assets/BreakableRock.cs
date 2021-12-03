@@ -8,6 +8,7 @@ public class BreakableRock : MonoBehaviour
     public Animator anim;
     public AudioSource source;
     public AudioClip rockSmash;
+    public LayerMask unwalkableMask;
 
     public int rockHP = 5; // variable for keeping track of how many sword hits it takes for the player to destroy the rock object. 
 
@@ -45,6 +46,9 @@ public class BreakableRock : MonoBehaviour
 
     public void destroyRock()
     {
+        GameObject Astar = GameObject.FindGameObjectWithTag("AStar");
+        Grid_script grid = Astar.GetComponent<Grid_script>();
+        Node node = grid.nodeFromWorldPosition(this.transform.position);
         //source.PlayOneShot(rockSmash);
         anim.Play("Breakablerockdestroyed"); 
         foreach (Transform child in transform)
@@ -53,5 +57,10 @@ public class BreakableRock : MonoBehaviour
         }
         Destroy(gameObject.GetComponent<BoxCollider2D>()); //Allow the player to walk ontop of this object as it is no longer an obstacle.
 
+        node.walkable = true;
+        List<Node> neighbours = grid.getNeighbours(node);
+        foreach(Node nodeNeighbor in neighbours){
+            nodeNeighbor.walkable = !(Physics2D.OverlapPoint(nodeNeighbor.WorldPosition, unwalkableMask));
+        }
     }
 }
