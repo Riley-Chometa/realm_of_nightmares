@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {   
@@ -85,6 +86,9 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject tempGenerator;
     private CanvasParts canvasParts;
+
+    static GameObject endOfGameStats;
+    static GameObject endOfGameCollects;
 
     // Initialize variables for the player.
     void Start(){
@@ -362,7 +366,13 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("Ydirection", storePreviousMovement[1]);
         anim.SetBool("isDead", true);
 
-        Invoke("Respawn", 3);
+        endOfGameStats = GameObject.Find("PlayerStats");
+        endOfGameCollects = GameObject.FindGameObjectWithTag("Player");
+
+        DontDestroyOnLoad(endOfGameStats);
+        DontDestroyOnLoad(endOfGameCollects);
+
+        SceneManager.LoadScene("GameOver");
     }
 
     private void Respawn()
