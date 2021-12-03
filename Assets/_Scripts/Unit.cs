@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    public AudioClip fireBallSound;
     public GameObject target;
+    public GameObject projectile;
     public float searchRange;
     public float attackRadius;
+    public bool rangedEnemy;
     private Animator anim;
     public float attackCooldown;
+    private float searchCooldown =0.4f;
 
     private bool canAttack;
     private bool canMove;
@@ -58,36 +62,79 @@ public class Unit : MonoBehaviour
     {
         this.isDead = true;
         StopCoroutine("FollowPath");
-        StopCoroutine(Attack());
+        if(rangedEnemy){
+            StopCoroutine("RangedAttack");
+        }else{
+            StopCoroutine("Attack");
+        }
     }
 
     protected void FixedUpdate() {
-        
         if (!isDead){
-            if (Vector2.Distance(targetPosition, transform.position) < attackRadius && canAttack){
+            searchCooldown -= Time.fixedDeltaTime;
+            if (Vector2.Distance(target.transform.position, transform.position) < attackRadius && canAttack){
                 currentSpeed =0;
                 anim.SetFloat("Speed", currentSpeed);
                 StopCoroutine("FollowPath");
                 canAttack = false;
                 canMove = false;
-                anim.SetTrigger("isAttack");    
-                StartCoroutine(Attack());
-            }
-            else if (canMove && Vector2.Distance(targetPosition, target.transform.position) != 0){
-                targetPosition = target.transform.position;
-                if (Vector2.Distance(transform.position, targetPosition) < searchRange){
-                    PathRequestManager.RequestPath(transform.position, targetPosition, this);
+                anim.SetTrigger("isAttack");
+                if(rangedEnemy){
+                    StartCoroutine("RangedAttack");
+                }else{ 
+                    StartCoroutine("Attack");
                 }
             }
-
+            else if (canMove && searchCooldown <= 0f && Vector2.Distance(transform.position, target.transform.position) < searchRange){
+                searchCooldown =0.4f;
+                PathRequestManager.RequestPath(transform.position, target.transform.position, this);
             
-        }else{
-            StopCoroutine("FollowPath");
-            StopCoroutine(Attack());
+            }           
         }
-            
-
     }
+    IEnumerator RangedAttack(){
+        yield return new WaitForSeconds(0.3f);
+        float xdirection = targetPosition.x - transform.position.x;
+        float ydirection = targetPosition.y - transform.position.y;
+        if (Mathf.Abs(xdirection) > Mathf.Abs(ydirection)){
+
+            anim.SetFloat("Xdirection", xdirection);
+            anim.SetFloat("Ydirection", 0);
+            
+            if(xdirection >0){
+                curDirection = Direction.Right;
+                GameObject newFireBall = Instantiate(projectile, new Vector3(transform.position.x + 0.5f, transform.position.y, 0), Quaternion.identity);
+                if(newFireBall != null){
+                    newFireBall.GetComponent<EnemyFireBall>().setTarget(target.transform.position);
+                }
+            }else{
+                curDirection = Direction.Left;
+                GameObject newFireBall = Instantiate(projectile, new Vector3(transform.position.x - 0.5f, transform.position.y, 0), Quaternion.identity);
+                if(newFireBall != null){
+                    newFireBall.GetComponent<EnemyFireBall>().setTarget(target.transform.position);
+                }
+            }
+        }else{
+            anim.SetFloat("Xdirection", 0);
+            anim.SetFloat("Ydirection", ydirection);
+            if(ydirection >0){
+                curDirection = Direction.Up;
+                GameObject newFireBall = Instantiate(projectile, new Vector3(transform.position.x , transform.position.y + 0.5f, 0), Quaternion.identity);
+                if(newFireBall != null){
+                    newFireBall.GetComponent<EnemyFireBall>().setTarget(target.transform.position);
+                }
+            }else{
+                curDirection = Direction.Down;
+                GameObject newFireBall = Instantiate(projectile, new Vector3(transform.position.x , transform.position.y - 0.5f, 0), Quaternion.identity);
+                if(newFireBall != null){
+                    newFireBall.GetComponent<EnemyFireBall>().setTarget(target.transform.position);
+                }
+            }
+        }
+
+        StartCoroutine("AttackCooldown");
+    }
+
     IEnumerator AttackCooldown() {
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
@@ -157,7 +204,6 @@ public class Unit : MonoBehaviour
             Vector2 previousPosition = transform.position;
             while(true){
                 Debug.DrawLine(transform.position, currentWaypoint, Color.white, 2f, false);
-                print(transform.position+ " "+ currentWaypoint + " " + path[targetIndex]);
                 if(Vector2.Distance(transform.position, currentWaypoint) <= 0.1f){
                     targetIndex++;
                     if(targetIndex >= path.Length){
@@ -198,28 +244,29 @@ public class Unit : MonoBehaviour
         
     }
     private void OnDrawGizmos() {
-
-        Gizmos.DrawWireSphere(transform.position, searchRange);
-        switch(curDirection){
-            case Direction.Up:{
-                Vector2 attackPosition = new Vector2(transform.position.x, transform.position.y + attackRadius- 0.2f);
-                Gizmos.DrawWireSphere(attackPosition, attackRadius); 
-                break;
-            }
-            case Direction.Down:{
-                Vector2 attackPosition = new Vector2(transform.position.x, transform.position.y - attackRadius+ 0.2f);
-                Gizmos.DrawWireSphere(attackPosition, attackRadius); 
-                break;
-            }
-            case Direction.Right:{
-                Vector2 attackPosition = new Vector2(transform.position.x + attackRadius- 0.2f, transform.position.y);
-                Gizmos.DrawWireSphere(attackPosition, attackRadius); 
-                break;
-            }
-            case Direction.Left:{
-                Vector2 attackPosition = new Vector2(transform.position.x - attackRadius+ 0.2f, transform.position.y);
-                Gizmos.DrawWireSphere(attackPosition, attackRadius); 
-                break;
+        if(!rangedEnemy){
+            Gizmos.DrawWireSphere(transform.position, searchRange);
+            switch(curDirection){
+                case Direction.Up:{
+                    Vector2 attackPosition = new Vector2(transform.position.x, transform.position.y + attackRadius- 0.2f);
+                    Gizmos.DrawWireSphere(attackPosition, attackRadius); 
+                    break;
+                }
+                case Direction.Down:{
+                    Vector2 attackPosition = new Vector2(transform.position.x, transform.position.y - attackRadius+ 0.2f);
+                    Gizmos.DrawWireSphere(attackPosition, attackRadius); 
+                    break;
+                }
+                case Direction.Right:{
+                    Vector2 attackPosition = new Vector2(transform.position.x + attackRadius- 0.2f, transform.position.y);
+                    Gizmos.DrawWireSphere(attackPosition, attackRadius); 
+                    break;
+                }
+                case Direction.Left:{
+                    Vector2 attackPosition = new Vector2(transform.position.x - attackRadius+ 0.2f, transform.position.y);
+                    Gizmos.DrawWireSphere(attackPosition, attackRadius); 
+                    break;
+                }
             }
         }   
     }

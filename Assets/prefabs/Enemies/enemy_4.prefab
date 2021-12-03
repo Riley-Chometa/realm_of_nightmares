@@ -328,8 +328,9 @@ MonoBehaviour:
   target: {fileID: 0}
   searchRange: 10
   attackRadius: 1
+  rangedEnemy: 0
   attackCooldown: 2
-  speed: 0.03
+  speed: 0.02
 --- !u!95 &8857220039008338613
 Animator:
   serializedVersion: 3
