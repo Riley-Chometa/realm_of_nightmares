@@ -40,6 +40,7 @@ public class StatCanvasScript : MonoBehaviour
     void SetText() {
 
         GameObject stats = GameObject.Find("StatTracker");
+        
 
         // int currentE = stats.GetComponent<StatTracker>().getCurrentEnemies();
         // int currentGold = stats.GetComponent<StatTracker>().getCurrentGold();
@@ -55,7 +56,7 @@ public class StatCanvasScript : MonoBehaviour
         // currentGoldCoins.text = "Gold Coins Collected: " + currentGold;
         // currentSilverCoins.text = "Silver Coins Collected: " + currentSilver;
         // currentBronzeCoins.text = "Bronze Coins Collected: " + currentBronze;
-
+        GameObject.Find("GameOver").GetComponent<Text>().text = totalE == 0 ? "Well It Looks Like You Were Just Here To Fuck Spiders...":"You Succumbed To Your Nightmares";
         totalEnemies.text = "Total Enemies Killed: " + totalE;
         totalGold.text = "Total Gold Coins Collected: " + totalG;
         totalSilver.text = "Total Silver Coins Collected: " + totalS;

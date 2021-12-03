@@ -330,6 +330,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2852369775640279820, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
+      propertyPath: m_Text
+      value: You succumbed to your Nightmares
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852369775640279820, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852369775640279820, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2852369775640279820, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868104846676821570, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2868104846676821570, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8732064102262724741, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
       propertyPath: m_Name
       value: StatsCanvas
