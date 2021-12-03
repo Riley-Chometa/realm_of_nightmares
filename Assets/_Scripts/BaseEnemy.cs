@@ -77,6 +77,7 @@ public class BaseEnemy : MonoBehaviour
             if (currentHealth <= 0){
                 if (enemyController != null)
                     enemyController.setCanMove(false);
+                healthBar.setHealth(0);    
                 death();
                 // Debug.Log("Past Death");
             
