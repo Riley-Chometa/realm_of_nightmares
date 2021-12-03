@@ -24,7 +24,7 @@ public class ShopHeart : MonoBehaviour
             if (Input.GetKeyDown("e")){
                 playerInfo.modifyCoins(-10);
                 playerInfo.modifyHealth(1);
-                if (playerInfo.getCoins() < 10){
+                if (playerInfo.getCoins() < 10 || playerInfo.getHealth() < playerInfo.getMaxHealth()){
                     canPurchase = false;
                 }
                 shopkeeper.GetComponent<ShopKeeper>().changeText("Purchase Complete!");
@@ -35,6 +35,10 @@ public class ShopHeart : MonoBehaviour
         if (other.gameObject.tag == "Player"){
             if (playerInfo.getCoins() >= 10 && playerInfo.getHealth() < playerInfo.getMaxHealth()){
                 canPurchase = true;
+                // Debug.Log("Set canpurchase to true");
+            }
+            else {
+                canPurchase = false;
             }
         }
     }
