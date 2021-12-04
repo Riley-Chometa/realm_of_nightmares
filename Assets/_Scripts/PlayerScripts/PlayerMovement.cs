@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         isAlive = true;
         canInput = true;
         audioSource = GetComponent<AudioSource>();
-        setAttackDamage(baseAttackDamage);
+        attackDamage = baseAttackDamage;
         staminaBar.setStamina(maxStamina);
         staminaBar.SetMaxValue(maxStamina);
         PickUpBar.SetMaxValue((int) pickupMaxTime);
@@ -470,6 +470,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void setAttackDamage(int damage){
+        audioSource.PlayOneShot(weaponPickUpSound);
         attackDamage = damage;
     }
 

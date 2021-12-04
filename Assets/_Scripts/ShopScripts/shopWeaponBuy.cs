@@ -69,7 +69,6 @@ public class shopWeaponBuy : MonoBehaviour
             spriteRenderer.sprite = swords[5];
         }
         else{
-            Debug.Log("Called for changing sprites");
             PurchasePrice = swordPrices[level];
             damage = swordPickUpDamages[level];
             spriteRenderer.sprite = swords[level];  

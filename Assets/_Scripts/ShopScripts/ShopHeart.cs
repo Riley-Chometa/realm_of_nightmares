@@ -16,7 +16,11 @@ public class ShopHeart : MonoBehaviour
     private GameObject tempE;
     private string printMe = "Heart";
     public Transform tm;
+    
+    private AudioSource AudioSource;
+    public AudioClip clip;
     private void Start() {
+        AudioSource = GetComponent<AudioSource>();
         playerInfo = GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>();
     }
     private void Update() {
@@ -24,6 +28,7 @@ public class ShopHeart : MonoBehaviour
             if (Input.GetKeyDown("e")){
                 playerInfo.modifyCoins(-10);
                 playerInfo.modifyHealth(1);
+                AudioSource.PlayOneShot(clip);
                 if (playerInfo.getCoins() < 10 || playerInfo.getHealth() < playerInfo.getMaxHealth()){
                     canPurchase = false;
                 }
