@@ -24,7 +24,7 @@ public class Unit : MonoBehaviour
 
     private Coroutine lastCoroutine;
     private Vector2 targetPosition;
-    public float speed;
+    private float speed;
     private float currentSpeed;
     Vector2[] path;
     int targetIndex;
@@ -47,10 +47,13 @@ public class Unit : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
         targetCollider = target.GetComponent<CapsuleCollider2D>();
         targetPosition = target.transform.position;
+        setSpeed(.02f);
 
     }
 
-
+    public void setSpeed(float newSpeed){
+        speed = newSpeed;
+    }
     public void setCanMove(bool value){
         canMove = value;
         if (!value){

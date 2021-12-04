@@ -21,6 +21,7 @@ public class AutoSpawnDungeon : MonoBehaviour
     private TransitionTextScript transitionText;
     [SerializeField]
     private GameObject statCanvas;
+    private int EnemyBaseHealth = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +53,11 @@ public class AutoSpawnDungeon : MonoBehaviour
                 inStore = false;
                 animator.SetTrigger("StartTransition");
                 generator.GenerateDungeon();
+                int level = generator.getLevel();
+                BaseEnemy[] enemies = FindObjectsOfType(typeof(BaseEnemy)) as BaseEnemy[];
+                foreach (BaseEnemy enemy in enemies){
+                    enemy.increaseHealth(EnemyBaseHealth + level*15);
+                }
                 //transitionText.toggleInStore();
             }
             
@@ -59,6 +65,7 @@ public class AutoSpawnDungeon : MonoBehaviour
         }
 
     }
+
 
     private IEnumerator toggleStore()
     {

@@ -17,7 +17,7 @@ public class shopWeaponBuy : MonoBehaviour
     private GameObject tempText;
     private GameObject tempE;
     private string printMe = "Damage: ";
-    private int[] swordPickUpDamages = {45, 50, 55, 60, 75, 80};
+    private int[] swordPickUpDamages = {25, 30, 40, 50, 75, 80};
     private int[] swordPrices = {150, 200, 250, 300, 350, 500};
     private int damage;
     public Transform tm;
@@ -61,6 +61,7 @@ public class shopWeaponBuy : MonoBehaviour
     private void setWeaponVariables(){
         // var temp = GameObject.Find("RoomsFirstDungeonGenerator").GetComponent<RoomFirstDungeonGenerator>();
         // level = temp.getLevel();
+        
         int playerDamage = playerController.getAttackDamage();
         if (level > 5){
             PurchasePrice = swordPrices[5];
@@ -68,6 +69,7 @@ public class shopWeaponBuy : MonoBehaviour
             spriteRenderer.sprite = swords[5];
         }
         else{
+            Debug.Log("Called for changing sprites");
             PurchasePrice = swordPrices[level];
             damage = swordPickUpDamages[level];
             spriteRenderer.sprite = swords[level];  

@@ -83,7 +83,6 @@ private CanvasParts canvasParts;
     {
         for (int i = 0; i <= maxHealth - 1; i++) {
             GameObject newHeart = Instantiate(playerHeart) as GameObject;
-            //Debug.Log(newHeart);
             newHeart.transform.SetParent(healthGrid.transform);
             hearts.Add(newHeart);
         }
@@ -144,16 +143,6 @@ private CanvasParts canvasParts;
             return;
         }
         if (currentHealth + amount <= maxHealth) {
-// <<<<<<< HEAD
-
-//             currentHealth += amount;
-//             if (amount < 0 && hearts.Count != 0) {
-//                 for (int j = 0; j > amount; j--){
-//                     GameObject heartToRemove = hearts[hearts.Count - 1];
-//                     hearts.Remove(heartToRemove);
-//                     Destroy(heartToRemove);
-//                 }
-// =======
             if (amount < 0) {
                 NthHit -= amount;
             }
@@ -192,7 +181,7 @@ private CanvasParts canvasParts;
                     }
                 } 
             }
-                
+
                 // if (NthHit != 4) {
                 //     GameObject newHeart = Instantiate(playerHeart) as GameObject;
                 //     newHeart.transform.SetParent(healthGrid.transform);
@@ -214,6 +203,18 @@ private CanvasParts canvasParts;
             //Debug.Log(playerController);
             playerController.playerDie();
         }
+        float enemySpeed;
+        if (currentHealth < 5){
+                enemySpeed = .011f;
+            }
+        else {
+                enemySpeed = .021f;
+            }
+        Unit[] enemies = FindObjectsOfType(typeof(Unit)) as Unit[];
+            foreach (Unit enemy in enemies){
+                enemy.setSpeed(enemySpeed);
+            }
+                
         //healthText.text = "Health: " + currentHealth;
     }
 
