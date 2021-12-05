@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8169619587413910454}
   - component: {fileID: 8169619587413910457}
   - component: {fileID: 8169619587413910456}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bomb_Drop
   m_TagString: Explosive
   m_Icon: {fileID: 0}

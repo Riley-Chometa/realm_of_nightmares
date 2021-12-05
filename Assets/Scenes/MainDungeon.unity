@@ -1730,6 +1730,10 @@ PrefabInstance:
       value: 2304
       objectReference: {fileID: 0}
     - target: {fileID: 4389603736547947980, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
+      propertyPath: attackLeftAnimation
+      value: 
+      objectReference: {fileID: 7165898223843520391, guid: c36fee1ae6c02ed449ba7555dc947df0, type: 3}
+    - target: {fileID: 4389603736547947980, guid: 6717192e05f459346b84d3c808ac417e, type: 3}
       propertyPath: playerStatsComponent
       value: 
       objectReference: {fileID: 1644529779}

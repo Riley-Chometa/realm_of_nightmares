@@ -62,6 +62,10 @@ public class PlayerMovement : MonoBehaviour
     public float attackRange = .5f;
     public LayerMask enemyLayers;
 
+    public GameObject attackLeftAnimation;
+    private bool isRight = false;
+
+// audio variables.
     public AudioClip attackSwingSound;
     public AudioClip hitSound;
     public AudioClip fireBallSound;
@@ -281,22 +285,27 @@ public class PlayerMovement : MonoBehaviour
         if (x > 0 && y < .5 && y >-.5){
             currentAttackPoint = attackPointRight;
             rangedAttackDirection = Vector2.right;
+            isRight = true;
         }
         else if (x == 1 && y == 1){
             currentAttackPoint = attackPointUp;
             rangedAttackDirection = Vector2.up;
+            isRight = true;
         }
         else if ( x == -1 && y == 1){
             currentAttackPoint = attackPointUp;
             rangedAttackDirection = Vector2.up;
+            isRight = true;
         }
         else if (x == -1 && y == -1){
             currentAttackPoint = attackPointDown;
             rangedAttackDirection = Vector2.down;
+            isRight = true;
         }
         else if (x == 1 && y == -1){
             currentAttackPoint = attackPointDown;
             rangedAttackDirection = Vector2.down;
+            isRight = true;
         }
         else if (x == 0 && y == 0){
             currentAttackPoint = previousAttackPoint;
@@ -306,16 +315,19 @@ public class PlayerMovement : MonoBehaviour
         else if (x < 0 && y <= .5 && y >= -.5){
             currentAttackPoint = attackPointLeft;
             rangedAttackDirection = Vector2.left;
+            isRight = false;
         }
         // bottom Quadrant
         else if (y < 0 && x <= .5 && x >= -.5){
             currentAttackPoint = attackPointDown;
             rangedAttackDirection = Vector2.down;
+            isRight = true;
         }
         // top Quadrant
         else if (y >= 0 && x <.5 && x > -.5) {
             currentAttackPoint = attackPointUp;
             rangedAttackDirection = Vector2.up;
+            isRight = true;
         }
         previousAttackPoint = currentAttackPoint;
         previousRangedAttackDirection = rangedAttackDirection;
@@ -338,6 +350,11 @@ public class PlayerMovement : MonoBehaviour
 
     // call the actual part of the animation where damage occurs.
     void attackAnimation(){
+        GameObject attackanim = Instantiate(attackLeftAnimation, currentAttackPoint.position, Quaternion.identity);
+        if (isRight){
+            attackanim.GetComponent<Animator>().SetTrigger("right");
+        }
+        Destroy(attackanim, .3f);
         if (rangedAttackOn){
             rangedAttack();
         }

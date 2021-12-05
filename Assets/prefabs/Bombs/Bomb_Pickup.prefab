@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5022472905840627323}
   - component: {fileID: 5022472905840627320}
   - component: {fileID: 5022472905840627321}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bomb_Pickup
   m_TagString: Bombs
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5022472906147057784}
   - component: {fileID: 5022472906147057785}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
