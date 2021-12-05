@@ -406,7 +406,7 @@ public class PlayerMovement : MonoBehaviour
     public void getHit(){
         if (getHitTimer <= 0){
         playerStatsComponent.GetComponent<PlayerStatsComponent>().modifyHealth(-1);
-        cameraShake.Instance.shakeCamera(2f, .35f);
+        cameraShake.Instance.shakeCamera(2.5f, .35f);
         // Debug.Log("Hey I Got Hit!");
         audioSource.PlayOneShot(hitSound);
         canMove = false;
