@@ -142,8 +142,11 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                 GameObject randomRoomPrefab = Instantiate(GetRandomStartRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 0),UnityEngine.Quaternion.identity);
                 randomRoomPrefab.transform.SetParent(this.ParentSpawn.transform);
             }
-            else if (room.roomType == RoomType.End)
+            else if (room.roomType == RoomType.End) {
                 this.DungeonEndPoint.transform.position = new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1);
+                GameObject randomRoomPrefab = Instantiate(GetRandomEndRoomPrefab(), new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 0),UnityEngine.Quaternion.identity);
+                randomRoomPrefab.transform.SetParent(this.ParentSpawn.transform);
+            }
             else if (room.roomType == RoomType.Normal){
                 GameObject spawner = Instantiate(this.EnemySpawner,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, 0),UnityEngine.Quaternion.identity);
                 GameObject trigger = Instantiate(this.RoomTriggerPrefab,new Vector3(room.roomBounds.center.x, room.roomBounds.center.y, -1),UnityEngine.Quaternion.identity);
@@ -169,7 +172,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         int roomNumber = Random.Range(1,this.roomPrefabCount);
         
         String roomName = "RoomPrefabs/RoomPrefab" + roomNumber;
-        if (Random.Range(1,100)<=level)
+        if (Random.Range(1,100)<=level*3)
         {
             roomName += "lvl2";
         }
@@ -185,6 +188,17 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     {
         int roomNumber = Random.Range(1,4);
         GameObject loadedRoomPrefab = (GameObject)Resources.Load("RoomPrefabs/StartRoomPrefab" + roomNumber);
+        if (loadedRoomPrefab == null)
+        {
+            throw new FileNotFoundException("startRoomPrefab" + roomNumber + " not found, please check the Assets/Resources/RoomPrefabs/ folder to ensure the file exists.");
+        }
+        return loadedRoomPrefab;
+    }
+
+    private GameObject GetRandomEndRoomPrefab()
+    {
+        int roomNumber = Random.Range(1,4);
+        GameObject loadedRoomPrefab = (GameObject)Resources.Load("RoomPrefabs/EndRoomPrefab" + roomNumber);
         if (loadedRoomPrefab == null)
         {
             throw new FileNotFoundException("startRoomPrefab" + roomNumber + " not found, please check the Assets/Resources/RoomPrefabs/ folder to ensure the file exists.");
