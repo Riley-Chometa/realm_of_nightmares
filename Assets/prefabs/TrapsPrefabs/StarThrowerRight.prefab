@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3009747328184218195}
   - component: {fileID: 3009747328184218194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: starThrowerBottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3009747329386059275}
   - component: {fileID: 3009747329386059274}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: starThrowerTopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,9 +174,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3009747329625070575}
   - component: {fileID: 3009747329625070574}
-  m_Layer: 0
+  - component: {fileID: 9074782912870970079}
+  m_Layer: 7
   m_Name: StarThrowerRight
-  m_TagString: trap
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,3 +212,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tm: {fileID: 3009747329625070575}
   star: {fileID: 6162417932098663583, guid: 5e48f77ba4394e140a58d472f1ea1fdc, type: 3}
+--- !u!58 &9074782912870970079
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3009747329625070568}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 12

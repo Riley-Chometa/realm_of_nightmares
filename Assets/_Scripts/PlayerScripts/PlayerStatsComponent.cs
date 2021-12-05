@@ -206,10 +206,12 @@ private CanvasParts canvasParts;
         float enemySpeed;
         if (currentHealth < 5){
                 enemySpeed = .011f;
+                
             }
         else {
                 enemySpeed = .021f;
             }
+        player.GetComponent<PickUpItems>().lowHealthLightEffect(currentHealth);
         Unit[] enemies = FindObjectsOfType(typeof(Unit)) as Unit[];
             foreach (Unit enemy in enemies){
                 enemy.setSpeed(enemySpeed);

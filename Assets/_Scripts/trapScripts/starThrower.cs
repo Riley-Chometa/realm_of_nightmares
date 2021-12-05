@@ -14,7 +14,6 @@ public class starThrower : MonoBehaviour
     {
         tm = GetComponent<Transform>();
         spawnTime = Random.Range(.85f, 1.05f);
-        InvokeRepeating("createStar", spawnTime, spawnTime);
         // if facing right
         if (this.gameObject.transform.rotation.eulerAngles.y == 180){
             throwDirection = Vector2.right;
@@ -22,6 +21,27 @@ public class starThrower : MonoBehaviour
         }
         else{
             throwDirection = Vector2.left;
+        }
+    }
+
+    public void activateStarThrower(){
+        InvokeRepeating("createStar", spawnTime, spawnTime);
+    }
+
+    public void deactivateStarThrower(){
+        CancelInvoke();
+    }
+
+    
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Player"){
+            activateStarThrower();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.tag == "Player"){
+            deactivateStarThrower();
         }
     }
 

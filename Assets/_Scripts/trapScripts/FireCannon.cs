@@ -19,6 +19,10 @@ public class FireCannon : MonoBehaviour
     void Start()
     {
         spawnTime = Random.Range(2.1f, 3.1f);
+
+    }
+
+    public void activateCannon(){
         // Invoke("createFire1", spawnTime);
         InvokeRepeating("createFire1", spawnTime, spawnTime);
         InvokeRepeating("createFire2", spawnTime, spawnTime);
@@ -26,7 +30,21 @@ public class FireCannon : MonoBehaviour
         InvokeRepeating("createFire4", spawnTime, spawnTime);
     }
 
+    public void deactivateCannon(){
+        CancelInvoke();
+    }
     
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.tag == "Player"){
+            activateCannon();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.tag == "Player"){
+            deactivateCannon();
+        }
+    }
     private void createFire1(){
         GameObject fireBall1 = Instantiate(fireBallShoot, left.position, Quaternion.identity);
         fireBall1.GetComponent<shootFireBall>().setDirection(throwDirectionWest);

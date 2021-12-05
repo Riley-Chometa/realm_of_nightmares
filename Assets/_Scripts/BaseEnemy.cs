@@ -64,7 +64,11 @@ public class BaseEnemy : MonoBehaviour
             //
             canGetHit = false;
             hitTimerValue = hitTimerMax;
+
             currentHealth -= damage;
+            if (currentHealth < 0 ){
+                currentHealth = 0;
+            }
             healthBar.setHealth(currentHealth);
             if (enemyController != null)
                 enemyController.setCanMove(false);
@@ -102,7 +106,7 @@ public class BaseEnemy : MonoBehaviour
 
     // The beginning aspects of the enemy characters death. The character changes layers to unaffect the player. Stop collisions with the player and start the death animation.
     void death(){
-        gameObject.layer = 7;
+        gameObject.layer = 4;
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 7;
         Destroy(gameObject.GetComponent<CapsuleCollider2D>());
         if (anim != null) {

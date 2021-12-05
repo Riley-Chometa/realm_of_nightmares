@@ -99,9 +99,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1875273826942707924}
   - component: {fileID: 1875273826942707923}
-  - component: {fileID: 1875273826942707922}
   - component: {fileID: 1875273826942707921}
   - component: {fileID: 1875273826942707920}
+  - component: {fileID: 8667225463491540192}
   m_Layer: 0
   m_Name: SpawnDungeon
   m_TagString: Untagged
@@ -138,24 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generator: {fileID: 0}
-  animator: {fileID: 8667225464073299855}
+  animator: {fileID: 0}
   statCanvas: {fileID: 8732064102262724741, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
---- !u!58 &8667225463491540192
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1875273826942707935}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
 --- !u!212 &1875273826942707921
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -226,6 +210,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &8667225463491540192
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875273826942707935}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
 --- !u!1 &1875273827328485664
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 34a1c01acf590af46b089ac79c3849ef, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0

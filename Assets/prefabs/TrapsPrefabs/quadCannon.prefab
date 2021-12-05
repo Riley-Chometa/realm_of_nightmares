@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 8837903914016059197}
   - component: {fileID: 8837903914016059196}
   - component: {fileID: 8837903914016059195}
+  - component: {fileID: 1245802118635539797}
   m_Layer: 7
   m_Name: quadCannon
   m_TagString: Untagged
@@ -269,6 +270,22 @@ MonoBehaviour:
   up: {fileID: 8837903913436853662}
   down: {fileID: 8837903913217164286}
   fireBallShoot: {fileID: 6879689173167776156, guid: d711ae3b38e65974da45c7b55f6d12c3, type: 3}
+--- !u!58 &1245802118635539797
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837903914016059194}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.028772991, y: -0.0000012715658}
+  serializedVersion: 2
+  m_Radius: 12.884163
 --- !u!1 &8837903914309257212
 GameObject:
   m_ObjectHideFlags: 0
