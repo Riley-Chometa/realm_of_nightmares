@@ -32,6 +32,8 @@ public class StatCanvasScript : MonoBehaviour
 
     [SerializeField]
     GameObject thisCanvas;
+    [SerializeField]
+    private bool ShowSecretMessage = false;
 
     void Start() {
         SetText();
@@ -56,7 +58,12 @@ public class StatCanvasScript : MonoBehaviour
         // currentGoldCoins.text = "Gold Coins Collected: " + currentGold;
         // currentSilverCoins.text = "Silver Coins Collected: " + currentSilver;
         // currentBronzeCoins.text = "Bronze Coins Collected: " + currentBronze;
-        GameObject.Find("GameOver").GetComponent<Text>().text = totalE == 0 ? "Well It Looks Like You Were Just Here To Fuck Spiders...":"You Succumbed To Your Nightmares";
+        if (ShowSecretMessage)
+            GameObject.Find("SecretMessage").GetComponent<Text>().text = totalE == 0 ? 
+                                                                    "Well it looks like you were just here to fuck spiders...":
+                                                                    "Well it looks like you're not here to fuck spiders!";
+        else 
+            GameObject.Find("SecretMessage").GetComponent<Text>().text = "";
         totalEnemies.text = "Total Enemies Killed: " + totalE;
         totalGold.text = "Total Gold Coins Collected: " + totalG;
         totalSilver.text = "Total Silver Coins Collected: " + totalS;
