@@ -21,7 +21,7 @@ public class PickUpItems : MonoBehaviour
     [SerializeField]
     private Light2D playerLightRadius;
     private float radiusTimer = 0;
-    private float timerValue = 3.0f;
+    private float timerValue = 2.5f;
     private float intensityDecrement = .01f;
     [SerializeField]
     private float lightIntensityIncrement = .25f;
@@ -120,6 +120,33 @@ public class PickUpItems : MonoBehaviour
         }
     }
 
+    public void lowHealthLightEffect(int health){
+        if (health < 5){
+            playerLightRadius.color = Color.red;
+        }
+        if (health == 1){
+            playerLightRadius.intensity = minLightIntensity;
+            playerLightRadius.pointLightInnerRadius = minInnerRadius;
+            playerLightRadius.pointLightOuterRadius = minOuterRadius;
+        }
+        else if (health >= 2 && health < 5){
+                currentIntensity -= intensityDecrement* 5;
+                currOuterRadius -= intensityDecrement* 5;
+                currInnerRadius -= intensityDecrement*5;
+                if (currentIntensity < minLightIntensity || currOuterRadius < minOuterRadius || currInnerRadius < minInnerRadius){
+                    currentIntensity = minLightIntensity;
+                    currInnerRadius = minInnerRadius;
+                    currOuterRadius = minOuterRadius;
+                }
+                playerLightRadius.intensity = currentIntensity;
+                playerLightRadius.pointLightInnerRadius = currInnerRadius;
+                playerLightRadius.pointLightOuterRadius = currOuterRadius; 
+        }
+        else {
+            playerLightRadius.color = Color.white;
+        }
+        
+    }
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "trap"){
             playerOperator.getHit();
