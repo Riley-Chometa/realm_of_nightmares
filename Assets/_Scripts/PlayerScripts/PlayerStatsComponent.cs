@@ -138,6 +138,7 @@ private CanvasParts canvasParts;
     }
 
     public void modifyHealth(int amount){
+        try{
         if (shieldActive && amount < 0) {
             this.deactivateShield();
             return;
@@ -209,7 +210,7 @@ private CanvasParts canvasParts;
                 
             }
         else {
-                enemySpeed = .021f;
+                enemySpeed = .025f;
             }
         player.GetComponent<PickUpItems>().lowHealthLightEffect(currentHealth);
         Unit[] enemies = FindObjectsOfType(typeof(Unit)) as Unit[];
@@ -218,6 +219,8 @@ private CanvasParts canvasParts;
             }
                 
         //healthText.text = "Health: " + currentHealth;
+        }
+        catch{}
     }
 
     public int getHealth(){

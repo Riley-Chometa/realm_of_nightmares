@@ -62,7 +62,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private GameObject Bomb;
 
-    public void GenerateDungeon()
+    public void MakeDungeon()
     {
         Destroy(GameObject.Find("Astar(Clone)"));
         CreateRooms();

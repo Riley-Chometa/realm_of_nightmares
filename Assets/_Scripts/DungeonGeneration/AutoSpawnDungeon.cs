@@ -30,7 +30,7 @@ public class AutoSpawnDungeon : MonoBehaviour
         Store = GameObject.Find("StorePlayerSpawn");
         player = GameObject.Find("player");
         generator = GameObject.Find("RoomsFirstDungeonGenerator").GetComponent<RoomFirstDungeonGenerator>();
-        generator.GenerateDungeon();
+        generator.MakeDungeon();
         
     }
 
@@ -52,7 +52,7 @@ public class AutoSpawnDungeon : MonoBehaviour
                 generator.level++;
                 inStore = false;
                 animator.SetTrigger("StartTransition");
-                generator.GenerateDungeon();
+                generator.MakeDungeon();
                 int level = generator.getLevel();
                 BaseEnemy[] enemies = FindObjectsOfType(typeof(BaseEnemy)) as BaseEnemy[];
                 foreach (BaseEnemy enemy in enemies){

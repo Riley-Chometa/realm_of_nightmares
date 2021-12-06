@@ -64,6 +64,7 @@ public class StatTracker : MonoBehaviour
     }
 
     public int getTotalSilver() {
+        Debug.Log(totalSilverCoins + currentSilverCoins);
         return totalSilverCoins + currentSilverCoins;
     }
 
