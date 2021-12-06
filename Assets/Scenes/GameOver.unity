@@ -434,11 +434,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4183969347909239186, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -562
+      value: -520
       objectReference: {fileID: 0}
     - target: {fileID: 4183969347909239187, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
       propertyPath: m_Text
-      value: 
+      value: well it looks like oyu werent here to fuck spiders
       objectReference: {fileID: 0}
     - target: {fileID: 4183969347909239187, guid: 58dfa2d7c3ebd4a32960c344f95c79e0, type: 3}
       propertyPath: m_FontData.m_FontSize
