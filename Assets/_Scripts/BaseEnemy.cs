@@ -141,11 +141,15 @@ public class BaseEnemy : MonoBehaviour
             return;
         }
         else {
-            int itemToDrop = Random.Range(0, itemDrops.Count-1);
+            
+            int itemToDrop = Random.Range(2, itemDrops.Count-1);
             GameObject temp = Instantiate(itemDrops[itemToDrop], transform.position, transform.rotation);
-            if (!isTest) {
-                    temp.transform.SetParent(GameObject.Find("SpawnedParent").transform);
-            }
+            GameObject gravestone = Instantiate(itemDrops[Random.RandomRange(0,1)], transform.position, transform.rotation);
+            temp.transform.SetParent(GameObject.Find("SpawnedParent").transform);
+            gravestone.transform.SetParent(GameObject.Find("SpawnedParent").transform);
+            // if (!isTest) {
+            //         
+            // }
         }
     }
 

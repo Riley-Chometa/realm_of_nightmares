@@ -18,6 +18,7 @@ public class ShopGoldHeart : MonoBehaviour
     public Transform tm;
     private AudioSource AudioSource;
     public AudioClip clip;
+    private int numBought = 0;
     private void Start() {
         AudioSource = GetComponent<AudioSource>();
         playerInfo = GameObject.Find("PlayerStats").GetComponent<PlayerStatsComponent>();
@@ -25,19 +26,25 @@ public class ShopGoldHeart : MonoBehaviour
     private void Update() {
         if (canPurchase){
             if (Input.GetKeyDown("e")){
-                playerInfo.modifyCoins(-100);
+                playerInfo.modifyCoins(-getCost());
                 playerInfo.modifyMaxHealth(1);
+                numBought++;
                 AudioSource.PlayOneShot(clip);
-                if (playerInfo.getCoins() < 100){
+                if (playerInfo.getCoins() < getCost() || playerInfo.getMaxHealth() >= 15){
                     canPurchase = false;
                 }
                 shopkeeper.GetComponent<ShopKeeper>().changeText("Purchase Complete!");
             }
         }
     }
+
+    public int getCost()
+    {
+        return 100 + (50*numBought);
+    }
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "Player"){
-            if (playerInfo.getCoins() >= 100 && playerInfo.getMaxHealth() < 15){
+            if (playerInfo.getCoins() >= getCost() && playerInfo.getMaxHealth() < 15){
                 canPurchase = true;
             }
         }
@@ -45,8 +52,8 @@ public class ShopGoldHeart : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Player"){
-            shopkeeper.GetComponent<ShopKeeper>().startDialog(1,"Cost 100 Coins!" );
-            shopkeeper.GetComponent<ShopKeeper>().changeText("Heart Cost 100 Coins!");
+            shopkeeper.GetComponent<ShopKeeper>().startDialog(1,"Cost " + getCost() + " Coins!" );
+            shopkeeper.GetComponent<ShopKeeper>().changeText("Heart Cost " + getCost() + " Coins!");
             // shopkeeper.GetComponent<ShopKeeper>().playDialog(1);
             tempText = Instantiate(floatingText, tm.position + new Vector3(0, 1.5f, 0), Quaternion.identity, tm);
             tempText.GetComponent<TextMesh>().text = printMe;

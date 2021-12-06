@@ -56,7 +56,7 @@ public class BreakableRock : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         Destroy(gameObject.GetComponent<BoxCollider2D>()); //Allow the player to walk ontop of this object as it is no longer an obstacle.
-
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 5;
         node.walkable = true;
         List<Node> neighbours = grid.getNeighbours(node);
         foreach(Node nodeNeighbor in neighbours){

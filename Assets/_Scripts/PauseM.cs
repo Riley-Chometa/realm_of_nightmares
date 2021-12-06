@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PauseM : MonoBehaviour
 {
     public static bool isPaused = false;
@@ -37,11 +37,7 @@ public class PauseM : MonoBehaviour
       Time.timeScale = 0f;
       isPaused = true;
     }
-
-    public void LoadMenu(){
-
-    }
     public void QuitGame(){
-      Application.Quit();
+      SceneManager.LoadScene("MainMenu");
     }
 }

@@ -7,9 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1277340330978090546, guid: 6e6bb40d44ee13144bc31d0c23997e50, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277340330978090546, guid: 6e6bb40d44ee13144bc31d0c23997e50, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4782046852248207848, guid: 6e6bb40d44ee13144bc31d0c23997e50, type: 3}
       propertyPath: m_Name
       value: RoomPrefab7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012130337522237382, guid: 6e6bb40d44ee13144bc31d0c23997e50, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6012130337522237382, guid: 6e6bb40d44ee13144bc31d0c23997e50, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7222395402746594023, guid: 6e6bb40d44ee13144bc31d0c23997e50, type: 3}
       propertyPath: m_RootOrder
@@ -53,6 +69,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7222395402746594023, guid: 6e6bb40d44ee13144bc31d0c23997e50, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666285545697078593, guid: 6e6bb40d44ee13144bc31d0c23997e50, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666285545697078593, guid: 6e6bb40d44ee13144bc31d0c23997e50, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -58,6 +58,7 @@ public class StatCanvasScript : MonoBehaviour
         // currentGoldCoins.text = "Gold Coins Collected: " + currentGold;
         // currentSilverCoins.text = "Silver Coins Collected: " + currentSilver;
         // currentBronzeCoins.text = "Bronze Coins Collected: " + currentBronze;
+        ShowSecretMessage = GameObject.Find("GameMode").GetComponent<GameMode>().IsAustralianMode();
         if (ShowSecretMessage)
             GameObject.Find("SecretMessage").GetComponent<Text>().text = totalE == 0 ? 
                                                                     "Well it looks like you were just here to fuck spiders...":

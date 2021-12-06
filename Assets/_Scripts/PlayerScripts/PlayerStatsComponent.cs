@@ -83,7 +83,9 @@ private CanvasParts canvasParts;
     {
         for (int i = 0; i <= maxHealth - 1; i++) {
             GameObject newHeart = Instantiate(playerHeart) as GameObject;
+            
             newHeart.transform.SetParent(healthGrid.transform);
+            newHeart.transform.localScale = new Vector3(0.7f, 0.7f, 1);
             hearts.Add(newHeart);
         }
         // for (int i = 0; i <= maxHealth - 1; i++) {
@@ -171,9 +173,11 @@ private CanvasParts canvasParts;
                     if (currentHealth < maxHealth) {
                         for (int i = 0; i<amount;i++)
                     {
-                        print("HEALED");
+                        //print("HEALED");
                         GameObject newHeart = Instantiate(playerHeart) as GameObject;
                         newHeart.transform.SetParent(healthGrid.transform);
+                        hearts.Add(newHeart);
+                        newHeart.transform.localScale = new Vector3(0.7f, 0.7f, 1);
                         hearts.Add(newHeart);
                         currentHealth += amount;
                         if (currentHealth > maxHealth) {
@@ -206,11 +210,11 @@ private CanvasParts canvasParts;
         }
         float enemySpeed;
         if (currentHealth < 5){
-                enemySpeed = .011f;
+                enemySpeed = .014f;
                 
             }
         else {
-                enemySpeed = .025f;
+                enemySpeed = .022f;
             }
         player.GetComponent<PickUpItems>().lowHealthLightEffect(currentHealth);
         Unit[] enemies = FindObjectsOfType(typeof(Unit)) as Unit[];

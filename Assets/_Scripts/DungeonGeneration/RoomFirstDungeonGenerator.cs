@@ -84,35 +84,41 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(
                     new BoundsInt((Vector3Int) startPosition, new Vector3Int(dungeonWidth, dungeonHeight, 0)), 
                     minRoomWidth, minRoomHeight);
-        
-        floor = new HashSet<Vector2Int>();
-        doors = new HashSet<GameObject>();
-        this.ParentSpawn = GameObject.Find("SpawnedParent");
-        
-        //this.maxRooms = difficulty;
-        if (randomWalkRooms)
+        if (roomsList.Count < 4)
         {
-            floor = CreateRoomsRandomly(roomsList);
+            this.MakeDungeon();
         }
         else{
-            floor = CreateSimpleRooms(roomsList);
-        }
-        ClearDungeon();
-        List<Vector2Int> roomCenters = new List<Vector2Int>();
-        foreach (var room in roomsList)
-        {
-            roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
-        }
-        HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
-        floor.UnionWith(corridors);
-        
+            floor = new HashSet<Vector2Int>();
+            doors = new HashSet<GameObject>();
+            this.ParentSpawn = GameObject.Find("SpawnedParent");
+            
+            //this.maxRooms = difficulty;
+            if (randomWalkRooms)
+            {
+                floor = CreateRoomsRandomly(roomsList);
+            }
+            else{
+                floor = CreateSimpleRooms(roomsList);
+            }
+            ClearDungeon();
+            List<Vector2Int> roomCenters = new List<Vector2Int>();
+            foreach (var room in roomsList)
+            {
+                roomCenters.Add((Vector2Int)Vector3Int.RoundToInt(room.center));
+            }
+            HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
+            floor.UnionWith(corridors);
+            
 
-        tileMapVisualizer.PaintFloorTiles(floor);
-        WallGenerator.CreateWalls(floor, tileMapVisualizer);
-        SpawnRoomsAssets();
-        //System.Threading.Thread.Sleep(5000);
-        GameObject a = Instantiate(this.aStar);//.SendMessage("ResetGrid");
-        //a.SendMessage("ResetGrid");
+            tileMapVisualizer.PaintFloorTiles(floor);
+            WallGenerator.CreateWalls(floor, tileMapVisualizer);
+            SpawnRoomsAssets();
+            //System.Threading.Thread.Sleep(5000);
+            GameObject a = Instantiate(this.aStar);//.SendMessage("ResetGrid");
+            //a.SendMessage("ResetGrid");
+        }
+
     }
 
 
@@ -220,6 +226,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                     GameObject tempDoor = Instantiate(this.doorPrefab,new Vector3(door.position.x, door.position.y, 0),UnityEngine.Quaternion.identity);
                     this.doors.Add(tempDoor);
                     tempDoor.transform.SetParent(gameObject.transform);
+                    tempDoor.transform.position = new Vector3(door.position.x, door.position.y, 0);
                 }
             }
         }
@@ -240,6 +247,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
                         GameObject objectToInstantiate = Random.Range(1,100) >5? this.Coin: this.Bomb;
                         GameObject coin = Instantiate(objectToInstantiate,new Vector3(door.position.x, door.position.y-0.5f, 0),UnityEngine.Quaternion.identity);
                         coin.transform.SetParent(this.ParentSpawn.transform);
+                        coin.transform.position = new Vector3(door.position.x, door.position.y-0.5f, 0);
                     }
                 }
             }

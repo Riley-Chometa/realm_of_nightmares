@@ -276,8 +276,8 @@ MonoBehaviour:
   healthBar: {fileID: 4315028888155792993}
   itemDrops:
   - {fileID: 325187142192850821, guid: a6e2591bada45864595d3ae00045c718, type: 3}
-  - {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
   - {fileID: 2896252009031110385, guid: 43e40036e1a902b44a954c5412728b39, type: 3}
+  - {fileID: 7995432598460275060, guid: 37ebba618bfebec479ec81f058df0c42, type: 3}
   - {fileID: 8734105472229267294, guid: 7d9aa105a74596840a1a348567e9d39d, type: 3}
   - {fileID: 929772180218127765, guid: 110756999b1fc524e8bee9b0d0de2da8, type: 3}
   - {fileID: 929772180218127765, guid: 110756999b1fc524e8bee9b0d0de2da8, type: 3}
@@ -288,6 +288,7 @@ MonoBehaviour:
   - {fileID: 1460965715376487786, guid: 740f9490c9ab54e729404254d87f6c5e, type: 3}
   - {fileID: 3110596208775838500, guid: 16521808340d94be78f49bc0f2ea92df, type: 3}
   - {fileID: 3110596208775838500, guid: 16521808340d94be78f49bc0f2ea92df, type: 3}
+  - {fileID: 5178305799581263676, guid: 5eb5b59345186d44f9a59419e86c4e68, type: 3}
   isTest: 0
   mainCollider: {fileID: 0}
   isAlive: 0
@@ -325,12 +326,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94610ce043df8544f93dc5df1061a0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireBallSound: {fileID: 0}
   target: {fileID: 0}
+  projectile: {fileID: 0}
   searchRange: 10
   attackRadius: 1
   rangedEnemy: 0
   attackCooldown: 2
-  speed: 0.02
 --- !u!95 &8857220039008338613
 Animator:
   serializedVersion: 3
@@ -429,11 +431,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6470634031878877797, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6470634031878877797, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6470634031878877797, guid: 944d3ad115aea4b3e9889ea70ebdf63f, type: 3}
       propertyPath: m_LocalScale.z

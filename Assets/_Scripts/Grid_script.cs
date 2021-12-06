@@ -51,7 +51,7 @@ public class Grid_script : MonoBehaviour
         for (int x = 0; x < gridSizeX; x++){
             for (int y = 0; y < gridSizeY; y++){
                 Vector2 worldPoint = bottomLeft + Vector2.right * (x*nodeDiameter + nodeRadius) + Vector2.up* (y*nodeDiameter + nodeRadius);
-                bool walkable = !(Physics2D.OverlapPoint(worldPoint, unwalkableMask));//, (nodeRadius-0.1f), unwalkableMask));
+                bool walkable = !(Physics2D.OverlapCircle(worldPoint, (nodeRadius-0.3f), unwalkableMask));//OverlapPoint(worldPoint, unwalkableMask));//, (nodeRadius-0.1f), unwalkableMask));
                 grid[x,y] = new Node(walkable, worldPoint,x,y);
                 Debug.DrawLine(worldPoint, worldPoint+(Vector2.right/2),Color.green, 20);
             }    
