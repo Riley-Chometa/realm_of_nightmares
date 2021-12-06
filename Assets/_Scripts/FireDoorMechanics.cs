@@ -23,7 +23,8 @@ public class FireDoorMechanics : MonoBehaviour
     void OnCollisionEnter2D(Collision2D coli)
     {
         //if (coli.gameObject.name == "player (1)") is used for testing purposes. 
-        if (coli.gameObject.tag == "Player") 
+        Debug.Log(gameObject.name);
+        if (coli.gameObject.tag == "Player" && gameObject.name != "BlueFireDoor(Clone)") 
         {
             source.PlayOneShot(sizzleSound);
             GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().getHit(); //Cause the player to take damage once they make contact with the pillar of fire. 
