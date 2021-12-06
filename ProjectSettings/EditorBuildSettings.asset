@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainDungeon.unity
     guid: 8a5c52a3ea0a4aa41bbb549110540e5b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TempStoreScene.unity
     guid: 08ecd97c3a6e26c43be2c0641dbf9cba
   - enabled: 1
