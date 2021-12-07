@@ -29,11 +29,14 @@ public class ShopHeart : MonoBehaviour
                 playerInfo.modifyCoins(-10);
                 playerInfo.modifyHealth(1);
                 AudioSource.PlayOneShot(clip);
-                if (playerInfo.getCoins() < 10 || playerInfo.getHealth() < playerInfo.getMaxHealth()){
-                    canPurchase = false;
-                }
+                // if (playerInfo.getCoins() < 10 || playerInfo.getHealth() < playerInfo.getMaxHealth()) {
+                //     canPurchase = false;
+                // }
                 shopkeeper.GetComponent<ShopKeeper>().changeText("Purchase Complete!");
             }
+        }
+        if (playerInfo.getCoins() < 10 || playerInfo.getHealth() < playerInfo.getMaxHealth()) {
+                    canPurchase = false;
         }
     }
     private void OnTriggerStay2D(Collider2D other) {

@@ -109,7 +109,9 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
             }
             HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
             floor.UnionWith(corridors);
-            
+            PlayerMovement playerMovement = GameObject.Find("player").GetComponent<PlayerMovement>();
+            if (playerMovement.attackDelay > 0.4f)
+                playerMovement.reduceAttackDelay();
 
             tileMapVisualizer.PaintFloorTiles(floor);
             WallGenerator.CreateWalls(floor, tileMapVisualizer);

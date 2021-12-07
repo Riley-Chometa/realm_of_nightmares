@@ -164,7 +164,7 @@ private CanvasParts canvasParts;
             }   
             
             if (amount > 0) {
-                Vector3 scale = new Vector3(1.0f, 1.0f, 1.0f);
+                Vector3 scale = new Vector3(0.7f, 0.7f, 1.0f);
                 if (NthHit != 0) {
                     hearts[hearts.Count - 1].transform.localScale = scale;
                     NthHit = 0;

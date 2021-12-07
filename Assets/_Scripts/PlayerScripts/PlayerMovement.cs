@@ -94,8 +94,12 @@ public class PlayerMovement : MonoBehaviour
     static GameObject endOfGameStats;
     static GameObject endOfGameCollects;
 
+    private float AttackTimer;
+    public float attackDelay = 0.8f;
+
     // Initialize variables for the player.
     void Start(){
+        AttackTimer = Time.fixedDeltaTime;
         canvasParts = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasParts>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -143,11 +147,14 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             
-                if (Input.GetKeyDown(KeyCode.Space)){
+                if (Input.GetKeyDown(KeyCode.Space) && CanAttack()){
                     // storePreviousMovement = new Vector2(movement.x, movement.y);
                     canMove = false;
                     canInput = false;
+                    AttackTimer = attackDelay;
                     Attack();
+                } else {
+                    AttackTimer -= Time.fixedDeltaTime;
                 }
 
                 if (Input.GetKeyDown("e") && canPickUp){
@@ -169,6 +176,15 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
+    public void reduceAttackDelay()
+    {
+        this.attackDelay -= 0.01f;
+    }
+
+    private bool CanAttack()
+    {
+        return AttackTimer <= 0;
     }
 
     /**
